@@ -1,0 +1,43 @@
+@import url("../../App.css");
+#navbar {
+  background-color: var(--background);
+}
+#title {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#navbar-logo {
+  max-height: 32px;
+  max-width: 32px;
+  margin-right: 10px;
+}
+.currency-selector {
+  text-align: center;
+}
+
+.navbar-item {
+  margin-left: 20px;
+}
+.navbar-item:hover {
+  box-shadow: 0px 0px 2px var(--headline);
+  border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+  #responsive-navbar-nav {
+    margin-left: 40%;
+  }
+}
+@media (min-width: 992px) {
+  #responsive-navbar-nav {
+    margin-left: 55%;
+  }
+}
+@media (min-width: 1200px) {
+  #responsive-navbar-nav {
+    margin-left: 60%;
+  }
+}
