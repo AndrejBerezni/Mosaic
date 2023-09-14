@@ -1,7 +1,9 @@
+import ListOptions from "./ListOptions/ListOptions";
+
 function UserPage() {
   return (
     <>
-      <h1>UserPage</h1>
+      <ListOptions />
     </>
   );
 }

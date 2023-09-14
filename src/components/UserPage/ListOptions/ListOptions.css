@@ -1,0 +1,14 @@
+@import url("../../../App.css");
+
+.filter-sort {
+  background-color: var(--secondary);
+}
+
+.filter-sort-dropdown > a {
+  color: white;
+}
+
+.filter-sort-dropdown > a:focus,
+.filter-sort-dropdown > a:hover {
+  color: var(--headline);
+}

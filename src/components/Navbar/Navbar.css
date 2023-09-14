@@ -21,14 +21,14 @@
 .navbar-item {
   margin-left: 20px;
 }
-.navbar-item:hover {
-  box-shadow: 0px 0px 2px var(--headline);
-  border-radius: 5px;
-}
 
 @media (min-width: 768px) {
   #responsive-navbar-nav {
     margin-left: 40%;
+  }
+  .navbar-item:hover {
+    box-shadow: 0px 0px 2px var(--headline);
+    border-radius: 5px;
   }
 }
 @media (min-width: 992px) {
