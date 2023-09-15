@@ -3,10 +3,19 @@
 #add-asset-btn {
   background-color: var(--headline);
   border-color: var(--headline);
-  margin-bottom: 10vh;
+  border-radius: 5px 5px 0 0;
 }
 
 #add-asset-btn:hover {
   background-color: var(--secondary);
   border-color: var(--secondary);
+}
+
+#add-asset-btn-div {
+  position: fixed;
+  bottom: 58px;
+  left: 0;
+  width: 100%;
+  height: 58px;
+  z-index: 1;
 }

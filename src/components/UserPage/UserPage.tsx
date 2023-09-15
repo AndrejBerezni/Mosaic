@@ -9,7 +9,7 @@ function UserPage() {
   return (
     <>
       <ListOptions />
-      <Container fluid>
+      <Container fluid style={{ marginBottom: "132px" }}>
         <Col lg={8}>
           <AssetBar assetName={"bitcoin"} units={2} totalValue={42600} />
           <AssetBar assetName={"ethereum"} units={66} totalValue={76400} />
@@ -19,10 +19,18 @@ function UserPage() {
           <AssetBar assetName={"ethereum"} units={66} totalValue={76400} />
           <AssetBar assetName={"xrp"} units={3} totalValue={3.24} />
           <AssetBar assetName={"cardano"} units={408} totalValue={230} />
-          <AddAsset />
+          <AssetBar assetName={"bitcoin"} units={2} totalValue={42600} />
+          <AssetBar assetName={"ethereum"} units={66} totalValue={76400} />
+          <AssetBar assetName={"xrp"} units={3} totalValue={3.24} />
+          <AssetBar assetName={"cardano"} units={408} totalValue={230} />
+          <AssetBar assetName={"bitcoin"} units={2} totalValue={42600} />
+          <AssetBar assetName={"ethereum"} units={66} totalValue={76400} />
+          <AssetBar assetName={"xrp"} units={3} totalValue={3.24} />
+          <AssetBar assetName={"cardano"} units={408} totalValue={230} />
         </Col>
-        <Total />
       </Container>
+      <AddAsset />
+      <Total />
     </>
   );
 }
