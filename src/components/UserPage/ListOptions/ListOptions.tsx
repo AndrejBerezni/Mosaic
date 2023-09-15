@@ -1,13 +1,10 @@
+import "./ListOptions.css";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "./ListOptions.css";
 
 function ListOptions() {
   return (
-    <Nav
-      className="justify-content-start px-lg-5 px-2 filter-sort"
-      activeKey="/home"
-    >
+    <Nav className="justify-content-start px-lg-5 px-2 filter-sort">
       <NavDropdown
         title="Filter"
         className="nav-dropdown filter-sort-dropdown mx-lg-5"

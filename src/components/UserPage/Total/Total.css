@@ -1,0 +1,17 @@
+@import url("../../../App.css");
+
+.total-wealth {
+  max-height: 10vh;
+  background-color: var(--secondary) !important;
+  color: var(--background) !important;
+}
+
+#total-wealth-text {
+  color: var(--background) !important;
+  font-weight: bold;
+}
+
+#total-wealth-number {
+  background-color: var(--headline) !important;
+  font-size: 1.2rem;
+}
