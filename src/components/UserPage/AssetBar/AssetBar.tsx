@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Table from "react-bootstrap/Table";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 interface AssetBarProps {
   assetName: string;
@@ -22,14 +24,23 @@ function AssetBar({ assetName, units, totalValue }: AssetBarProps) {
         </tr>
       </Table>
       <ButtonGroup aria-label="Basic example">
-        <Button className="add-units-button asset-bar-btn">Add</Button>
-        <Button className="remove-units-button asset-bar-btn">Remove</Button>
-        <Button className="asset-bar-btn" variant="warning">
-          Edit
+        <Button className="add-units-button asset-bar-btn">Add Units</Button>
+        <Button className="remove-units-button asset-bar-btn">
+          Remove Units
         </Button>
-        <Button className="asset-bar-btn" variant="danger">
-          Delete
-        </Button>
+        <DropdownButton
+          className="asset-bar-btn"
+          as={ButtonGroup}
+          title="Options"
+          id="bg-nested-dropdown"
+        >
+          <Dropdown.Item className="asset-bar-btn">
+            Edit
+          </Dropdown.Item>
+          <Dropdown.Item className="asset-bar-btn">
+            Delete
+          </Dropdown.Item>
+        </DropdownButton>
       </ButtonGroup>
     </Card>
   );
