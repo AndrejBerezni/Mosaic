@@ -19,3 +19,10 @@
 .asset-bar-btn {
   width: 25%;
 }
+.asset-bar-btn {
+  border-radius: 0 0 5px 5px;
+}
+
+#bg-nested-dropdown {
+  border-radius: 0 0 5px 0;
+}
