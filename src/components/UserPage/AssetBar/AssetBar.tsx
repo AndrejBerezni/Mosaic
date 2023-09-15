@@ -15,11 +15,11 @@ interface AssetBarProps {
 function AssetBar({ assetName, units, totalValue }: AssetBarProps) {
   return (
     <Card className="asset-bar my-3">
-      <Table>
+      <Table className="my-2">
         <tr>
           <th className="asset-bar-text">{assetName}</th>
-          <th className="asset-bar-text">crypto</th>
-          <th className="asset-bar-text">{units}</th>
+          <th className="asset-bar-text secondary-text">crypto</th>
+          <th className="asset-bar-text secondary-text">{units}</th>
           <th className="asset-bar-text">{totalValue}</th>
         </tr>
       </Table>
@@ -29,17 +29,12 @@ function AssetBar({ assetName, units, totalValue }: AssetBarProps) {
           Remove Units
         </Button>
         <DropdownButton
-          className="asset-bar-btn"
           as={ButtonGroup}
           title="Options"
           id="bg-nested-dropdown"
         >
-          <Dropdown.Item className="asset-bar-btn">
-            Edit
-          </Dropdown.Item>
-          <Dropdown.Item className="asset-bar-btn">
-            Delete
-          </Dropdown.Item>
+          <Dropdown.Item>Edit</Dropdown.Item>
+          <Dropdown.Item>Delete</Dropdown.Item>
         </DropdownButton>
       </ButtonGroup>
     </Card>

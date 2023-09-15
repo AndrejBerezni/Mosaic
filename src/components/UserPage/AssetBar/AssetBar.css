@@ -1,17 +1,15 @@
 @import url("../../../App.css");
 
 .remove-units-button,
-.add-units-button {
-  background-color: var(--secondary);
+.add-units-button,
+#bg-nested-dropdown {
+  background-color: var(--paragraph);
   border-color: var(--secondary);
 }
 
-.add-units-button {
-  border-right: 2px solid var(--paragraph);
-}
-
 .remove-units-button:hover,
-.add-units-button:hover {
+.add-units-button:hover,
+#bg-nested-dropdown:hover {
   background-color: var(--headline);
 }
 
@@ -20,10 +18,10 @@
   max-width: 25%;
 }
 
-.asset-bar-btn {
-  width: 25%;
+.secondary-text {
+  color: var(--secondary);
+  font-weight: normal;
 }
-
 .asset-bar-btn {
   border-radius: 0 0 5px 5px;
 }
@@ -31,4 +29,3 @@
 #bg-nested-dropdown {
   border-radius: 0 0 5px 0;
 }
-
