@@ -1,0 +1,11 @@
+@import url("../../../App.css");
+
+#add-asset-btn {
+  background-color: var(--headline);
+  border-color: var(--headline);
+}
+
+#add-asset-btn:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
