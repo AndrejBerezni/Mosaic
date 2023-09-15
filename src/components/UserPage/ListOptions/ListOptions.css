@@ -2,6 +2,7 @@
 
 .filter-sort {
   background-color: var(--secondary);
+  justify-content: center;
 }
 
 .filter-sort-dropdown > a {

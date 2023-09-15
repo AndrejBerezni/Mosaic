@@ -15,11 +15,14 @@
   background-color: var(--headline);
 }
 
-.asset-bar-text,
+.asset-bar-text {
+  width: 25%;
+  max-width: 25%;
+}
+
 .asset-bar-btn {
   width: 25%;
 }
-
 .asset-bar-btn {
   border-radius: 0 0 5px 5px;
 }

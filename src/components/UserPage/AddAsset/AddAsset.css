@@ -3,6 +3,7 @@
 #add-asset-btn {
   background-color: var(--headline);
   border-color: var(--headline);
+  margin-bottom: 10vh;
 }
 
 #add-asset-btn:hover {
