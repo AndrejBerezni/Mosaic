@@ -8,17 +8,18 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 interface AssetBarProps {
   assetName: string;
+  assetType: string;
   units: number;
   totalValue: number;
 }
 
-function AssetBar({ assetName, units, totalValue }: AssetBarProps) {
+function AssetBar({ assetName, assetType, units, totalValue }: AssetBarProps) {
   return (
     <Card className="asset-bar my-3">
       <Table className="my-2">
         <tr>
           <th className="asset-bar-text">{assetName}</th>
-          <th className="asset-bar-text secondary-text">crypto</th>
+          <th className="asset-bar-text secondary-text">{assetType}</th>
           <th className="asset-bar-text secondary-text">{units}</th>
           <th className="asset-bar-text">{totalValue}</th>
         </tr>
