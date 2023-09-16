@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import AddAsset from "./AddAsset/AddAsset";
 import Total from "./Total/Total";
+import NewAssetForm from "../Forms/NewAssetForm/NewAssetForm";
 
 function UserPage() {
   return (
@@ -39,6 +40,7 @@ function UserPage() {
       </Container>
       <AddAsset />
       <Total />
+      <NewAssetForm />
     </>
   );
 }

@@ -17,7 +17,7 @@ const showFormReducer = (
   switch (action.type) {
     case "SHOW FORM":
       return {
-        showFrom: true,
+        showForm: true,
       };
     case "HIDE FORM":
       return {
