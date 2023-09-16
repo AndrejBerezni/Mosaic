@@ -1,0 +1,12 @@
+@import url("../../../App.css");
+
+.submit-form-btn {
+  width: 100%;
+  background-color: var(--headline);
+  border-color: var(--headline);
+}
+
+.submit-form-btn:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
