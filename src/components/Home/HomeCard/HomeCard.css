@@ -1,7 +1,31 @@
 @import url("../../../App.css");
 .home-card {
+  height: 60vh;
+  font-family: var(--font-h);
+  border-color: var(--headline);
+}
+
+.home-card-body {
+  background-color: var(--background-bar);
+  color: var(--headline);
 }
 
 .home-card-text {
   text-align: justify;
+}
+
+.home-card-img {
+  background-color: var(--headline);
+  max-height: 60%;
+}
+
+@media (max-width: 992px) {
+  .home-card {
+    height: 60vh;
+  }
+}
+@media (max-width: 576px) {
+  .home-card {
+    height: 70vh;
+  }
 }

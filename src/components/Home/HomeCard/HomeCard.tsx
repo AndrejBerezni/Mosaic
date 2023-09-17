@@ -9,10 +9,10 @@ interface HomeCardProps {
 
 function HomeCard({ src, cardTitle, cardText }: HomeCardProps) {
   return (
-    <Card className="home-card">
-      <Card.Img variant="top" src={src} />
-      <Card.Body>
-        <Card.Title>{cardTitle}</Card.Title>
+    <Card className="home-card my-1">
+      <Card.Img variant="top" src={src} className="home-card-img" />
+      <Card.Body className="home-card-body">
+        <Card.Title className="my-3">{cardTitle}</Card.Title>
         <Card.Text className="home-card-text">{cardText}</Card.Text>
       </Card.Body>
     </Card>
