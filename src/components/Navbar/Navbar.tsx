@@ -9,8 +9,11 @@ import { MoonStars } from "react-bootstrap-icons";
 import { CurrencyEuro } from "react-bootstrap-icons";
 import { CurrencyDollar } from "react-bootstrap-icons";
 import { CurrencyPound } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import { RootState } from "../../reducers/combineReducers";
 
 function Nabvar() {
+  const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
   return (
     <Navbar expand="md" sticky="top" id="navbar">
       <Container>
@@ -40,7 +43,7 @@ function Nabvar() {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#home" className="navbar-item">
-              Sign Out
+              {isSignedIn ? "Sign Out" : "Sign In"}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

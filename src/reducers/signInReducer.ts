@@ -7,7 +7,7 @@ interface SignInAction {
 }
 
 const initialState: SignedInState = {
-  signedIn: false,
+  signedIn: true,
 };
 
 const signInReducer = (
