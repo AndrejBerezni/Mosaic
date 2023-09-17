@@ -35,10 +35,25 @@
 .navbar-item:hover,
 #responsive-nav-dropdown:hover {
   color: var(--secondary);
+  cursor: pointer; /* adding this for dark mode icon */
 }
 
 #responsive-nav-dropdown {
   color: var(--background);
+}
+
+div.dropdown-menu.show {
+  background-color: var(--background-bar);
+}
+
+a.dropdown-item {
+  color: var(--headline);
+}
+
+a.dropdown-item:hover {
+  background-color: var(--headline);
+  color: var(--background-bar);
+  font-weight: bold;
 }
 
 @media (min-width: 768px) {

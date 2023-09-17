@@ -6,7 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../assets/mosaic.png";
-import { MoonStars } from "react-bootstrap-icons";
+import { Moon } from "react-bootstrap-icons";
+import { Sun } from "react-bootstrap-icons";
 import { CurrencyEuro } from "react-bootstrap-icons";
 import { CurrencyDollar } from "react-bootstrap-icons";
 import { CurrencyPound } from "react-bootstrap-icons";
@@ -39,7 +40,11 @@ function Nabvar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Item className="navbar-item">
-              <MoonStars onClick={toggleDarkMode} />
+              {isDarkMode ? (
+                <Sun onClick={toggleDarkMode} />
+              ) : (
+                <Moon onClick={toggleDarkMode} />
+              )}
             </Nav.Item>
             <NavDropdown
               title="Currency"
