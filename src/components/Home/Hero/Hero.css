@@ -1,0 +1,22 @@
+@import url("../../../App.css");
+
+#hero-image {
+  max-width: 100%;
+}
+
+.hero-header {
+  color: var(--headline);
+  font-family: var(--font-h);
+}
+
+.hero-paragraph {
+  text-align: center;
+  color: var(--paragraph);
+  font-family: var(--font-p);
+}
+
+@media (min-width: 768px) {
+  .hero-paragraph {
+    text-align: justify;
+  }
+}

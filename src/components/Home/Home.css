@@ -1,0 +1,26 @@
+@import url("../../App.css");
+
+#home-signin-btn {
+  background-color: var(--headline);
+  border-color: var(--headline);
+  color: var(--background);
+  transition: 0.3s;
+  font-weight: 500;
+  width: 400px;
+}
+
+#home-signin-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  #home-signin-btn {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    height: 58px;
+    z-index: 1;
+  }
+}
