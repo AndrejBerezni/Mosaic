@@ -4,6 +4,7 @@
   max-height: 10vh;
   background-color: var(--secondary) !important;
   color: var(--background) !important;
+  font-family: var(--font-h);
 }
 
 #total-wealth-text {

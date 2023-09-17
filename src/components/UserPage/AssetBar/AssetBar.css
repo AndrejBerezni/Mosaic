@@ -3,6 +3,7 @@
 .asset-bar {
   background-color: var(--background-bar);
   color: var(--primary);
+  font-family: var(--font-p);
 }
 
 .remove-units-button,

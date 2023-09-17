@@ -3,12 +3,14 @@
 #new-asset-form .modal-content {
   background-color: var(--background-bar) !important;
   color: var(--primary);
+  font-family: var(--font-h);
 }
 .submit-form-btn {
   width: 100%;
   background-color: var(--headline);
   border-color: var(--headline);
   color: var(--background-bar);
+  font-family: var(--font-h);
 }
 
 .submit-form-btn:hover {

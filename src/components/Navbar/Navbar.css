@@ -1,6 +1,7 @@
 @import url("../../App.css");
 #navbar {
   background-color: var(--headline);
+  font-family: var(--font-h);
 }
 #title {
   display: flex;
@@ -58,7 +59,7 @@ a.dropdown-item:hover {
 
 @media (min-width: 768px) {
   #responsive-navbar-nav {
-    margin-left: 40%;
+    margin-left: 30%;
   }
   .navbar-item:hover {
     box-shadow: 0px 0px 2px var(--headline);
@@ -67,7 +68,7 @@ a.dropdown-item:hover {
 }
 @media (min-width: 992px) {
   #responsive-navbar-nav {
-    margin-left: 55%;
+    margin-left: 50%;
   }
 }
 @media (min-width: 1200px) {

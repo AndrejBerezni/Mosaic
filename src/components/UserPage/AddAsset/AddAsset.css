@@ -5,6 +5,7 @@
   border-color: var(--headline);
   color: var(--background);
   border-radius: 5px 5px 0 0;
+  font-family: var(--font-h);
 }
 
 #add-asset-btn:hover {
