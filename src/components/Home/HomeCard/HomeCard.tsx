@@ -9,7 +9,7 @@ interface HomeCardProps {
 
 function HomeCard({ src, cardTitle, cardText }: HomeCardProps) {
   return (
-    <Card className="home-card my-1">
+    <Card className="home-card my-3">
       <Card.Img variant="top" src={src} className="home-card-img" />
       <Card.Body className="home-card-body">
         <Card.Title className="my-3">{cardTitle}</Card.Title>

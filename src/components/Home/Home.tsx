@@ -24,12 +24,12 @@ function Home() {
       <Row>
         <Hero src={darkMode ? homeImageDark : homeImage} />
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center p-5">
         <Button id="home-signin-btn" size="lg">
           {isSignedIn ? "Go to portfolio" : "Sign Up / Sign In"}
         </Button>
       </Row>
-      <Row className="align-items-start justify-content-around my-3">
+      <Row className="align-items-start justify-content-around card-section">
         <Col xs={12} sm={10} md={8} lg={3}>
           <HomeCard
             src={darkMode ? cardImageOneDark : cardImageOne}

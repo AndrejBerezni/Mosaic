@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../assets/mosaic.png";
+import logodark from "../../assets/mosaicdark.png";
 import { Moon } from "react-bootstrap-icons";
 import { Sun } from "react-bootstrap-icons";
 import { CurrencyEuro } from "react-bootstrap-icons";
@@ -33,7 +34,7 @@ function Nabvar() {
     <Navbar expand="md" sticky="top" id="navbar">
       <Container>
         <Navbar.Brand href="#home" id="title">
-          <Image src={logo} id="navbar-logo" />
+          <Image src={isDarkMode ? logodark : logo} id="navbar-logo" />
           Mosaic
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

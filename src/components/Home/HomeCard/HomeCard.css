@@ -2,12 +2,13 @@
 .home-card {
   height: 60vh;
   font-family: var(--font-h);
-  border-color: var(--headline);
+  border: 1px solid var(--headline);
 }
 
 .home-card-body {
   background-color: var(--background-bar);
   color: var(--headline);
+  border-radius: 0px 0px 5px 5px;
 }
 
 .home-card-text {

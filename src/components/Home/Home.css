@@ -12,7 +12,14 @@
 }
 
 #home-signin-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.card-section {
+  background: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
 
 @media (max-width: 768px) {

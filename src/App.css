@@ -10,6 +10,7 @@
   --toggler: #f1f1f1;
   --font-p: "Lato", sans-serif;
   --font-h: "Montserrat", sans-serif;
+  --bg-image: url("./assets/home-bg.svg");
 }
 
 :root.dark {
@@ -22,6 +23,7 @@
   --secondary: #833925;
   --tertiary: #a7a9be;
   --toggler: #abe7b8;
+  --bg-image: url("./assets/home-bg-dark.svg");
 }
 
 * {
@@ -33,4 +35,14 @@ body {
   /* padding: 2rem; */
   text-align: center;
   background-color: var(--background);
+}
+
+p:hover,
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  cursor: default;
 }

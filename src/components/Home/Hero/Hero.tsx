@@ -11,10 +11,10 @@ function Hero({ src }: HeroProps) {
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} lg={6}>
+        <Col xs={12} lg={5}>
           <img src={src} id="hero-image" />
         </Col>
-        <Col xs={12} lg={6} className="py-5">
+        <Col xs={12} lg={5} className="py-5">
           <h1 className="py-3 hero-header">
             <b>Welcome to Mosaic</b>
           </h1>
