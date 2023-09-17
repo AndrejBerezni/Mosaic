@@ -1,10 +1,24 @@
 :root {
   --background: #f1f1f1;
+  --background-bar: #fffffe;
   --headline: #457b9d;
   --paragraph: #5f6c7b;
   --highlight: #a8dadc;
+  --primary: black;
   --secondary: #1d3557;
   --tertiary: #ef4565;
+  --toggler: #f1f1f1;
+}
+:root.dark {
+  --background: #05030c;
+  --background-bar: #100a24;
+  --headline: #abe7b8;
+  --paragraph: #833925;
+  --highlight: #100a24;
+  --primary: #fffffee3;
+  --secondary: #833925;
+  --tertiary: #a7a9be;
+  --toggler: #abe7b8;
 }
 
 * {

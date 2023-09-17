@@ -9,10 +9,10 @@
 }
 
 .filter-sort-dropdown > a {
-  color: white;
+  color: var(--toggler);
 }
 
 .filter-sort-dropdown > a:focus,
 .filter-sort-dropdown > a:hover {
-  color: var(--headline);
+  color: var(--highlight);
 }

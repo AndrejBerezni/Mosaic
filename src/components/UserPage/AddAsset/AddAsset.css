@@ -3,6 +3,7 @@
 #add-asset-btn {
   background-color: var(--headline);
   border-color: var(--headline);
+  color: var(--background);
   border-radius: 5px 5px 0 0;
 }
 

@@ -21,6 +21,7 @@ function NewAssetForm() {
       fullscreen="md-down"
       centered={true}
       keyboard={true}
+      id="new-asset-form"
     >
       <Modal.Header closeButton>
         <Modal.Title>Add New Asset to Portfolio</Modal.Title>

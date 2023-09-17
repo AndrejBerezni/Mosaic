@@ -1,16 +1,24 @@
 @import url("../../../App.css");
 
+.asset-bar {
+  background-color: var(--background-bar);
+  color: var(--primary);
+}
+
 .remove-units-button,
 .add-units-button,
 #bg-nested-dropdown {
   background-color: var(--paragraph);
   border-color: var(--secondary);
+  color: var(--background-bar);
 }
 
 .remove-units-button:hover,
 .add-units-button:hover,
 #bg-nested-dropdown:hover {
   background-color: var(--headline);
+  border-color: var(--headline);
+  color: var(--primary);
 }
 
 .asset-bar-text {

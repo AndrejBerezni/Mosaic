@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,11 +10,24 @@ import { MoonStars } from "react-bootstrap-icons";
 import { CurrencyEuro } from "react-bootstrap-icons";
 import { CurrencyDollar } from "react-bootstrap-icons";
 import { CurrencyPound } from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { darkModeOn, darkModeOff } from "../../actions/darkModeActions";
 import { RootState } from "../../reducers/combineReducers";
 
 function Nabvar() {
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
+
+  useEffect(() => {
+    isDarkMode
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    isDarkMode ? dispatch(darkModeOff()) : dispatch(darkModeOn());
+  };
   return (
     <Navbar expand="md" sticky="top" id="navbar">
       <Container>
@@ -24,9 +38,9 @@ function Nabvar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#link" className="navbar-item">
-              <MoonStars />
-            </Nav.Link>
+            <Nav.Item className="navbar-item">
+              <MoonStars onClick={toggleDarkMode} />
+            </Nav.Item>
             <NavDropdown
               title="Currency"
               id="responsive-nav-dropdown"

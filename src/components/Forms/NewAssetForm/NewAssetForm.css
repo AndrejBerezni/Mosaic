@@ -1,9 +1,14 @@
 @import url("../../../App.css");
 
+#new-asset-form .modal-content {
+  background-color: var(--background-bar) !important;
+  color: var(--primary);
+}
 .submit-form-btn {
   width: 100%;
   background-color: var(--headline);
   border-color: var(--headline);
+  color: var(--background-bar);
 }
 
 .submit-form-btn:hover {
