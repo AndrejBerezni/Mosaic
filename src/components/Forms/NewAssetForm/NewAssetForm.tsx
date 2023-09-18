@@ -7,6 +7,8 @@ import { hideForm } from "../../../actions/showFormActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import StockSearch from "./StockSearch/StockSearch";
+import MetalsSearch from "./MetalsSearch/MetalsSearch";
+import CurrencySearch from "./CurrencySearch/CurrencySearch";
 
 function NewAssetForm() {
   const dispatch = useDispatch();
@@ -31,9 +33,8 @@ function NewAssetForm() {
         <FloatingLabel label="Asset Type" className="my-3">
           <Form.Select aria-label="asset type">
             <option value="stocks">Stocks</option>
-            <option value="metal">Noble Metal</option>
-            <option value="cash">Cash</option>
-            <option value="crypto">Crypto</option>
+            <option value="metal">Noble Metals</option>
+            <option value="currency">Currency</option>
           </Form.Select>
         </FloatingLabel>
         <StockSearch />
