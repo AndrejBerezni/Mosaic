@@ -77,8 +77,9 @@ function NewAssetForm() {
           variant="primary"
           onClick={handleClose}
           className="submit-form-btn"
+          size="lg"
         >
-          Save
+          <b>SAVE</b>
         </Button>
       </Modal.Footer>
     </Modal>

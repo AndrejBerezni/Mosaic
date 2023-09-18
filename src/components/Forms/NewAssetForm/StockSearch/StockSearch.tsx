@@ -36,7 +36,7 @@ function StockSearch() {
 
   return (
     <>
-      <FloatingLabel label="Enter asset name and click Search" className="my-3">
+      <FloatingLabel label="Search for Stocks & ETFs" className="my-3">
         <Form.Control onChange={handleInputChange} type="text" />
         <Button
           onClick={handleSearch}
@@ -50,11 +50,7 @@ function StockSearch() {
         <Form.Select aria-label="Default select example">
           {searchResults.map((result) => {
             return (
-              <option
-                style={{ width: "20px" }}
-                value={result["1. symbol"]}
-                key={result["1. symbol"]}
-              >
+              <option value={result["1. symbol"]} key={result["1. symbol"]}>
                 {result["1. symbol"]} - {result["2. name"]}
               </option>
             );
