@@ -59,7 +59,7 @@ function NewAssetForm() {
         )}
 
         <FloatingLabel
-          label={`Number of ${assetType === "metal" ? "Grams" : "Units"}`}
+          label={`Number of ${assetType === "metal" ? "Ounces" : "Units"}`}
           className="my-3"
         >
           <Form.Control

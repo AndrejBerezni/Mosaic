@@ -6,7 +6,7 @@ import { useState, ChangeEvent } from "react";
 import "./StockSearch.css";
 
 function StockSearch() {
-  const [keywords, setKeywords] = useState("");
+  const [keywords, setKeywords] = useState<string>("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
