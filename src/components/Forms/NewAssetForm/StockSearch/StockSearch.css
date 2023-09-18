@@ -1,0 +1,12 @@
+@import url("../../../../App.css");
+
+.stock-search-btn {
+  background-color: var(--headline);
+  border-color: var(--headline);
+  color: var(--background-bar);
+}
+
+.stock-search-btn:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}

@@ -6,6 +6,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { hideForm } from "../../../actions/showFormActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
+import StockSearch from "./StockSearch/StockSearch";
 
 function NewAssetForm() {
   const dispatch = useDispatch();
@@ -35,9 +36,7 @@ function NewAssetForm() {
             <option value="crypto">Crypto</option>
           </Form.Select>
         </FloatingLabel>
-        <FloatingLabel label="Asset Name" className="my-3">
-          <Form.Control type="text" as="input" required />
-        </FloatingLabel>
+        <StockSearch />
         <FloatingLabel label="Number of Units" className="my-3">
           <Form.Control
             type="number"
