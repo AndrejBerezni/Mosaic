@@ -9,6 +9,7 @@ import { RootState } from "../../../reducers/combineReducers";
 import StockSearch from "./StockSearch/StockSearch";
 import MetalsSearch from "./MetalsSearch/MetalsSearch";
 import CurrencySearch from "./CurrencySearch/CurrencySearch";
+import { newAssetType } from "../../../actions/newAssetTypeActions";
 
 function NewAssetForm() {
   const dispatch = useDispatch();
@@ -16,6 +17,13 @@ function NewAssetForm() {
     dispatch(hideForm());
   };
   const show = useSelector((state: RootState) => state.showForm.showForm);
+  const assetType = useSelector(
+    (state: RootState) => state.newAssetType.newAssetType
+  );
+
+  const changeAssetType = (asset: string) => {
+    dispatch(newAssetType(asset));
+  };
 
   return (
     <Modal
@@ -31,14 +39,29 @@ function NewAssetForm() {
       </Modal.Header>
       <Form className="p-3">
         <FloatingLabel label="Asset Type" className="my-3">
-          <Form.Select aria-label="asset type">
+          <Form.Select
+            aria-label="asset type"
+            onChange={(e) => {
+              changeAssetType(e.target.value);
+            }}
+          >
             <option value="stocks">Stocks</option>
             <option value="metal">Noble Metals</option>
             <option value="currency">Currency</option>
           </Form.Select>
         </FloatingLabel>
-        <StockSearch />
-        <FloatingLabel label="Number of Units" className="my-3">
+        {assetType === "stocks" ? (
+          <StockSearch />
+        ) : assetType === "metal" ? (
+          <MetalsSearch />
+        ) : (
+          <CurrencySearch />
+        )}
+
+        <FloatingLabel
+          label={`Number of ${assetType === "metal" ? "Grams" : "Units"}`}
+          className="my-3"
+        >
           <Form.Control
             type="number"
             as="input"
