@@ -10,7 +10,38 @@ interface assetListAction {
 }
 
 const initialState = {
-  assetList: [],
+  assetList: [
+    {
+      type: "Currency",
+      code: "btc",
+      name: "Bitcoin",
+      amount: 2,
+    },
+    // {
+    //   type: "Noble Metal",
+    //   code: "XAU",
+    //   name: "Gold",
+    //   amount: 1,
+    // },
+    // {
+    //   type: "Noble Metal",
+    //   code: "xpt",
+    //   name: "Platinum",
+    //   amount: 1,
+    // },
+    // {
+    //   type: "Noble Metal",
+    //   code: "xag",
+    //   name: "Silver",
+    //   amount: 1,
+    // },
+    {
+      type: "Stock",
+      code: "ibm",
+      name: "IBM",
+      amount: 12,
+    },
+  ],
 };
 
 const assetListReducer = (

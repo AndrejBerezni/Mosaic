@@ -5,15 +5,98 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Table from "react-bootstrap/Table";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 interface AssetBarProps {
   assetName: string;
   assetType: string;
   units: number;
-  totalValue: number;
+  assetCode: string;
 }
 
-function AssetBar({ assetName, assetType, units, totalValue }: AssetBarProps) {
+interface AlphaVantageResponse {
+  "Meta Data": {
+    "1. Information": string;
+    "2. Symbol": string;
+    "3. Last Refreshed": string;
+    "4. Output Size": string;
+    "5. Time Zone": string;
+  };
+  "Time Series (Daily)": {
+    [date: string]: {
+      "1. open": string;
+      "2. high": string;
+      "3. low": string;
+      "4. close": string;
+      "5. volume": string;
+    };
+  };
+}
+
+function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
+  const [totalValue, setTotalValue] = useState<number>();
+
+  const calculateValue = async (type: string, amount: number, code: string) => {
+    switch (type) {
+      case "Stock":
+        return axios
+          .get<AlphaVantageResponse>(
+            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${code}&apikey=YOUR_API_KEY`
+          )
+          .then((response) => {
+            const data = response.data;
+            const latestDate = Object.keys(data["Time Series (Daily)"])[0];
+            const price = parseFloat(
+              data["Time Series (Daily)"][latestDate]["4. close"]
+            );
+            return price * amount;
+          })
+          .catch((error) => {
+            console.error("Error searching for asset price:", error);
+            return NaN;
+          });
+      case "Noble Metal":
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const headers = {
+          "x-access-token": apiKey,
+          "Content-Type": "application/json",
+        };
+        return axios
+          .get(`https://www.goldapi.io/api/${code}/USD`, { headers })
+          .then((response) => {
+            if (response.status === 200) {
+              const goldPriceData = response.data;
+              console.log("Gold Price Data:", goldPriceData);
+              return 80;
+            } else {
+              console.error("Failed to retrieve gold price data.");
+            }
+            // console.log(response.data);
+            // const data = response.data;
+            // const latestDate = Object.keys(data["Time Series (Daily)"])[0];
+            // const price = parseFloat(
+            //   data["Time Series (Daily)"][latestDate]["4. close"]
+            // );
+            // return price * amount;
+          })
+          .catch((error) => {
+            console.error("Error searching for asset price:", error);
+            return NaN;
+          });
+      default:
+        return 100;
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const calculatedValue = await calculateValue(assetType, units, assetCode);
+      setTotalValue(calculatedValue);
+    };
+
+    fetchData();
+  }, [assetType, units, assetCode]);
   return (
     <Card className="asset-bar my-3">
       <Table className="my-2">

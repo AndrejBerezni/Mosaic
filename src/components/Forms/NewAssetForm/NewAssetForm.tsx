@@ -48,9 +48,9 @@ function NewAssetForm() {
               changeAssetType(e.target.value);
             }}
           >
-            <option value="stocks">Stocks</option>
-            <option value="metal">Noble Metals</option>
-            <option value="currency">Currency</option>
+            <option value="Stock">Stocks</option>
+            <option value="Noble Metal">Noble Metals</option>
+            <option value="Currency">Currency</option>
           </Form.Select>
         </FloatingLabel>
 
@@ -63,7 +63,7 @@ function NewAssetForm() {
         )}
 
         <FloatingLabel
-          label={`Number of ${assetType === "metal" ? "Ounces" : "Units"}`}
+          label={`Number of ${assetType === "metal" ? "Grams" : "Units"}`}
           className="my-3"
         >
           <Form.Control
