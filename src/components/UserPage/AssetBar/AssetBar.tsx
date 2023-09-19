@@ -35,7 +35,7 @@ interface AlphaVantageResponse {
 }
 
 function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
-  const [totalValue, setTotalValue] = useState<number>();
+  const [totalValue, setTotalValue] = useState<string | number | undefined>();
 
   const calculateValue = async (type: string, amount: number, code: string) => {
     switch (type) {
@@ -46,18 +46,20 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
           )
           .then((response) => {
             const data = response.data;
-            const latestDate = Object.keys(data["Time Series (Daily)"])[0];
-            const price = parseFloat(
+            const latestDate: string = Object.keys(
+              data["Time Series (Daily)"]
+            )[0];
+            const price: number = parseFloat(
               data["Time Series (Daily)"][latestDate]["4. close"]
             );
-            return price * amount;
+            return (price * amount).toFixed(2);
           })
           .catch((error) => {
             console.error("Error searching for asset price:", error);
             return NaN;
           });
       case "Noble Metal":
-        const apiKey = process.env.REACT_APP_API_KEY;
+        const apiKey = import.meta.env.VITE_GOLD_API_KEY;
         const headers = {
           "x-access-token": apiKey,
           "Content-Type": "application/json",
@@ -65,20 +67,8 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
         return axios
           .get(`https://www.goldapi.io/api/${code}/USD`, { headers })
           .then((response) => {
-            if (response.status === 200) {
-              const goldPriceData = response.data;
-              console.log("Gold Price Data:", goldPriceData);
-              return 80;
-            } else {
-              console.error("Failed to retrieve gold price data.");
-            }
-            // console.log(response.data);
-            // const data = response.data;
-            // const latestDate = Object.keys(data["Time Series (Daily)"])[0];
-            // const price = parseFloat(
-            //   data["Time Series (Daily)"][latestDate]["4. close"]
-            // );
-            // return price * amount;
+            const metalPrice: number = response.data.price_gram_24k;
+            return (metalPrice * amount).toFixed(2);
           })
           .catch((error) => {
             console.error("Error searching for asset price:", error);

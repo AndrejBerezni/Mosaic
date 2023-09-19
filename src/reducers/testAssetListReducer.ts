@@ -25,22 +25,22 @@ const initialState = {
     // },
     // {
     //   type: "Noble Metal",
-    //   code: "xpt",
+    //   code: "XPT",
     //   name: "Platinum",
     //   amount: 1,
     // },
     // {
     //   type: "Noble Metal",
-    //   code: "xag",
+    //   code: "XAG",
     //   name: "Silver",
     //   amount: 1,
     // },
-    {
-      type: "Stock",
-      code: "ibm",
-      name: "IBM",
-      amount: 12,
-    },
+    // {
+    //   type: "Stock",
+    //   code: "ibm",
+    //   name: "IBM",
+    //   amount: 12,
+    // },
   ],
 };
 
