@@ -40,28 +40,29 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
   const calculateValue = async (type: string, amount: number, code: string) => {
     switch (type) {
       case "Stock":
+        const stockApiKey = "YOUR_API_KEY"; //using demo
         return axios
           .get<AlphaVantageResponse>(
-            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${code}&apikey=YOUR_API_KEY`
+            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${code}&apikey=${stockApiKey}`
           )
           .then((response) => {
             const data = response.data;
             const latestDate: string = Object.keys(
               data["Time Series (Daily)"]
             )[0];
-            const price: number = parseFloat(
+            const stockPrice: number = parseFloat(
               data["Time Series (Daily)"][latestDate]["4. close"]
             );
-            return (price * amount).toFixed(2);
+            return (stockPrice * amount).toFixed(2);
           })
           .catch((error) => {
             console.error("Error searching for asset price:", error);
-            return NaN;
+            return "N/A";
           });
       case "Noble Metal":
-        const apiKey = import.meta.env.VITE_GOLD_API_KEY;
+        const metalsApiKey = import.meta.env.VITE_GOLD_API_KEY;
         const headers = {
-          "x-access-token": apiKey,
+          "x-access-token": metalsApiKey,
           "Content-Type": "application/json",
         };
         return axios
@@ -72,10 +73,24 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
           })
           .catch((error) => {
             console.error("Error searching for asset price:", error);
-            return NaN;
+            return "N/A";
+          });
+      case "Currency":
+        return axios
+          .get(
+            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${code}/usd.json`
+          )
+          .then((response) => {
+            console.log(response.data);
+            const currencyPrice: number = response.data.usd;
+            return (currencyPrice * amount).toFixed(2);
+          })
+          .catch((error) => {
+            console.error("Error searching for asset price:", error);
+            return "N/A";
           });
       default:
-        return 100;
+        return "N/A";
     }
   };
 

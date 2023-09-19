@@ -17,6 +17,12 @@ const initialState = {
       name: "Bitcoin",
       amount: 2,
     },
+    {
+      type: "Currency",
+      code: "eth",
+      name: "Ethereum",
+      amount: 1,
+    },
     // {
     //   type: "Noble Metal",
     //   code: "XAU",
