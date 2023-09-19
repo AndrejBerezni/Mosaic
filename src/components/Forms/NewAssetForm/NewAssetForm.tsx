@@ -13,10 +13,13 @@ import { newAssetType } from "../../../actions/newAssetTypeActions";
 
 function NewAssetForm() {
   const dispatch = useDispatch();
+
   const handleClose = () => {
     dispatch(hideForm());
   };
+
   const show = useSelector((state: RootState) => state.showForm.showForm);
+
   const assetType = useSelector(
     (state: RootState) => state.newAssetType.newAssetType
   );
@@ -50,6 +53,7 @@ function NewAssetForm() {
             <option value="currency">Currency</option>
           </Form.Select>
         </FloatingLabel>
+
         {assetType === "stocks" ? (
           <StockSearch />
         ) : assetType === "metal" ? (

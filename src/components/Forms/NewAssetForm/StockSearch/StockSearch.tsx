@@ -18,10 +18,10 @@ function StockSearch() {
       searchAsset(keywords);
     }
   };
+
   const searchAsset = (keywords: string) => {
     const apiKey = "YOUR_API_KEY";
     const searchUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`;
-
     axios
       .get(searchUrl)
       .then((response) => {

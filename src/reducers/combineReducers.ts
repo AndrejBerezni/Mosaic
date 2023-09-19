@@ -3,12 +3,14 @@ import signInReducer from "./signInReducer";
 import showFormReducer from "./showFormReducer";
 import darkModeReducer from "./darkModeReducer";
 import newAssetTypeReducer from "./newAssetTypeReducer";
+import assetListReducer from "./testAssetListReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
   showForm: showFormReducer,
   darkMode: darkModeReducer,
   newAssetType: newAssetTypeReducer,
+  assetList: assetListReducer,
 });
 
 export default combinedReducers;

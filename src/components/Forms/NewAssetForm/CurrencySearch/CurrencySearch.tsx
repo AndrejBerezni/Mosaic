@@ -13,6 +13,7 @@ function CurrencySearch() {
   const searchUrl =
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json";
 
+  // Get all available currencies on component render
   useEffect(() => {
     axios
       .get<CurrencyList>(searchUrl)
@@ -22,6 +23,7 @@ function CurrencySearch() {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
+  // Handle user input
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value.toLowerCase();
     setUserInput(input);
@@ -32,7 +34,7 @@ function CurrencySearch() {
         key.toLowerCase().includes(input) || value.toLowerCase().includes(input)
       );
     });
-
+    // Return matches
     setMatches(matchedItems);
   };
 
