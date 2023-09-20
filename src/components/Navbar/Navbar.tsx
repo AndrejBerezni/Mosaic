@@ -15,6 +15,8 @@ import { CurrencyPound } from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { darkModeOn, darkModeOff } from "../../actions/darkModeActions";
 import { RootState } from "../../reducers/combineReducers";
+import { setDisplayCurrency } from "../../actions/displayCurrencyActions";
+import { displayCurrency } from "../../actions/displayCurrencyActions";
 
 function Nabvar() {
   const dispatch = useDispatch();
@@ -30,6 +32,11 @@ function Nabvar() {
   const toggleDarkMode = () => {
     isDarkMode ? dispatch(darkModeOff()) : dispatch(darkModeOn());
   };
+
+  const setCurrency = (currency: displayCurrency) => {
+    dispatch(setDisplayCurrency(currency));
+  };
+
   return (
     <Navbar expand="md" sticky="top" id="navbar">
       <Container>
@@ -52,13 +59,37 @@ function Nabvar() {
               id="responsive-nav-dropdown"
               className="navbar-item"
             >
-              <NavDropdown.Item href="" className="currency-selector">
+              <NavDropdown.Item
+                className="currency-selector"
+                onClick={() =>
+                  setCurrency({
+                    symbol: "€",
+                    code: "EUR",
+                  })
+                }
+              >
                 EUR <CurrencyEuro />
               </NavDropdown.Item>
-              <NavDropdown.Item href="" className="currency-selector">
+              <NavDropdown.Item
+                className="currency-selector"
+                onClick={() =>
+                  setCurrency({
+                    symbol: "$",
+                    code: "USD",
+                  })
+                }
+              >
                 USD <CurrencyDollar />
               </NavDropdown.Item>
-              <NavDropdown.Item href="" className="currency-selector">
+              <NavDropdown.Item
+                className="currency-selector"
+                onClick={() =>
+                  setCurrency({
+                    symbol: "£",
+                    code: "GBP",
+                  })
+                }
+              >
                 GBP <CurrencyPound />
               </NavDropdown.Item>
             </NavDropdown>

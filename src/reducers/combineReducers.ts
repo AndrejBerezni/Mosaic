@@ -4,6 +4,7 @@ import showFormReducer from "./showFormReducer";
 import darkModeReducer from "./darkModeReducer";
 import newAssetTypeReducer from "./newAssetTypeReducer";
 import assetListReducer from "./testAssetListReducer";
+import displayCurrencyReducer from "./displayCurrencyReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -11,6 +12,7 @@ const combinedReducers = combineReducers({
   darkMode: darkModeReducer,
   newAssetType: newAssetTypeReducer,
   assetList: assetListReducer,
+  displayCurrency: displayCurrencyReducer,
 });
 
 export default combinedReducers;
