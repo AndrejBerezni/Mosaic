@@ -48,9 +48,9 @@ function NewAssetForm() {
               changeAssetType(e.target.value);
             }}
           >
-            <option value="Stock">Stocks</option>
-            <option value="Noble Metal">Noble Metals</option>
-            <option value="Currency">Currency</option>
+            <option value="stocks">Stocks</option>
+            <option value="metal">Noble Metals</option>
+            <option value="currency">Currency</option>
           </Form.Select>
         </FloatingLabel>
 

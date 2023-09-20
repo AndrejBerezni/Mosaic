@@ -7,6 +7,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../reducers/combineReducers";
 
 interface AssetBarProps {
   assetName: string;
@@ -35,6 +37,9 @@ interface AlphaVantageResponse {
 }
 
 function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
+  const displayCurrency = useSelector(
+    (state: RootState) => state.displayCurrency.currency
+  );
   const [totalValue, setTotalValue] = useState<string | number | undefined>();
 
   const calculateValue = async (type: string, amount: number, code: string) => {
@@ -109,7 +114,10 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
           <th className="asset-bar-text">{assetName}</th>
           <th className="asset-bar-text secondary-text">{assetType}</th>
           <th className="asset-bar-text secondary-text">{units}</th>
-          <th className="asset-bar-text">{totalValue}</th>
+          <th className="asset-bar-text">
+            {totalValue}
+            {displayCurrency.symbol}
+          </th>
         </tr>
       </Table>
       <ButtonGroup aria-label="Basic example">
