@@ -1,0 +1,56 @@
+@import url("../../../App.css");
+
+#user-auth-form .modal-content {
+  background-color: var(--background-bar) !important;
+  color: var(--primary);
+  font-family: var(--font-h);
+  min-height: 65vh;
+}
+
+#auth-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.auth-btn,
+.google-auth-btn {
+  background-color: var(--headline);
+  border-color: var(--headline);
+  color: var(--background-bar);
+  font-family: var(--font-h);
+}
+
+.google-auth-btn {
+  width: 80%;
+}
+
+.auth-btn {
+  width: 100%;
+}
+
+.auth-btn:hover,
+.google-auth-btn:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+#user-auth-form .nav-link.active {
+  color: var(--headline) !important;
+}
+
+#user-auth-form .nav-link {
+  color: var(--secondary) !important;
+}
+
+#user-auth-form input.form-control {
+  background-color: var(--background-bar);
+  color: var(--headline);
+}
+#user-auth-form label::after {
+  background-color: var(--background-bar);
+}
+
+#user-auth-form label {
+  color: var(--headline);
+}

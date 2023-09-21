@@ -15,6 +15,7 @@ import Hero from "./Hero/Hero";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import UserAuthentication from "../Forms/UserAuthentication/UserAuthentication";
 
 function Home() {
   const darkMode = useSelector((state: RootState) => state.darkMode.darkMode);
@@ -52,6 +53,7 @@ function Home() {
           />
         </Col>
       </Row>
+      <UserAuthentication />
     </Container>
   );
 }

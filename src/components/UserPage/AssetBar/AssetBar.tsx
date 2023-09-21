@@ -86,7 +86,6 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
             `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${code}/usd.json`
           )
           .then((response) => {
-            console.log(response.data);
             const currencyPrice: number = response.data.usd;
             return (currencyPrice * amount).toFixed(2);
           })

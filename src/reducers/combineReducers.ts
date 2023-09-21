@@ -5,7 +5,7 @@ import darkModeReducer from "./darkModeReducer";
 import newAssetTypeReducer from "./newAssetTypeReducer";
 import assetListReducer from "./testAssetListReducer";
 import displayCurrencyReducer from "./displayCurrencyReducer";
-import totalValueReducer from "./totalValueReducer";
+// import totalValueReducer from "./totalValueReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -14,7 +14,7 @@ const combinedReducers = combineReducers({
   newAssetType: newAssetTypeReducer,
   assetList: assetListReducer,
   displayCurrency: displayCurrencyReducer,
-  totalValue: totalValueReducer,
+  // totalValue: totalValueReducer,
 });
 
 export default combinedReducers;
