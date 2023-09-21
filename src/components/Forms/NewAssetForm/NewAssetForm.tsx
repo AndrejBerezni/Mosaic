@@ -48,9 +48,25 @@ function NewAssetForm() {
               changeAssetType(e.target.value);
             }}
           >
-            <option value="stocks">Stocks</option>
-            <option value="metal">Noble Metals</option>
-            <option value="currency">Currency</option>
+            <option
+              value="stocks"
+              defaultChecked
+              selected={assetType === "stocks" ? true : false} //adding this to prevent wrong component loading below when form is closed and reopened
+            >
+              Stocks
+            </option>
+            <option
+              value="metal"
+              selected={assetType === "metal" ? true : false}
+            >
+              Noble Metals
+            </option>
+            <option
+              value="currency"
+              selected={assetType === "currency" ? true : false}
+            >
+              Currency
+            </option>
           </Form.Select>
         </FloatingLabel>
 

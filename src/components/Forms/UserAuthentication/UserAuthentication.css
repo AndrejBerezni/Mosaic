@@ -9,8 +9,8 @@
 
 #auth-close-btn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
 }
 
 .auth-btn,
@@ -46,7 +46,13 @@
 #user-auth-form input.form-control {
   background-color: var(--background-bar);
   color: var(--headline);
+  border-color: var(--headline) !important;
 }
+
+#user-auth-form input.form-control:focus {
+  box-shadow: 0px 0px 8px var(--headline);
+}
+
 #user-auth-form label::after {
   background-color: var(--background-bar);
 }
