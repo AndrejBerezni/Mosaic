@@ -44,10 +44,30 @@ const signInWithGoogle = async () => {
   }
 };
 
+//Email sign in
+const signInWithEmail = async (email: string, password: string) => {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    console.log(result);
+    return result.user.uid;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//Email sign up
+const signUpWithEmail = async (email: string, password: string) => {
+  try {
+    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+    return newUser.user.uid;
+  } catch (error) {
+    throw error;
+  }
+};
 //Sign out
 
 const signOutUser = () => {
   signOut(getAuth());
 };
 
-export { signInWithGoogle, signOutUser };
+export { signInWithGoogle, signInWithEmail, signUpWithEmail, signOutUser };
