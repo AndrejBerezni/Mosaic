@@ -5,10 +5,9 @@ const showAlert = (alert: string) => {
   };
 };
 
-const hideAlert = (alert: string) => {
+const hideAlert = () => {
   return {
     type: "HIDE ALERT",
-    payload: alert,
   };
 };
 

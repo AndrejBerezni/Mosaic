@@ -8,12 +8,15 @@ import CloseButton from "react-bootstrap/CloseButton";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import { hideForm } from "../../../actions/showFormActions";
+import { hideAlert } from "../../../actions/showAlertActions";
+import AuthAlert from "./AuthAlert/AuthAlert";
 
 function UserAuthentication() {
   const dispatch = useDispatch();
   const show = useSelector((state: RootState) => state.showForm.signIn);
   const handleClose = () => {
     dispatch(hideForm("signIn"));
+    dispatch(hideAlert());
   };
   return (
     <Modal
@@ -38,6 +41,7 @@ function UserAuthentication() {
           <SignUpForm />
         </Tab>
       </Tabs>
+      <AuthAlert />
     </Modal>
   );
 }

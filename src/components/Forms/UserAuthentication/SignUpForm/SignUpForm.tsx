@@ -7,6 +7,7 @@ import { signInAction } from "../../../../actions/signInActions";
 import { useNavigate } from "react-router-dom";
 import { signUpWithEmail } from "../../../../firebase-config";
 import { hideForm } from "../../../../actions/showFormActions";
+import { showAlert } from "../../../../actions/showAlertActions";
 
 function SignUpForm() {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ function SignUpForm() {
       dispatch(signInAction(user));
       dispatch(hideForm("signIn"));
       navigate("/portfolio");
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      dispatch(showAlert(error!.message));
     }
   };
   return (

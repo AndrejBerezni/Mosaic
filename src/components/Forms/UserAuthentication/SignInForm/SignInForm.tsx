@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { signInAction } from "../../../../actions/signInActions";
 import { useNavigate } from "react-router-dom";
 import { hideForm } from "../../../../actions/showFormActions";
+import { showAlert } from "../../../../actions/showAlertActions";
 
 function SignInForm() {
   const dispatch = useDispatch();
@@ -39,8 +40,8 @@ function SignInForm() {
       dispatch(signInAction(user));
       dispatch(hideForm("signIn"));
       navigate("/portfolio");
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      dispatch(showAlert(error!.message));
     }
   };
 
