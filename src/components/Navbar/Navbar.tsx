@@ -17,12 +17,15 @@ import { darkModeOn, darkModeOff } from "../../actions/darkModeActions";
 import { RootState } from "../../reducers/combineReducers";
 import { setDisplayCurrency } from "../../actions/displayCurrencyActions";
 import { displayCurrency } from "../../actions/displayCurrencyActions";
+import { showForm } from "../../actions/showFormActions";
 
 function Nabvar() {
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
-
+  const showSignIn = () => {
+    dispatch(showForm("signIn"));
+  };
   useEffect(() => {
     isDarkMode
       ? document.documentElement.classList.add("dark")
@@ -93,9 +96,12 @@ function Nabvar() {
                 GBP <CurrencyPound />
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#home" className="navbar-item">
+            <Nav.Item
+              className="navbar-item"
+              onClick={isSignedIn ? showSignIn : showSignIn} //to be updatet when signOut is created
+            >
               {isSignedIn ? "Sign Out" : "Sign In"}
-            </Nav.Link>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>

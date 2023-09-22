@@ -15,10 +15,10 @@ function NewAssetForm() {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(hideForm());
+    dispatch(hideForm("newAsset"));
   };
 
-  const show = useSelector((state: RootState) => state.showForm.showForm);
+  const show = useSelector((state: RootState) => state.showForm.newAsset);
 
   const assetType = useSelector(
     (state: RootState) => state.newAssetType.newAssetType

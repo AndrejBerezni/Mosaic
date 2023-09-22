@@ -7,10 +7,11 @@ import { RootState } from "../../../reducers/combineReducers";
 function AddAsset() {
   const dispatch = useDispatch();
   const formVisible = useSelector(
-    (state: RootState) => state.showForm.showForm
+    (state: RootState) => state.showForm.newAsset
   );
 
-  const handleClick = () => (formVisible ? null : dispatch(showForm()));
+  const handleClick = () =>
+    formVisible ? null : dispatch(showForm("newAsset"));
   return (
     <div className="d-grid gap-2" id="add-asset-btn-div">
       <Button

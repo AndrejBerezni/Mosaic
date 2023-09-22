@@ -1,6 +1,6 @@
 @import url("../../App.css");
 
-#home-signin-btn {
+.home-signin-btn {
   background-color: var(--headline);
   border-color: var(--headline);
   color: var(--background);
@@ -11,8 +11,15 @@
   font-size: 28px;
 }
 
-#home-signin-btn:hover {
+.home-signin-btn:hover {
   transform: scale(1.05);
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.home-signin-btn a {
+  color: var(--background);
+  text-decoration: none;
 }
 
 .card-section {
@@ -23,7 +30,7 @@
 }
 
 @media (max-width: 768px) {
-  #home-signin-btn {
+  .home-signin-btn {
     width: 100%;
     position: fixed;
     bottom: 0;

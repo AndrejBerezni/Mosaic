@@ -7,7 +7,7 @@ import cardImageTwo from "../../assets/scrum method-amico.svg";
 import cardImageTwoDark from "../../assets/scrum method-amico dark.svg";
 import cardImageThree from "../../assets/Calculator-cuate.svg";
 import cardImageThreeDark from "../../assets/Calculator-cuate dark.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers/combineReducers";
 import Button from "react-bootstrap/Button";
 import HomeCard from "./HomeCard/HomeCard";
@@ -16,19 +16,32 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserAuthentication from "../Forms/UserAuthentication/UserAuthentication";
+import { NavLink } from "react-router-dom";
+import { showForm } from "../../actions/showFormActions";
 
 function Home() {
+  const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
+  const showSignIn = () => {
+    dispatch(showForm("signIn"));
+  };
+
   return (
     <Container fluid>
       <Row>
         <Hero src={darkMode ? homeImageDark : homeImage} />
       </Row>
       <Row className="justify-content-center p-5">
-        <Button id="home-signin-btn" size="lg">
-          {isSignedIn ? "Go to portfolio" : "Sign Up / Sign In"}
-        </Button>
+        {isSignedIn ? (
+          <Button className="home-signin-btn" size="lg">
+            <NavLink to={"/portfolio"}>Go to portfolio</NavLink>
+          </Button>
+        ) : (
+          <Button className="home-signin-btn" size="lg" onClick={showSignIn}>
+            Sign Up / Sign In
+          </Button>
+        )}
       </Row>
       <Row className="align-items-start justify-content-around card-section">
         <Col xs={12} sm={10} md={8} lg={3}>

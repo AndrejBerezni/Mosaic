@@ -1,13 +1,16 @@
 interface showFormState {
-  showForm: boolean;
+  newAsset: boolean;
+  signIn: boolean;
 }
 
 interface showFormAction {
   type: string;
+  payload: string;
 }
 
 const initialState: showFormState = {
-  showForm: false,
+  newAsset: false,
+  signIn: false,
 };
 
 const showFormReducer = (
@@ -17,11 +20,13 @@ const showFormReducer = (
   switch (action.type) {
     case "SHOW FORM":
       return {
-        showForm: true,
+        ...state,
+        [action.payload]: true,
       };
     case "HIDE FORM":
       return {
-        showForm: false,
+        ...state,
+        [action.payload]: false,
       };
     default:
       return state;
