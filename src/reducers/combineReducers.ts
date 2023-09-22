@@ -5,6 +5,7 @@ import darkModeReducer from "./darkModeReducer";
 import newAssetTypeReducer from "./newAssetTypeReducer";
 import assetListReducer from "./testAssetListReducer";
 import displayCurrencyReducer from "./displayCurrencyReducer";
+import showAlertReducer from "./showAlertReducer";
 // import totalValueReducer from "./totalValueReducer";
 
 const combinedReducers = combineReducers({
@@ -14,6 +15,7 @@ const combinedReducers = combineReducers({
   newAssetType: newAssetTypeReducer,
   assetList: assetListReducer,
   displayCurrency: displayCurrencyReducer,
+  showAlert: showAlertReducer,
   // totalValue: totalValueReducer,
 });
 

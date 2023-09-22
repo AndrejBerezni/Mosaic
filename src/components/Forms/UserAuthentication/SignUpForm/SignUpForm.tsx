@@ -13,8 +13,12 @@ function SignUpForm() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement | null>(null);
 
   const handleEmailSignUp = async () => {
+    if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
+      return;
+    }
     try {
       const user = await signUpWithEmail(
         emailRef.current!.value, //assert that is not null
@@ -34,6 +38,9 @@ function SignUpForm() {
       </FloatingLabel>
       <FloatingLabel label="Create Password" className="my-3">
         <Form.Control as="input" type="password" ref={passwordRef} />
+      </FloatingLabel>
+      <FloatingLabel label="Confirm Password" className="my-3">
+        <Form.Control as="input" type="password" ref={confirmPasswordRef} />
       </FloatingLabel>
       <Button className="auth-btn" onClick={handleEmailSignUp}>
         Sign Up
