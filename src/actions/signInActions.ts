@@ -1,6 +1,7 @@
-const signInAction = () => {
+const signInAction = (user: string) => {
   return {
     type: "SIGN IN",
+    payload: user,
   };
 };
 

@@ -35,12 +35,13 @@ const db = getFirestore(app);
 //Google sign-in
 const provider = new GoogleAuthProvider();
 
-const signInWithGoogle = () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => console.log(error));
+const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    return result.user.uid;
+  } catch (error) {
+    throw error;
+  }
 };
 
 //Sign out
