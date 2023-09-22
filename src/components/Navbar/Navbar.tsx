@@ -18,6 +18,8 @@ import { RootState } from "../../reducers/combineReducers";
 import { setDisplayCurrency } from "../../actions/displayCurrencyActions";
 import { displayCurrency } from "../../actions/displayCurrencyActions";
 import { showForm } from "../../actions/showFormActions";
+import { signOutAction } from "../../actions/signInActions";
+import { signOutUser } from "../../firebase-config";
 
 function Nabvar() {
   const dispatch = useDispatch();
@@ -26,6 +28,12 @@ function Nabvar() {
   const showSignIn = () => {
     dispatch(showForm("signIn"));
   };
+
+  const handleSignOut = () => {
+    dispatch(signOutAction());
+    signOutUser();
+  };
+
   useEffect(() => {
     isDarkMode
       ? document.documentElement.classList.add("dark")
@@ -98,7 +106,7 @@ function Nabvar() {
             </NavDropdown>
             <Nav.Item
               className="navbar-item"
-              onClick={isSignedIn ? showSignIn : showSignIn} //to be updatet when signOut is created
+              onClick={isSignedIn ? handleSignOut : showSignIn}
             >
               {isSignedIn ? "Sign Out" : "Sign In"}
             </Nav.Item>

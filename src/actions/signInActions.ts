@@ -1,13 +1,13 @@
-const signIn = () => {
+const signInAction = () => {
   return {
     type: "SIGN IN",
   };
 };
 
-const signOut = () => {
+const signOutAction = () => {
   return {
     type: "SIGN OUT",
   };
 };
 
-export { signIn, signOut };
+export { signInAction, signOutAction };

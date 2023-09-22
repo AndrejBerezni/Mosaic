@@ -43,4 +43,10 @@ const signInWithGoogle = () => {
     .catch((error) => console.log(error));
 };
 
-export { signInWithGoogle };
+//Sign out
+
+const signOutUser = () => {
+  signOut(getAuth());
+};
+
+export { signInWithGoogle, signOutUser };
