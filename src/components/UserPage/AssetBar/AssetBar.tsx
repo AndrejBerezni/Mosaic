@@ -40,7 +40,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency
   );
-  const [totalValue, setTotalValue] = useState<string | number | undefined>();
+  const [assetValue, setAssetValue] = useState<string | number | undefined>();
 
   const calculateValue = async (type: string, amount: number, code: string) => {
     switch (type) {
@@ -58,6 +58,18 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
             const stockPrice: number = parseFloat(
               data["Time Series (Daily)"][latestDate]["4. close"]
             );
+            if (displayCurrency.code !== "USD") {
+              //convert price to other currencies
+              return axios
+                .get(
+                  `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/${displayCurrency.code.toLowerCase()}.json`
+                )
+                .then((response) => {
+                  const currencyRate: number =
+                    response.data[displayCurrency.code.toLowerCase()];
+                  return (stockPrice * amount * currencyRate).toFixed(2);
+                });
+            }
             return (stockPrice * amount).toFixed(2);
           })
           .catch((error) => {
@@ -71,7 +83,14 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
           "Content-Type": "application/json",
         };
         return axios
-          .get(`https://www.goldapi.io/api/${code}/USD`, { headers })
+          .get(
+            `https://www.goldapi.io/api/${code.toUpperCase()}/${
+              displayCurrency.code
+            }`,
+            {
+              headers,
+            }
+          )
           .then((response) => {
             const metalPrice: number = response.data.price_gram_24k;
             return (metalPrice * amount).toFixed(2);
@@ -83,10 +102,11 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
       case "Currency":
         return axios
           .get(
-            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${code}/usd.json`
+            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${code}/${displayCurrency.code.toLowerCase()}.json`
           )
           .then((response) => {
-            const currencyPrice: number = response.data.usd;
+            const currencyPrice: number =
+              response.data[displayCurrency.code.toLowerCase()];
             return (currencyPrice * amount).toFixed(2);
           })
           .catch((error) => {
@@ -101,11 +121,11 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
   useEffect(() => {
     const fetchData = async () => {
       const calculatedValue = await calculateValue(assetType, units, assetCode);
-      setTotalValue(calculatedValue);
+      setAssetValue(calculatedValue);
     };
 
     fetchData();
-  }, [assetType, units, assetCode]);
+  }, [assetType, units, assetCode, displayCurrency]);
   return (
     <Card className="asset-bar my-3">
       <Table className="my-2">
@@ -114,7 +134,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
           <th className="asset-bar-text secondary-text">{assetType}</th>
           <th className="asset-bar-text secondary-text">{units}</th>
           <th className="asset-bar-text">
-            {totalValue}
+            {assetValue}
             {displayCurrency.symbol}
           </th>
         </tr>

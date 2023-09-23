@@ -8,7 +8,7 @@ interface newAssetTypeAction {
 }
 
 const initialState = {
-  newAssetType: "stocks",
+  newAssetType: "Stock",
 };
 
 const newAssetTypeReducer = (
