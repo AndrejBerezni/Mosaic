@@ -3,7 +3,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   getAuth,
-  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -70,4 +69,35 @@ const signOutUser = () => {
   signOut(getAuth());
 };
 
-export { signInWithGoogle, signInWithEmail, signUpWithEmail, signOutUser };
+//Get assets for user
+interface Asset {
+  uid: string;
+  name: string;
+  symbol: string;
+  type: string;
+  amount: number;
+}
+
+async function getAssetsForUser() {
+  let assets: Asset[] = [];
+  const user: string = getAuth().currentUser!.uid;
+  const assetsQuery = query(collection(db, "assets"), where("uid", "==", user));
+  const querySnapshot = await getDocs(assetsQuery);
+  querySnapshot.forEach((doc) => {
+    const assetData = doc.data() as Asset; //assert type
+    assets.push(assetData);
+  });
+  console.log(assets);
+  return assets;
+}
+
+//Exports
+export {
+  signInWithGoogle,
+  signInWithEmail,
+  signUpWithEmail,
+  signOutUser,
+  getAssetsForUser,
+};
+
+export type { Asset };

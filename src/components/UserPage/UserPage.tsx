@@ -6,13 +6,24 @@ import Container from "react-bootstrap/Container";
 import AddAsset from "./AddAsset/AddAsset";
 import Total from "./Total/Total";
 import NewAssetForm from "../Forms/NewAssetForm/NewAssetForm";
-import { useSelector } from "react-redux";
-import { RootState } from "../../reducers/combineReducers";
+import { useEffect, useState } from "react";
+import { getAssetsForUser } from "../../firebase-config";
+import { Asset } from "../../firebase-config";
 
 function UserPage() {
-  const assetList = useSelector(
-    (state: RootState) => state.assetList.assetList
-  );
+  const [assetList, setAssetList] = useState<Asset[]>([]);
+
+  useEffect(() => {
+    const getAssets = async () => {
+      try {
+        const newAssetList = await getAssetsForUser();
+        setAssetList(newAssetList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getAssets();
+  }, []);
   return (
     <>
       <ListOptions />
@@ -25,11 +36,11 @@ function UserPage() {
           <Col lg={8}>
             {assetList.map((asset) => (
               <AssetBar
-                key={asset.code}
+                key={asset.symbol}
                 assetName={asset.name}
                 assetType={asset.type}
                 units={asset.amount}
-                assetCode={asset.code}
+                assetCode={asset.symbol}
               />
             ))}
           </Col>

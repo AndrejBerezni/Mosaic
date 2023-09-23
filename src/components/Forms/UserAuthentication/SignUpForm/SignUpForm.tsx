@@ -18,6 +18,7 @@ function SignUpForm() {
 
   const handleEmailSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
+      dispatch(showAlert("Passwords do not match"));
       return;
     }
     try {

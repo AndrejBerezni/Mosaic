@@ -49,30 +49,30 @@ function NewAssetForm() {
             }}
           >
             <option
-              value="stocks"
+              value="Stock"
               defaultChecked
-              selected={assetType === "stocks" ? true : false} //adding this to prevent wrong component loading below when form is closed and reopened
+              selected={assetType === "Stock" ? true : false} //adding this to prevent wrong component loading below when form is closed and reopened
             >
               Stocks
             </option>
             <option
-              value="metal"
-              selected={assetType === "metal" ? true : false}
+              value="Noble Metal"
+              selected={assetType === "Noble Metal" ? true : false}
             >
               Noble Metals
             </option>
             <option
-              value="currency"
-              selected={assetType === "currency" ? true : false}
+              value="Currency"
+              selected={assetType === "Currency" ? true : false}
             >
               Currency
             </option>
           </Form.Select>
         </FloatingLabel>
 
-        {assetType === "stocks" ? (
+        {assetType === "Stock" ? (
           <StockSearch />
-        ) : assetType === "metal" ? (
+        ) : assetType === "Noble Metal" ? (
           <MetalsSearch />
         ) : (
           <CurrencySearch />
