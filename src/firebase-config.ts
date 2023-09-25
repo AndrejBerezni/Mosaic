@@ -73,7 +73,7 @@ const signOutUser = () => {
 
 //Get assets for user
 interface Asset {
-  uid: string;
+  uid: string | null;
   name: string;
   symbol: string;
   type: string;

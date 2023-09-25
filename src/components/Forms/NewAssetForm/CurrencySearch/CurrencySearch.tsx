@@ -1,9 +1,15 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, useRef } from "react";
 import axios, { AxiosResponse } from "axios";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../reducers/combineReducers";
+import { useDispatch } from "react-redux";
+import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
+import { Asset } from "../../../../firebase-config";
+import { addNewAsset } from "../../../../firebase-config";
 
 type CurrencyList = Record<string, string>;
 
@@ -15,7 +21,10 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
   const [currencyList, setCurrencyList] = useState<CurrencyList>({});
   const [userInput, setUserInput] = useState<string>("");
   const [matches, setMatches] = useState<[string, string][]>([]);
-
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.signedIn.user);
+  const assetRef = useRef<HTMLSelectElement | null>(null);
+  const amountRef = useRef<HTMLInputElement | null>(null);
   const searchUrl =
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json";
 
@@ -44,6 +53,29 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
     setMatches(matchedItems);
   };
 
+  const handleSubmit = async () => {
+    if (!assetRef.current!.value || !amountRef.current!.value) {
+      return;
+    }
+    const selectedOption = assetRef.current!.value;
+    const selectedOptionText =
+      assetRef.current!.options[assetRef.current!.selectedIndex].text;
+    const selectedAmount = parseFloat(amountRef.current!.value);
+    const newAsset: Asset = {
+      uid: user,
+      type: "Currency",
+      amount: selectedAmount,
+      name: selectedOptionText,
+      symbol: selectedOption,
+    };
+    try {
+      await addNewAsset(newAsset);
+      handleClose();
+      dispatch(refreshAssetList());
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <Form className="px-3">
       <FloatingLabel label="Search for Currency" className="my-3">
@@ -54,11 +86,11 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
         />
       </FloatingLabel>
       <FloatingLabel label="Select Currency">
-        <Form.Select aria-label="Default select example">
+        <Form.Select aria-label="select currency" ref={assetRef}>
           {matches.map(([key, value]) => {
             return (
-              <option value={value} key={key}>
-                {key.toUpperCase()} - {value}
+              <option value={key} key={key}>
+                {value}
               </option>
             );
           })}
@@ -72,12 +104,13 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
           defaultValue={1}
           min={0.00001}
           step={"any"}
+          ref={amountRef}
         />
       </FloatingLabel>
       <Modal.Footer>
         <Button
           variant="primary"
-          // onClick={handleClose}
+          onClick={handleSubmit}
           className="submit-form-btn"
           size="lg"
         >
