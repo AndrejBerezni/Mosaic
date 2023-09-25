@@ -6,12 +6,15 @@ import Modal from "react-bootstrap/Modal";
 import { addNewAsset } from "../../../../firebase-config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
+import { useDispatch } from "react-redux";
+import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 
 interface MetalsSearchProps {
   handleClose: () => void;
 }
 
 function MetalsSearch({ handleClose }: MetalsSearchProps) {
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.signedIn.user);
   const assetRef = useRef<HTMLSelectElement | null>(null);
   const amountRef = useRef<HTMLInputElement | null>(null);
@@ -32,6 +35,7 @@ function MetalsSearch({ handleClose }: MetalsSearchProps) {
     try {
       await addNewAsset(newAsset);
       handleClose();
+      dispatch(refreshAssetList());
     } catch (error) {
       console.error(error);
     }

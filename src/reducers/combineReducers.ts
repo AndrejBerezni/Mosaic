@@ -7,6 +7,9 @@ import displayCurrencyReducer, {
   DisplayCurrencyState,
 } from "./displayCurrencyReducer";
 import showAlertReducer, { ShowAlertState } from "./showAlertReducer";
+import refreshAssetListReducer, {
+  RefreshAssetListState,
+} from "./refreshAssetListReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -15,6 +18,7 @@ const combinedReducers = combineReducers({
   newAssetType: newAssetTypeReducer,
   displayCurrency: displayCurrencyReducer,
   showAlert: showAlertReducer,
+  refreshAssetList: refreshAssetListReducer,
 });
 
 export default combinedReducers;
@@ -26,4 +30,5 @@ export type RootState = {
   newAssetType: NewAssetTypeState;
   displayCurrency: DisplayCurrencyState;
   showAlert: ShowAlertState;
+  refreshAssetList: RefreshAssetListState;
 };
