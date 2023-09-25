@@ -3,8 +3,14 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import "./StockSearch.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../reducers/combineReducers";
+import { useDispatch } from "react-redux";
+import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
+import { Asset } from "../../../../firebase-config";
+import { addNewAsset } from "../../../../firebase-config";
 
 interface StockSearchProps {
   handleClose: () => void;
@@ -13,6 +19,10 @@ interface StockSearchProps {
 function StockSearch({ handleClose }: StockSearchProps) {
   const [keywords, setKeywords] = useState<string>("");
   const [searchResults, setSearchResults] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.signedIn.user);
+  const assetRef = useRef<HTMLSelectElement | null>(null);
+  const amountRef = useRef<HTMLInputElement | null>(null);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeywords(e.target.value);
@@ -39,6 +49,30 @@ function StockSearch({ handleClose }: StockSearchProps) {
       });
   };
 
+  const handleSubmit = async () => {
+    if (!assetRef.current!.value || !amountRef.current!.value) {
+      return;
+    }
+    const selectedOption = assetRef.current!.value;
+    const selectedOptionText =
+      assetRef.current!.options[assetRef.current!.selectedIndex].text;
+    const selectedAmount = parseFloat(amountRef.current!.value);
+    const newAsset: Asset = {
+      uid: user,
+      type: "Stock",
+      amount: selectedAmount,
+      name: selectedOptionText,
+      symbol: selectedOption,
+    };
+    try {
+      await addNewAsset(newAsset);
+      handleClose();
+      dispatch(refreshAssetList());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Form className="px-3">
       <FloatingLabel label="Search for Stocks & ETFs" className="my-3">
@@ -52,11 +86,11 @@ function StockSearch({ handleClose }: StockSearchProps) {
         </Button>
       </FloatingLabel>
       <FloatingLabel label="Select Asset">
-        <Form.Select aria-label="Default select example">
+        <Form.Select aria-label="Default select example" ref={assetRef}>
           {searchResults.map((result) => {
             return (
               <option value={result["1. symbol"]} key={result["1. symbol"]}>
-                {result["1. symbol"]} - {result["2. name"]}
+                {result["2. name"]}
               </option>
             );
           })}
@@ -70,12 +104,13 @@ function StockSearch({ handleClose }: StockSearchProps) {
           defaultValue={1}
           min={0.00001}
           step={"any"}
+          ref={amountRef}
         />
       </FloatingLabel>
       <Modal.Footer>
         <Button
           variant="primary"
-          // onClick={handleClose}
+          onClick={handleSubmit}
           className="submit-form-btn"
           size="lg"
         >
