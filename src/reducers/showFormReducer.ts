@@ -1,21 +1,21 @@
-interface showFormState {
+interface ShowFormState {
   newAsset: boolean;
   signIn: boolean;
 }
 
-interface showFormAction {
+interface ShowFormAction {
   type: string;
   payload: string;
 }
 
-const initialState: showFormState = {
+const initialState: ShowFormState = {
   newAsset: false,
   signIn: false,
 };
 
 const showFormReducer = (
-  state: showFormState = initialState,
-  action: showFormAction
+  state: ShowFormState = initialState,
+  action: ShowFormAction
 ) => {
   switch (action.type) {
     case "SHOW FORM":
@@ -34,3 +34,5 @@ const showFormReducer = (
 };
 
 export default showFormReducer;
+
+export type { ShowFormState };

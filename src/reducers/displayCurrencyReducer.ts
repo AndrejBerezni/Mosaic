@@ -1,10 +1,10 @@
 import { displayCurrency } from "../actions/displayCurrencyActions";
 
-interface displayCurrencyState {
+interface DisplayCurrencyState {
   currency: displayCurrency;
 }
 
-interface displayCurrencyAction {
+interface DisplayCurrencyAction {
   type: string;
   payload: displayCurrency;
 }
@@ -17,8 +17,8 @@ const initialState = {
 };
 
 const displayCurrencyReducer = (
-  state: displayCurrencyState = initialState,
-  action: displayCurrencyAction
+  state: DisplayCurrencyState = initialState,
+  action: DisplayCurrencyAction
 ) => {
   switch (action.type) {
     case "SET DISPLAY CURRENCY":
@@ -32,3 +32,5 @@ const displayCurrencyReducer = (
 };
 
 export default displayCurrencyReducer;
+
+export type { DisplayCurrencyState };

@@ -1,21 +1,21 @@
-interface showAlertState {
+interface ShowAlertState {
   showAlert: boolean;
   alertMessage: string;
 }
 
-interface showAlertAction {
+interface ShowAlertAction {
   type: string;
   payload: string;
 }
 
-const initialState: showAlertState = {
+const initialState: ShowAlertState = {
   showAlert: false,
   alertMessage: "",
 };
 
 const showAlertReducer = (
-  state: showAlertState = initialState,
-  action: showAlertAction
+  state: ShowAlertState = initialState,
+  action: ShowAlertAction
 ) => {
   switch (action.type) {
     case "SHOW ALERT":
@@ -34,3 +34,5 @@ const showAlertReducer = (
 };
 
 export default showAlertReducer;
+
+export type { ShowAlertState };

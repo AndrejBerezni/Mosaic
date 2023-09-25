@@ -1,18 +1,18 @@
-interface darkModeState {
+interface DarkModeState {
   darkMode: boolean;
 }
 
-interface darkModeAction {
+interface DarkModeAction {
   type: string;
 }
 
-const initialState: darkModeState = {
+const initialState: DarkModeState = {
   darkMode: false,
 };
 
 const darkModeReducer = (
-  state: darkModeState = initialState,
-  action: darkModeAction
+  state: DarkModeState = initialState,
+  action: DarkModeAction
 ) => {
   switch (action.type) {
     case "DARK MODE ON":
@@ -29,3 +29,5 @@ const darkModeReducer = (
 };
 
 export default darkModeReducer;
+
+export type { DarkModeState };

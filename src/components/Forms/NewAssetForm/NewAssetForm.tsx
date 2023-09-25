@@ -70,11 +70,11 @@ function NewAssetForm() {
         </FloatingLabel>
       </Form>
       {assetType === "Stock" ? (
-        <StockSearch />
+        <StockSearch handleClose={handleClose} />
       ) : assetType === "Noble Metal" ? (
-        <MetalsSearch />
+        <MetalsSearch handleClose={handleClose} />
       ) : (
-        <CurrencySearch />
+        <CurrencySearch handleClose={handleClose} />
       )}
     </Modal>
   );

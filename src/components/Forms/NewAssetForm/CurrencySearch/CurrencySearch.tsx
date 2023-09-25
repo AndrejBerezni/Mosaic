@@ -7,7 +7,11 @@ import Modal from "react-bootstrap/Modal";
 
 type CurrencyList = Record<string, string>;
 
-function CurrencySearch() {
+interface CurrencySearchProps {
+  handleClose: () => void;
+}
+
+function CurrencySearch({ handleClose }: CurrencySearchProps) {
   const [currencyList, setCurrencyList] = useState<CurrencyList>({});
   const [userInput, setUserInput] = useState<string>("");
   const [matches, setMatches] = useState<[string, string][]>([]);

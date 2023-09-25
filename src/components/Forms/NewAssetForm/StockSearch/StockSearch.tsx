@@ -6,7 +6,11 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useState, ChangeEvent } from "react";
 import "./StockSearch.css";
 
-function StockSearch() {
+interface StockSearchProps {
+  handleClose: () => void;
+}
+
+function StockSearch({ handleClose }: StockSearchProps) {
   const [keywords, setKeywords] = useState<string>("");
   const [searchResults, setSearchResults] = useState([]);
 

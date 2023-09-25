@@ -1,8 +1,8 @@
-interface newAssetTypeState {
+interface NewAssetTypeState {
   newAssetType: string;
 }
 
-interface newAssetTypeAction {
+interface NewAssetTypeAction {
   type: string;
   payload: string;
 }
@@ -12,8 +12,8 @@ const initialState = {
 };
 
 const newAssetTypeReducer = (
-  state: newAssetTypeState = initialState,
-  action: newAssetTypeAction
+  state: NewAssetTypeState = initialState,
+  action: NewAssetTypeAction
 ) => {
   switch (action.type) {
     case "SET ASSET TYPE":
@@ -26,3 +26,5 @@ const newAssetTypeReducer = (
 };
 
 export default newAssetTypeReducer;
+
+export type { NewAssetTypeState };

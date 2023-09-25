@@ -1,16 +1,16 @@
 interface SignedInState {
   signedIn: boolean;
-  user: string;
+  user: string | null;
 }
 
 interface SignInAction {
   type: string;
-  payload?: string;
+  payload?: string | null;
 }
 
 const initialState: SignedInState = {
   signedIn: false,
-  user: "",
+  user: null,
 };
 
 const signInReducer = (
@@ -28,7 +28,7 @@ const signInReducer = (
       return {
         ...state,
         signedIn: false,
-        user: "",
+        user: null,
       };
     default:
       return state;
@@ -36,3 +36,5 @@ const signInReducer = (
 };
 
 export default signInReducer;
+
+export type { SignedInState };
