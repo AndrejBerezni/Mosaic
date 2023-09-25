@@ -1,6 +1,7 @@
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useState, ChangeEvent } from "react";
 import "./StockSearch.css";
@@ -35,7 +36,7 @@ function StockSearch() {
   };
 
   return (
-    <>
+    <Form className="px-3">
       <FloatingLabel label="Search for Stocks & ETFs" className="my-3">
         <Form.Control onChange={handleInputChange} type="text" />
         <Button
@@ -57,7 +58,27 @@ function StockSearch() {
           })}
         </Form.Select>
       </FloatingLabel>
-    </>
+      <FloatingLabel label="Number of Units" className="my-3">
+        <Form.Control
+          type="number"
+          as="input"
+          required
+          defaultValue={1}
+          min={0.00001}
+          step={"any"}
+        />
+      </FloatingLabel>
+      <Modal.Footer>
+        <Button
+          variant="primary"
+          // onClick={handleClose}
+          className="submit-form-btn"
+          size="lg"
+        >
+          <b>SAVE</b>
+        </Button>
+      </Modal.Footer>
+    </Form>
   );
 }
 

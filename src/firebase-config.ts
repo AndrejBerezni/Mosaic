@@ -10,6 +10,8 @@ import {
 import {
   getFirestore,
   getDocs,
+  setDoc,
+  doc,
   collection,
   query,
   where,
@@ -63,8 +65,8 @@ const signUpWithEmail = async (email: string, password: string) => {
     throw error;
   }
 };
-//Sign out
 
+//Sign out
 const signOutUser = () => {
   signOut(getAuth());
 };
@@ -91,6 +93,16 @@ async function getAssetsForUser() {
   return assets;
 }
 
+//Create new asset
+async function addNewAsset(asset: Asset) {
+  try {
+    const newAssetRef = doc(collection(db, "assets"));
+    await setDoc(newAssetRef, asset);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 //Exports
 export {
   signInWithGoogle,
@@ -98,6 +110,7 @@ export {
   signUpWithEmail,
   signOutUser,
   getAssetsForUser,
+  addNewAsset,
 };
 
 export type { Asset };

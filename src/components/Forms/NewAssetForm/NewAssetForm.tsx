@@ -1,5 +1,4 @@
 import "./NewAssetForm.css";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -69,39 +68,14 @@ function NewAssetForm() {
             </option>
           </Form.Select>
         </FloatingLabel>
-
-        {assetType === "Stock" ? (
-          <StockSearch />
-        ) : assetType === "Noble Metal" ? (
-          <MetalsSearch />
-        ) : (
-          <CurrencySearch />
-        )}
-
-        <FloatingLabel
-          label={`Number of ${assetType === "metal" ? "Grams" : "Units"}`}
-          className="my-3"
-        >
-          <Form.Control
-            type="number"
-            as="input"
-            required
-            defaultValue={1}
-            min={0.00001}
-            step={"any"}
-          />
-        </FloatingLabel>
       </Form>
-      <Modal.Footer>
-        <Button
-          variant="primary"
-          onClick={handleClose}
-          className="submit-form-btn"
-          size="lg"
-        >
-          <b>SAVE</b>
-        </Button>
-      </Modal.Footer>
+      {assetType === "Stock" ? (
+        <StockSearch />
+      ) : assetType === "Noble Metal" ? (
+        <MetalsSearch />
+      ) : (
+        <CurrencySearch />
+      )}
     </Modal>
   );
 }
