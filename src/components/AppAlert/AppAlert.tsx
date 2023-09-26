@@ -1,13 +1,16 @@
-import "./AuthAlert.css";
 import Alert from "react-bootstrap/Alert";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../reducers/combineReducers";
-import { hideAlert } from "../../../../actions/showAlertActions";
+import { RootState } from "../../reducers/combineReducers";
+import { hideAlert } from "../../actions/showAlertActions";
 
-function AuthAlert() {
+interface AppAlertProps {
+  show: boolean;
+}
+
+function AppAlert({ show }: AppAlertProps) {
   const dispatch = useDispatch();
-  const show = useSelector((state: RootState) => state.showAlert.showAlert);
-  const type = useSelector((state: RootState) => state.showAlert.alertType);
+  // const show = useSelector((state: RootState) => state.showAlert.showAlert);
+  // const type = useSelector((state: RootState) => state.showAlert.alertType);
   const message = useSelector(
     (state: RootState) => state.showAlert.alertMessage
   );
@@ -17,11 +20,10 @@ function AuthAlert() {
   };
   return (
     <Alert
-      show={show && type === "signin" ? true : false}
+      show={show}
       onClose={handleCloseAlert}
       variant="danger"
       dismissible={true}
-      id="app-alert"
       className="mx-3"
     >
       {message}
@@ -29,4 +31,4 @@ function AuthAlert() {
   );
 }
 
-export default AuthAlert;
+export default AppAlert;

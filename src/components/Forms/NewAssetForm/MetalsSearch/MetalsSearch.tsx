@@ -9,6 +9,7 @@ import { RootState } from "../../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 import { Asset } from "../../../../firebase-config";
+import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
 interface MetalsSearchProps {
   handleClose: () => void;
@@ -37,17 +38,24 @@ function MetalsSearch({ handleClose }: MetalsSearchProps) {
       symbol: selectedOption,
     };
     try {
-      await addNewAsset(newAsset);
-      handleClose();
+      await addNewAsset(newAsset).then((response) =>
+        response.success
+          ? handleClose()
+          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+      );
       dispatch(refreshAssetList());
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      dispatch(showAlert({ message: error.message, type: "newAsset" }));
     }
   };
   return (
     <Form className="px-3">
       <FloatingLabel label="Select Noble Metal">
-        <Form.Select aria-label="select noble metal" ref={assetRef}>
+        <Form.Select
+          aria-label="select noble metal"
+          ref={assetRef}
+          onChange={() => dispatch(hideAlert())}
+        >
           <option value="xau">Gold</option>
           <option value="xag">Silver</option>
           <option value="xpt">Platinum</option>

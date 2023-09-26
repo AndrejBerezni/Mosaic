@@ -97,12 +97,15 @@ async function addNewAsset(asset: Asset) {
   try {
     const existingAssets: Asset[] = await getAssetsForUser();
     if (existingAssets.some((exAsset) => exAsset.name === asset.name)) {
-      throw "Asset already exists. To add more units, please edit the existing asset.";
+      throw new Error(
+        "Asset already exists. To add more units, please edit the existing asset."
+      );
     }
     const newAssetRef = doc(collection(db, "assets"));
     await setDoc(newAssetRef, asset);
-  } catch (error) {
-    console.error(error);
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, message: error.message };
   }
 }
 

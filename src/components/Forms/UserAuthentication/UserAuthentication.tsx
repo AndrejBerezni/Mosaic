@@ -9,11 +9,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import { hideForm } from "../../../actions/showFormActions";
 import { hideAlert } from "../../../actions/showAlertActions";
-import AuthAlert from "./AuthAlert/AuthAlert";
+import AppAlert from "../../AppAlert/AppAlert";
 
 function UserAuthentication() {
   const dispatch = useDispatch();
   const show = useSelector((state: RootState) => state.showForm.signIn);
+  const showAlert = useSelector(
+    (state: RootState) => state.showAlert.showAlert
+  );
+  const alertType = useSelector(
+    (state: RootState) => state.showAlert.alertType
+  );
   const handleClose = () => {
     dispatch(hideForm("signIn"));
     dispatch(hideAlert());
@@ -41,7 +47,7 @@ function UserAuthentication() {
           <SignUpForm />
         </Tab>
       </Tabs>
-      <AuthAlert />
+      <AppAlert show={showAlert && alertType === "signin" ? true : false} />
     </Modal>
   );
 }

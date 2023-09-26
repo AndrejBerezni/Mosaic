@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 import { Asset } from "../../../../firebase-config";
 import { addNewAsset } from "../../../../firebase-config";
+import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
 type CurrencyList = Record<string, string>;
 
@@ -69,11 +70,14 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
       symbol: selectedOption,
     };
     try {
-      await addNewAsset(newAsset);
-      handleClose();
+      await addNewAsset(newAsset).then((response) =>
+        response.success
+          ? handleClose()
+          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+      );
       dispatch(refreshAssetList());
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      dispatch(showAlert({ message: error.message, type: "newAsset" }));
     }
   };
   return (
@@ -86,7 +90,11 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
         />
       </FloatingLabel>
       <FloatingLabel label="Select Currency">
-        <Form.Select aria-label="select currency" ref={assetRef}>
+        <Form.Select
+          aria-label="select currency"
+          ref={assetRef}
+          onChange={() => dispatch(hideAlert())}
+        >
           {matches.map(([key, value]) => {
             return (
               <option value={key} key={key}>

@@ -9,16 +9,24 @@ import StockSearch from "./StockSearch/StockSearch";
 import MetalsSearch from "./MetalsSearch/MetalsSearch";
 import CurrencySearch from "./CurrencySearch/CurrencySearch";
 import { newAssetType } from "../../../actions/newAssetTypeActions";
+import AppAlert from "../../AppAlert/AppAlert";
+import { hideAlert } from "../../../actions/showAlertActions";
 
 function NewAssetForm() {
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(hideForm("newAsset"));
+    dispatch(hideAlert());
   };
 
   const show = useSelector((state: RootState) => state.showForm.newAsset);
-
+  const showAlert = useSelector(
+    (state: RootState) => state.showAlert.showAlert
+  );
+  const alertType = useSelector(
+    (state: RootState) => state.showAlert.alertType
+  );
   const assetType = useSelector(
     (state: RootState) => state.newAssetType.newAssetType
   );
@@ -45,6 +53,7 @@ function NewAssetForm() {
             aria-label="asset type"
             onChange={(e) => {
               changeAssetType(e.target.value);
+              dispatch(hideAlert());
             }}
           >
             <option
@@ -76,6 +85,7 @@ function NewAssetForm() {
       ) : (
         <CurrencySearch handleClose={handleClose} />
       )}
+      <AppAlert show={showAlert && alertType === "newAsset" ? true : false} />
     </Modal>
   );
 }

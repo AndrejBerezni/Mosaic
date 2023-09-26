@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 import { Asset } from "../../../../firebase-config";
 import { addNewAsset } from "../../../../firebase-config";
+import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
 interface StockSearchProps {
   handleClose: () => void;
@@ -65,11 +66,14 @@ function StockSearch({ handleClose }: StockSearchProps) {
       symbol: selectedOption,
     };
     try {
-      await addNewAsset(newAsset);
-      handleClose();
+      await addNewAsset(newAsset).then((response) =>
+        response.success
+          ? handleClose()
+          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+      );
       dispatch(refreshAssetList());
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      dispatch(showAlert({ message: error.message, type: "newAsset" }));
     }
   };
 
@@ -86,7 +90,11 @@ function StockSearch({ handleClose }: StockSearchProps) {
         </Button>
       </FloatingLabel>
       <FloatingLabel label="Select Asset">
-        <Form.Select aria-label="Default select example" ref={assetRef}>
+        <Form.Select
+          aria-label="Default select example"
+          ref={assetRef}
+          onChange={() => dispatch(hideAlert())}
+        >
           {searchResults.map((result) => {
             return (
               <option value={result["1. symbol"]} key={result["1. symbol"]}>
