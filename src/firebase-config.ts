@@ -18,7 +18,7 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCrH3T6bOyKm1DgMx0HOk9dPLvOuHnsULs",
+  apiKey: import.meta.env.VITE_FIREBASE_API,
   authDomain: "wealth-mosaic.firebaseapp.com",
   projectId: "wealth-mosaic",
   storageBucket: "wealth-mosaic.appspot.com",
