@@ -89,13 +89,16 @@ async function getAssetsForUser() {
     const assetData = doc.data() as Asset; //assert type
     assets.push(assetData);
   });
-  console.log(assets);
   return assets;
 }
 
 //Create new asset
 async function addNewAsset(asset: Asset) {
   try {
+    const existingAssets: Asset[] = await getAssetsForUser();
+    if (existingAssets.some((exAsset) => exAsset.name === asset.name)) {
+      throw "Asset already exists. To add more units, please edit the existing asset.";
+    }
     const newAssetRef = doc(collection(db, "assets"));
     await setDoc(newAssetRef, asset);
   } catch (error) {

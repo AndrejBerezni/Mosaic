@@ -1,4 +1,9 @@
-const showAlert = (alert: string) => {
+interface Alert {
+  message: string;
+  type: string;
+}
+
+const showAlert = (alert: Alert) => {
   return {
     type: "SHOW ALERT",
     payload: alert,
@@ -12,3 +17,4 @@ const hideAlert = () => {
 };
 
 export { showAlert, hideAlert };
+export type { Alert };

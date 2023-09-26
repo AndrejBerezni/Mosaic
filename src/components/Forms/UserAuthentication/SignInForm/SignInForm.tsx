@@ -41,7 +41,7 @@ function SignInForm() {
       dispatch(hideForm("signIn"));
       navigate("/portfolio");
     } catch (error: any) {
-      dispatch(showAlert(error!.message));
+      dispatch(showAlert({ message: error!.message, type: "signin" }));
     }
   };
 

@@ -18,7 +18,9 @@ function SignUpForm() {
 
   const handleEmailSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
-      dispatch(showAlert("Passwords do not match"));
+      dispatch(
+        showAlert({ message: "Passwords do not match", type: "signin" })
+      );
       return;
     }
     try {
@@ -30,7 +32,7 @@ function SignUpForm() {
       dispatch(hideForm("signIn"));
       navigate("/portfolio");
     } catch (error: any) {
-      dispatch(showAlert(error!.message));
+      dispatch(showAlert({ message: error!.message, type: "signin" }));
     }
   };
   return (

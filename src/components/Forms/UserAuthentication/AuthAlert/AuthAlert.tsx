@@ -7,6 +7,7 @@ import { hideAlert } from "../../../../actions/showAlertActions";
 function AuthAlert() {
   const dispatch = useDispatch();
   const show = useSelector((state: RootState) => state.showAlert.showAlert);
+  const type = useSelector((state: RootState) => state.showAlert.alertType);
   const message = useSelector(
     (state: RootState) => state.showAlert.alertMessage
   );
@@ -16,7 +17,7 @@ function AuthAlert() {
   };
   return (
     <Alert
-      show={show}
+      show={show && type === "signin" ? true : false}
       onClose={handleCloseAlert}
       variant="danger"
       dismissible={true}
