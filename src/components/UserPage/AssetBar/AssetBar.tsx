@@ -5,10 +5,10 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Table from "react-bootstrap/Table";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
+import calculateValue from "../../../utilities/API calls/calculateValue";
 
 interface AssetBarProps {
   assetName: string;
@@ -17,110 +17,20 @@ interface AssetBarProps {
   assetCode: string;
 }
 
-interface AlphaVantageResponse {
-  "Meta Data": {
-    "1. Information": string;
-    "2. Symbol": string;
-    "3. Last Refreshed": string;
-    "4. Output Size": string;
-    "5. Time Zone": string;
-  };
-  "Time Series (Daily)": {
-    [date: string]: {
-      "1. open": string;
-      "2. high": string;
-      "3. low": string;
-      "4. close": string;
-      "5. volume": string;
-    };
-  };
-}
-
 function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency
   );
   const [assetValue, setAssetValue] = useState<string | number | undefined>();
 
-  const calculateValue = async (type: string, amount: number, code: string) => {
-    switch (type) {
-      case "Stock":
-        const stockApiKey = "YOUR_API_KEY"; //using demo
-        return axios
-          .get<AlphaVantageResponse>(
-            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${code}&apikey=${stockApiKey}`
-          )
-          .then((response) => {
-            const data = response.data;
-            const latestDate: string = Object.keys(
-              data["Time Series (Daily)"]
-            )[0];
-            const stockPrice: number = parseFloat(
-              data["Time Series (Daily)"][latestDate]["4. close"]
-            );
-            if (displayCurrency.code !== "USD") {
-              //convert price to other currencies
-              return axios
-                .get(
-                  `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/${displayCurrency.code.toLowerCase()}.json`
-                )
-                .then((response) => {
-                  const currencyRate: number =
-                    response.data[displayCurrency.code.toLowerCase()];
-                  return (stockPrice * amount * currencyRate).toFixed(2);
-                });
-            }
-            return (stockPrice * amount).toFixed(2);
-          })
-          .catch((error) => {
-            console.error("Error searching for asset price:", error);
-            return "N/A";
-          });
-      case "Noble Metal":
-        const metalsApiKey = import.meta.env.VITE_GOLD_API_KEY;
-        const headers = {
-          "x-access-token": metalsApiKey,
-          "Content-Type": "application/json",
-        };
-        return axios
-          .get(
-            `https://www.goldapi.io/api/${code.toUpperCase()}/${
-              displayCurrency.code
-            }`,
-            {
-              headers,
-            }
-          )
-          .then((response) => {
-            const metalPrice: number = response.data.price_gram_24k;
-            return (metalPrice * amount).toFixed(2);
-          })
-          .catch((error) => {
-            console.error("Error searching for asset price:", error);
-            return "N/A";
-          });
-      case "Currency":
-        return axios
-          .get(
-            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${code}/${displayCurrency.code.toLowerCase()}.json`
-          )
-          .then((response) => {
-            const currencyPrice: number =
-              response.data[displayCurrency.code.toLowerCase()];
-            return (currencyPrice * amount).toFixed(2);
-          })
-          .catch((error) => {
-            console.error("Error searching for asset price:", error);
-            return "N/A";
-          });
-      default:
-        return "N/A";
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
-      const calculatedValue = await calculateValue(assetType, units, assetCode);
+      const calculatedValue = await calculateValue(
+        assetType,
+        units,
+        assetCode,
+        displayCurrency
+      );
       setAssetValue(calculatedValue);
     };
 

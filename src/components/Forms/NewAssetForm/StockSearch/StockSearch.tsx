@@ -43,7 +43,6 @@ function StockSearch({ handleClose }: StockSearchProps) {
       .then((response) => {
         const results = response.data.bestMatches || [];
         setSearchResults(results);
-        console.log(results);
       })
       .catch((error) => {
         console.error("Error searching for assets:", error);
