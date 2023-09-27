@@ -4,27 +4,34 @@
   background-color: var(--background-bar);
   color: var(--primary);
   font-family: var(--font-p);
+  border-color: var(--secondary);
+  box-shadow: 1px 1px 2px var(--paragraph);
 }
 
-.remove-units-button,
-.add-units-button,
-#bg-nested-dropdown {
+.edit-units-button,
+.delete-asset-button {
   background-color: var(--paragraph);
   border-color: var(--secondary);
   color: var(--background-bar);
 }
 
-.remove-units-button:hover,
-.add-units-button:hover,
-#bg-nested-dropdown:hover {
-  background-color: var(--headline);
-  border-color: var(--headline);
-  color: var(--primary);
+.edit-units-button:hover,
+.edit-units-button:active {
+  background-color: var(--headline) !important;
+  border-color: var(--headline) !important;
+}
+
+.delete-asset-button:hover,
+.delete-asset-button:active {
+  background-color: var(--tertiary) !important;
+  border-color: var(--tertiary) !important;
 }
 
 .asset-bar-text {
-  width: 25%;
-  max-width: 25%;
+  font-weight: bold;
+  margin: 0;
+  padding: 5px;
+  color: var(--primary);
 }
 
 .secondary-text {
@@ -36,6 +43,18 @@
   border-radius: 0 0 5px 5px;
 }
 
-#bg-nested-dropdown {
-  border-radius: 0 0 5px 0;
+@media (max-width: 320px) {
+  .asset-bar-text {
+    font-size: 10px;
+    text-align: center;
+    max-width: 80%;
+  }
+
+  .asset-bar-col {
+    padding: 2px;
+  }
+
+  .asset-bar-btn {
+    font-size: 12px;
+  }
 }

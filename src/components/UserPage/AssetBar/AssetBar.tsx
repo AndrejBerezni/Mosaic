@@ -2,9 +2,8 @@ import "./AssetBar.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Table from "react-bootstrap/Table";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
@@ -38,30 +37,30 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   }, [assetType, units, assetCode, displayCurrency]);
   return (
     <Card className="asset-bar my-3">
-      <Table className="my-2">
-        <tr>
-          <th className="asset-bar-text">{assetName}</th>
-          <th className="asset-bar-text secondary-text">{assetType}</th>
-          <th className="asset-bar-text secondary-text">{units}</th>
-          <th className="asset-bar-text">
+      <Row className="py-2">
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text">{assetName}</p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text secondary-text">{assetType}</p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text secondary-text">{units}</p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text">
             {assetValue}
             {displayCurrency.symbol}
-          </th>
-        </tr>
-      </Table>
+          </p>
+        </Col>
+      </Row>
       <ButtonGroup aria-label="Basic example">
-        <Button className="add-units-button asset-bar-btn">Add Units</Button>
-        <Button className="remove-units-button asset-bar-btn">
-          Remove Units
+        <Button className="edit-units-button asset-bar-btn">
+          Edit Number of Units
         </Button>
-        <DropdownButton
-          as={ButtonGroup}
-          title="Options"
-          id="bg-nested-dropdown"
-        >
-          <Dropdown.Item>Edit</Dropdown.Item>
-          <Dropdown.Item>Delete</Dropdown.Item>
-        </DropdownButton>
+        <Button className="delete-asset-button asset-bar-btn">
+          Delete Asset
+        </Button>
       </ButtonGroup>
     </Card>
   );
