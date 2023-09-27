@@ -10,14 +10,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
 
-interface AssetBarProps {
+interface IAssetBarProps {
   assetName: string;
   assetType: string;
   units: number;
   assetCode: string;
 }
 
-function AssetBar({ assetName, assetType, units, assetCode }: AssetBarProps) {
+function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency
   );

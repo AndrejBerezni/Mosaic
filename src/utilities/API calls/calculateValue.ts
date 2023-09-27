@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface AlphaVantageResponse {
+interface IAlphaVantageResponse {
   "Meta Data": {
     "1. Information": string;
     "2. Symbol": string;
@@ -29,7 +29,7 @@ const calculateValue = async (
     case "Stock":
       const stockApiKey = "YOUR_API_KEY"; //using demo
       return axios
-        .get<AlphaVantageResponse>(
+        .get<IAlphaVantageResponse>(
           `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${code}&apikey=${stockApiKey}`
         )
         .then((response) => {

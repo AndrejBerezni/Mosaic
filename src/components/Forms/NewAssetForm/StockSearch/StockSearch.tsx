@@ -9,15 +9,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { Asset } from "../../../../firebase-config";
+import { IAsset } from "../../../../firebase-config";
 import { addNewAsset } from "../../../../firebase-config";
 import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
-interface StockSearchProps {
+interface IStockSearchProps {
   handleClose: () => void;
 }
 
-function StockSearch({ handleClose }: StockSearchProps) {
+function StockSearch({ handleClose }: IStockSearchProps) {
   const [keywords, setKeywords] = useState<string>("");
   const [searchResults, setSearchResults] = useState([]);
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ function StockSearch({ handleClose }: StockSearchProps) {
     const selectedOptionText =
       assetRef.current!.options[assetRef.current!.selectedIndex].text;
     const selectedAmount = parseFloat(amountRef.current!.value);
-    const newAsset: Asset = {
+    const newAsset: IAsset = {
       uid: user,
       type: "Stock",
       amount: selectedAmount,

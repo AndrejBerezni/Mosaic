@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../reducers/combineReducers";
 import { hideAlert } from "../../actions/showAlertActions";
 
-interface AppAlertProps {
+interface IAppAlertProps {
   show: boolean;
 }
 
-function AppAlert({ show }: AppAlertProps) {
+function AppAlert({ show }: IAppAlertProps) {
   const dispatch = useDispatch();
   // const show = useSelector((state: RootState) => state.showAlert.showAlert);
   // const type = useSelector((state: RootState) => state.showAlert.alertType);

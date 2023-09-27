@@ -3,13 +3,13 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { getAssetsForUser } from "../../../firebase-config";
-import { Asset } from "../../../firebase-config";
+import { IAsset } from "../../../firebase-config";
 import AssetBar from "../AssetBar/AssetBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 
 function AssetList() {
-  const [assetList, setAssetList] = useState<Asset[]>([]);
+  const [assetList, setAssetList] = useState<IAsset[]>([]);
   const formChange = useSelector(
     (state: RootState) => state.refreshAssetList.refresh
   );

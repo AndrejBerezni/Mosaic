@@ -72,7 +72,7 @@ const signOutUser = () => {
 };
 
 //Get assets for user
-interface Asset {
+interface IAsset {
   uid: string | null;
   name: string;
   symbol: string;
@@ -81,21 +81,21 @@ interface Asset {
 }
 
 async function getAssetsForUser() {
-  let assets: Asset[] = [];
+  let assets: IAsset[] = [];
   const user: string = getAuth().currentUser!.uid;
   const assetsQuery = query(collection(db, "assets"), where("uid", "==", user));
   const querySnapshot = await getDocs(assetsQuery);
   querySnapshot.forEach((doc) => {
-    const assetData = doc.data() as Asset; //assert type
+    const assetData = doc.data() as IAsset; //assert type
     assets.push(assetData);
   });
   return assets;
 }
 
 //Create new asset
-async function addNewAsset(asset: Asset) {
+async function addNewAsset(asset: IAsset) {
   try {
-    const existingAssets: Asset[] = await getAssetsForUser();
+    const existingAssets: IAsset[] = await getAssetsForUser();
     if (existingAssets.some((exAsset) => exAsset.name === asset.name)) {
       throw new Error(
         "Asset already exists. To add more units, please edit the existing asset."
@@ -119,4 +119,4 @@ export {
   addNewAsset,
 };
 
-export type { Asset };
+export type { IAsset };

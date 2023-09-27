@@ -8,14 +8,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { Asset } from "../../../../firebase-config";
+import { IAsset } from "../../../../firebase-config";
 import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
-interface MetalsSearchProps {
+interface IMetalsSearchProps {
   handleClose: () => void;
 }
 
-function MetalsSearch({ handleClose }: MetalsSearchProps) {
+function MetalsSearch({ handleClose }: IMetalsSearchProps) {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.signedIn.user);
   const assetRef = useRef<HTMLSelectElement | null>(null);
@@ -30,7 +30,7 @@ function MetalsSearch({ handleClose }: MetalsSearchProps) {
       assetRef.current!.options[assetRef.current!.selectedIndex].text;
     const selectedAmount = parseFloat(amountRef.current!.value);
 
-    const newAsset: Asset = {
+    const newAsset: IAsset = {
       uid: user,
       type: "Noble Metal",
       amount: selectedAmount,

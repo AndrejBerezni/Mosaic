@@ -8,17 +8,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { Asset } from "../../../../firebase-config";
+import { IAsset } from "../../../../firebase-config";
 import { addNewAsset } from "../../../../firebase-config";
 import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
 
 type CurrencyList = Record<string, string>;
 
-interface CurrencySearchProps {
+interface ICurrencySearchProps {
   handleClose: () => void;
 }
 
-function CurrencySearch({ handleClose }: CurrencySearchProps) {
+function CurrencySearch({ handleClose }: ICurrencySearchProps) {
   const [currencyList, setCurrencyList] = useState<CurrencyList>({});
   const [userInput, setUserInput] = useState<string>("");
   const [matches, setMatches] = useState<[string, string][]>([]);
@@ -62,7 +62,7 @@ function CurrencySearch({ handleClose }: CurrencySearchProps) {
     const selectedOptionText =
       assetRef.current!.options[assetRef.current!.selectedIndex].text;
     const selectedAmount = parseFloat(amountRef.current!.value);
-    const newAsset: Asset = {
+    const newAsset: IAsset = {
       uid: user,
       type: "Currency",
       amount: selectedAmount,

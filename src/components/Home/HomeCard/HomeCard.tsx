@@ -1,13 +1,13 @@
 import "./HomeCard.css";
 import Card from "react-bootstrap/Card";
 
-interface HomeCardProps {
+interface IHomeCardProps {
   src: string;
   cardTitle: string;
   cardText: string;
 }
 
-function HomeCard({ src, cardTitle, cardText }: HomeCardProps) {
+function HomeCard({ src, cardTitle, cardText }: IHomeCardProps) {
   return (
     <Card className="home-card my-3">
       <Card.Img variant="top" src={src} className="home-card-img" />

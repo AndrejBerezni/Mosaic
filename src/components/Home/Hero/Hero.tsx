@@ -3,11 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-interface HeroProps {
+interface IHeroProps {
   src: string;
 }
 
-function Hero({ src }: HeroProps) {
+function Hero({ src }: IHeroProps) {
   return (
     <Container fluid>
       <Row>
