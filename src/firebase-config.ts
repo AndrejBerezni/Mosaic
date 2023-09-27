@@ -11,6 +11,7 @@ import {
   getFirestore,
   getDocs,
   setDoc,
+  deleteDoc,
   doc,
   collection,
   query,
@@ -109,6 +110,20 @@ async function addNewAsset(asset: IAsset) {
   }
 }
 
+//Delete asset
+
+async function deleteAsset(name: string) {
+  const user: string = getAuth().currentUser!.uid;
+  const assetQuery = query(
+    collection(db, "assets"),
+    where("uid", "==", user),
+    where("name", "==", name)
+  );
+  const querySnapshot = await getDocs(assetQuery);
+  querySnapshot.forEach((d) => {
+    deleteDoc(doc(db, "assets", d.ref.id));
+  });
+}
 //Exports
 export {
   signInWithGoogle,
@@ -117,6 +132,7 @@ export {
   signOutUser,
   getAssetsForUser,
   addNewAsset,
+  deleteAsset,
 };
 
 export type { IAsset };

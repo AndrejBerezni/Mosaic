@@ -5,9 +5,11 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
+import { deleteAsset } from "../../../firebase-config";
+import { refreshAssetList } from "../../../actions/refreshAssetListActions";
 
 interface IAssetBarProps {
   assetName: string;
@@ -17,6 +19,7 @@ interface IAssetBarProps {
 }
 
 function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
+  const dispatch = useDispatch();
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency
   );
@@ -35,6 +38,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
 
     fetchData();
   }, [assetType, units, assetCode, displayCurrency]);
+
   return (
     <Card className="asset-bar my-3">
       <Row className="py-2">
@@ -58,7 +62,13 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         <Button className="edit-units-button asset-bar-btn">
           Edit Number of Units
         </Button>
-        <Button className="delete-asset-button asset-bar-btn">
+        <Button
+          className="delete-asset-button asset-bar-btn"
+          onClick={async () => {
+            await deleteAsset(assetName);
+            dispatch(refreshAssetList());
+          }}
+        >
           Delete Asset
         </Button>
       </ButtonGroup>
