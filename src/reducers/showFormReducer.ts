@@ -1,6 +1,7 @@
 interface ShowFormState {
   newAsset: boolean;
   signIn: boolean;
+  deleteAsset: boolean;
 }
 
 interface ShowFormAction {
@@ -11,6 +12,7 @@ interface ShowFormAction {
 const initialState: ShowFormState = {
   newAsset: false,
   signIn: false,
+  deleteAsset: false,
 };
 
 const showFormReducer = (

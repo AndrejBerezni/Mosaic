@@ -1,0 +1,33 @@
+@import url("../../../App.css");
+
+.delete-asset-btn-yes {
+  width: 30%;
+}
+.delete-asset-btn-no {
+  width: 30%;
+}
+
+#delete-asset-confirmation .modal-content {
+  background-color: var(--background-bar) !important;
+  color: var(--primary);
+  font-family: var(--font-h);
+}
+
+.delete-asset-btn-no,
+.delete-asset-btn-yes {
+  background-color: var(--headline);
+  border-color: var(--headline);
+  color: var(--background-bar);
+}
+
+.delete-asset-btn-no:hover,
+.delete-asset-btn-no:active {
+  background-color: var(--paragraph) !important;
+  border-color: var(--paragraph) !important;
+}
+
+.delete-asset-btn-yes:hover,
+.delete-asset-btn-yes:active {
+  background-color: var(--tertiary) !important;
+  border-color: var(--tertiary) !important;
+}

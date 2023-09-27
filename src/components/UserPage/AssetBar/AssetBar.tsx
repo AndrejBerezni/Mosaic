@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
-import { deleteAsset } from "../../../firebase-config";
-import { refreshAssetList } from "../../../actions/refreshAssetListActions";
+import ConfirmAssetDeletion from "../ConfirmAssetDeletion/ConfirmAssetDeletion";
+import { showForm } from "../../../actions/showFormActions";
 
 interface IAssetBarProps {
   assetName: string;
@@ -39,40 +39,44 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
     fetchData();
   }, [assetType, units, assetCode, displayCurrency]);
 
+  const showDeletionConfirmation = () => {
+    dispatch(showForm("deleteAsset"));
+  };
+
   return (
-    <Card className="asset-bar my-3">
-      <Row className="py-2">
-        <Col className="asset-bar-col">
-          <p className="asset-bar-text">{assetName}</p>
-        </Col>
-        <Col className="asset-bar-col">
-          <p className="asset-bar-text secondary-text">{assetType}</p>
-        </Col>
-        <Col className="asset-bar-col">
-          <p className="asset-bar-text secondary-text">{units}</p>
-        </Col>
-        <Col className="asset-bar-col">
-          <p className="asset-bar-text">
-            {assetValue}
-            {displayCurrency.symbol}
-          </p>
-        </Col>
-      </Row>
-      <ButtonGroup aria-label="Basic example">
-        <Button className="edit-units-button asset-bar-btn">
-          Edit Number of Units
-        </Button>
-        <Button
-          className="delete-asset-button asset-bar-btn"
-          onClick={async () => {
-            await deleteAsset(assetName);
-            dispatch(refreshAssetList());
-          }}
-        >
-          Delete Asset
-        </Button>
-      </ButtonGroup>
-    </Card>
+    <>
+      <Card className="asset-bar my-3">
+        <Row className="py-2">
+          <Col className="asset-bar-col">
+            <p className="asset-bar-text">{assetName}</p>
+          </Col>
+          <Col className="asset-bar-col">
+            <p className="asset-bar-text secondary-text">{assetType}</p>
+          </Col>
+          <Col className="asset-bar-col">
+            <p className="asset-bar-text secondary-text">{units}</p>
+          </Col>
+          <Col className="asset-bar-col">
+            <p className="asset-bar-text">
+              {assetValue}
+              {displayCurrency.symbol}
+            </p>
+          </Col>
+        </Row>
+        <ButtonGroup aria-label="Basic example">
+          <Button className="edit-units-button asset-bar-btn">
+            Edit Number of Units
+          </Button>
+          <Button
+            className="delete-asset-button asset-bar-btn"
+            onClick={showDeletionConfirmation}
+          >
+            Delete Asset
+          </Button>
+        </ButtonGroup>
+      </Card>
+      <ConfirmAssetDeletion asset={assetName} />
+    </>
   );
 }
 
