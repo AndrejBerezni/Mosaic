@@ -34,7 +34,7 @@ function SignInForm() {
   const handleEmailSignIn = async () => {
     try {
       const user = await signInWithEmail(
-        emailRef.current!.value, //assert that is not null
+        emailRef.current!.value.trim().toLowerCase(), //assert that is not null
         passwordRef.current!.value //assert that is not null
       );
       dispatch(signInAction(user));

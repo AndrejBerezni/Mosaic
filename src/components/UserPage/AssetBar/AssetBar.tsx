@@ -10,6 +10,7 @@ import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
 import ConfirmAssetDeletion from "../ConfirmAssetDeletion/ConfirmAssetDeletion";
 import { showForm } from "../../../actions/showFormActions";
+import EditAssetForm from "../../Forms/EditAssetForm/EditAssetForm";
 
 interface IAssetBarProps {
   assetName: string;
@@ -65,7 +66,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         </Row>
         <ButtonGroup aria-label="Basic example">
           <Button className="edit-units-button asset-bar-btn">
-            Edit Number of Units
+            Edit Amount
           </Button>
           <Button
             className="delete-asset-button asset-bar-btn"
@@ -76,6 +77,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         </ButtonGroup>
       </Card>
       <ConfirmAssetDeletion asset={assetName} />
+      <EditAssetForm asset={assetName} amount={units} />
     </>
   );
 }

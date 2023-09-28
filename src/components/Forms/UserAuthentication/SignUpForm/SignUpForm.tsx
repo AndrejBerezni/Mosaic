@@ -25,7 +25,7 @@ function SignUpForm() {
     }
     try {
       const user = await signUpWithEmail(
-        emailRef.current!.value, //assert that is not null
+        emailRef.current!.value.trim().toLowerCase(), //assert that is not null
         passwordRef.current!.value //assert that is not null
       );
       dispatch(signInAction(user));

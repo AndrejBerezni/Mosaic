@@ -1,0 +1,37 @@
+@import url("../../../App.css");
+
+#edit-asset-amount .modal-content {
+  background-color: var(--background-bar) !important;
+  color: var(--primary);
+  font-family: var(--font-h);
+}
+
+#edit-asset-amount .nav-link.active {
+  color: var(--headline) !important;
+}
+
+#edit-asset-amount .nav-link {
+  color: var(--secondary) !important;
+}
+
+#edit-asset-amount input.form-control {
+  background-color: var(--background-bar);
+  color: var(--headline);
+  border-color: var(--headline) !important;
+}
+
+#edit-asset-amount input.form-control:focus {
+  box-shadow: 0px 0px 8px var(--headline);
+}
+
+#edit-asset-amount label::after {
+  background-color: var(--background-bar);
+}
+
+#edit-asset-amount label {
+  color: var(--headline);
+}
+
+#edit-asset-amount .modal-title {
+  color: var(--headline);
+}
