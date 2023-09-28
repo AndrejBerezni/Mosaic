@@ -3,7 +3,7 @@ import AssetList from "./AssetList/AssetList";
 import AddAsset from "./AddAsset/AddAsset";
 import Total from "./Total/Total";
 import NewAssetForm from "../Forms/NewAssetForm/NewAssetForm";
-
+import EditAssetForm from "../Forms/EditAssetForm/EditAssetForm";
 function UserPage() {
   return (
     <>
@@ -12,6 +12,7 @@ function UserPage() {
       <AddAsset />
       <Total />
       <NewAssetForm />
+      <EditAssetForm />
     </>
   );
 }

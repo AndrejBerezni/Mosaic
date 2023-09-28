@@ -3,33 +3,44 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { FormEvent, useRef } from "react";
 import { editAssetAmount } from "../../../firebase-config";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../reducers/combineReducers";
+import { refreshAssetList } from "../../../actions/refreshAssetListActions";
+import { hideEditAssetAmount } from "../../../actions/editAssetAmountActions";
 
-interface IEditAssetFormProps {
-  asset: string;
-  amount: number;
-}
-function EditAssetForm({ asset, amount }: IEditAssetFormProps) {
-  const [units, setUnits] = useState(amount);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setUnits(parseFloat(e.target.value));
-  };
+function EditAssetForm() {
+  const dispatch = useDispatch();
+  const show = useSelector((state: RootState) => state.editAssetAmount.show);
+  const asset = useSelector(
+    (state: RootState) => state.editAssetAmount.asset.name
+  );
+  const amount = useSelector(
+    (state: RootState) => state.editAssetAmount.asset.amount
+  );
+  const newAmount = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await editAssetAmount(asset, units);
+    await editAssetAmount(asset, parseFloat(newAmount.current!.value));
+    dispatch(refreshAssetList());
+    dispatch(hideEditAssetAmount());
   };
+
+  const handleClose = () => {
+    dispatch(hideEditAssetAmount());
+  };
+
   return (
     <Modal
       size={"lg"}
       centered={true}
-      show={true}
+      show={show}
       id="edit-asset-amount"
       keyboard={true}
       fullscreen="md-down"
+      onHide={handleClose}
     >
       <Modal.Header closeButton>
         <Modal.Title>Edit Asset Amount</Modal.Title>
@@ -42,8 +53,8 @@ function EditAssetForm({ asset, amount }: IEditAssetFormProps) {
             required
             min={0.00001}
             step={"any"}
-            value={units}
-            onChange={handleChange}
+            defaultValue={amount}
+            ref={newAmount}
           />
         </FloatingLabel>
         <Button

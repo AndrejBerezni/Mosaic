@@ -10,7 +10,7 @@ import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
 import ConfirmAssetDeletion from "../ConfirmAssetDeletion/ConfirmAssetDeletion";
 import { showForm } from "../../../actions/showFormActions";
-import EditAssetForm from "../../Forms/EditAssetForm/EditAssetForm";
+import { showEditAssetAmount } from "../../../actions/editAssetAmountActions";
 
 interface IAssetBarProps {
   assetName: string;
@@ -44,6 +44,10 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
     dispatch(showForm("deleteAsset"));
   };
 
+  const showEditAsset = () => {
+    dispatch(showEditAssetAmount({ name: assetName, amount: units }));
+  };
+
   return (
     <>
       <Card className="asset-bar my-3">
@@ -65,7 +69,10 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
           </Col>
         </Row>
         <ButtonGroup aria-label="Basic example">
-          <Button className="edit-units-button asset-bar-btn">
+          <Button
+            className="edit-units-button asset-bar-btn"
+            onClick={showEditAsset}
+          >
             Edit Amount
           </Button>
           <Button
@@ -77,7 +84,6 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         </ButtonGroup>
       </Card>
       <ConfirmAssetDeletion asset={assetName} />
-      <EditAssetForm asset={assetName} amount={units} />
     </>
   );
 }

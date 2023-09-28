@@ -10,6 +10,9 @@ import showAlertReducer, { ShowAlertState } from "./showAlertReducer";
 import refreshAssetListReducer, {
   RefreshAssetListState,
 } from "./refreshAssetListReducer";
+import editAssetAmountReducer, {
+  editAssetAmountState,
+} from "./editAssetAmountReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -19,6 +22,7 @@ const combinedReducers = combineReducers({
   displayCurrency: displayCurrencyReducer,
   showAlert: showAlertReducer,
   refreshAssetList: refreshAssetListReducer,
+  editAssetAmount: editAssetAmountReducer,
 });
 
 export default combinedReducers;
@@ -31,4 +35,5 @@ export type RootState = {
   displayCurrency: DisplayCurrencyState;
   showAlert: ShowAlertState;
   refreshAssetList: RefreshAssetListState;
+  editAssetAmount: editAssetAmountState;
 };
