@@ -12,6 +12,7 @@ import {
   getDocs,
   setDoc,
   deleteDoc,
+  updateDoc,
   doc,
   collection,
   query,
@@ -124,6 +125,21 @@ async function deleteAsset(name: string) {
     deleteDoc(doc(db, "assets", d.ref.id));
   });
 }
+
+//Edit asset amount
+
+async function editAssetAmount(name: string, amount: number) {
+  const user: string = getAuth().currentUser!.uid;
+  const assetQuery = query(
+    collection(db, "assets"),
+    where("uid", "==", user),
+    where("name", "==", name)
+  );
+  const querySnapshot = await getDocs(assetQuery);
+  querySnapshot.forEach((d) => {
+    updateDoc(doc(db, "assets", d.ref.id), { amount: amount });
+  });
+}
 //Exports
 export {
   signInWithGoogle,
@@ -133,6 +149,7 @@ export {
   getAssetsForUser,
   addNewAsset,
   deleteAsset,
+  editAssetAmount,
 };
 
 export type { IAsset };

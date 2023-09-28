@@ -3,7 +3,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import { editAssetAmount } from "../../../firebase-config";
 
 interface IEditAssetFormProps {
   asset: string;
@@ -15,6 +16,11 @@ function EditAssetForm({ asset, amount }: IEditAssetFormProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setUnits(parseFloat(e.target.value));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await editAssetAmount(asset, units);
   };
   return (
     <Modal
@@ -28,7 +34,7 @@ function EditAssetForm({ asset, amount }: IEditAssetFormProps) {
       <Modal.Header closeButton>
         <Modal.Title>Edit Asset Amount</Modal.Title>
       </Modal.Header>
-      <Form className="pb-4 px-3">
+      <Form className="pb-4 px-3" onSubmit={handleSubmit}>
         <FloatingLabel label="Number of Units" className="my-3">
           <Form.Control
             type="number"
@@ -40,7 +46,12 @@ function EditAssetForm({ asset, amount }: IEditAssetFormProps) {
             onChange={handleChange}
           />
         </FloatingLabel>
-        <Button variant="primary" className="submit-form-btn" size="lg">
+        <Button
+          type="submit"
+          variant="primary"
+          className="submit-form-btn"
+          size="lg"
+        >
           <b>Update {asset}</b>
         </Button>
       </Form>
