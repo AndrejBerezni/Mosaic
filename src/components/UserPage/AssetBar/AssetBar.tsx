@@ -10,6 +10,10 @@ import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
 import { showDeleteAsset } from "../../../actions/deleteAssetActions";
 import { showEditAssetAmount } from "../../../actions/editAssetAmountActions";
+import {
+  addToTotalValue,
+  recalculateTotalValue,
+} from "../../../actions/totalValueActions";
 
 interface IAssetBarProps {
   assetName: string;
@@ -23,7 +27,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency
   );
-  const [assetValue, setAssetValue] = useState<string | number | undefined>();
+  const [assetValue, setAssetValue] = useState<number>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,9 +37,12 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         assetCode,
         displayCurrency
       );
-      setAssetValue(calculatedValue);
+      const parsedValue = parseFloat(calculatedValue);
+      setAssetValue(parsedValue);
+      dispatch(addToTotalValue({ name: assetName, value: parsedValue }));
+      dispatch(recalculateTotalValue());
     };
-
+    console.log("re-render", assetName);
     fetchData();
   }, [assetType, units, assetCode, displayCurrency]);
 

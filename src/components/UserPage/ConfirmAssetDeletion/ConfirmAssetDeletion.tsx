@@ -6,6 +6,10 @@ import { hideDeleteAsset } from "../../../actions/deleteAssetActions";
 import { deleteAsset } from "../../../firebase-config";
 import { RootState } from "../../../reducers/combineReducers";
 import { refreshAssetList } from "../../../actions/refreshAssetListActions";
+import {
+  removeFromTotalValue,
+  recalculateTotalValue,
+} from "../../../actions/totalValueActions";
 
 function ConfirmAssetDeletion() {
   const dispatch = useDispatch();
@@ -16,6 +20,8 @@ function ConfirmAssetDeletion() {
   };
   const handleConfirmation = async () => {
     await deleteAsset(asset);
+    dispatch(removeFromTotalValue({ name: asset }));
+    dispatch(recalculateTotalValue());
     dispatch(refreshAssetList());
     handleClose();
   };

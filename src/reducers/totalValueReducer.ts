@@ -1,33 +1,55 @@
-interface totalValueState {
+interface ITotalValueState {
   total: number;
+  assets: { [key: string]: number };
 }
 
-interface totalValueAction {
+interface ITotalValueAction {
   type: string;
-  payload?: number;
+  payload?: { name: string; value?: number };
 }
 
 const initialState = {
   total: 0,
+  assets: {},
 };
 
 const totalValueReducer = (
-  state: totalValueState = initialState,
-  action: totalValueAction
+  state: ITotalValueState = initialState,
+  action: ITotalValueAction
 ) => {
   switch (action.type) {
-    case "RESET TOTAL VALUE":
-      return {
-        total: 0,
-      };
-    case "ADD TO TOTAL VALUE":
+    case "RECALCULATE TOTAL VALUE":
       return {
         ...state,
-        total: state.total + (action.payload || 0),
+        total: Object.values(state.assets).reduce((a: any, b: any) => a + b, 0),
+      };
+    case "ADD TO TOTAL VALUE":
+      const increasedAssets: { [key: string]: number } = { ...state.assets };
+      increasedAssets[action.payload!.name] = action.payload!.value!;
+      const increasedTotal = Object.values(state.assets).reduce(
+        (a: any, b: any) => a + b,
+        0
+      );
+      return {
+        total: increasedTotal,
+        assets: { ...increasedAssets },
+      };
+    case "REMOVE FROM TOTAL VALUE":
+      const newAssets: { [key: string]: number } = { ...state.assets };
+      delete newAssets[action!.payload!.name];
+      const newTotal = Object.values(state.assets).reduce(
+        (a: any, b: any) => a + b,
+        0
+      );
+      return {
+        total: newTotal,
+        assets: { ...newAssets },
       };
     default:
-      state;
+      return state;
   }
 };
 
 export default totalValueReducer;
+
+export type { ITotalValueState };

@@ -1,16 +1,16 @@
 import { IDeleteAsset } from "../actions/deleteAssetActions";
 
-interface deleteAssetState {
+interface IDeleteAssetState {
   show: boolean;
   asset: IDeleteAsset;
 }
 
-interface deleteAssetAction {
+interface IDeleteAssetAction {
   type: string;
   payload: IDeleteAsset;
 }
 
-const initialState: deleteAssetState = {
+const initialState: IDeleteAssetState = {
   show: false,
   asset: {
     name: "",
@@ -18,8 +18,8 @@ const initialState: deleteAssetState = {
 };
 
 const deleteAssetReducer = (
-  state: deleteAssetState = initialState,
-  action: deleteAssetAction
+  state: IDeleteAssetState = initialState,
+  action: IDeleteAssetAction
 ) => {
   switch (action.type) {
     case "SHOW DELETE FORM":
@@ -42,4 +42,4 @@ const deleteAssetReducer = (
 
 export default deleteAssetReducer;
 
-export type { deleteAssetState };
+export type { IDeleteAssetState };

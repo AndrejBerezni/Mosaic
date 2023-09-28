@@ -1,14 +1,21 @@
-const resetTotalValue = () => {
+const recalculateTotalValue = () => {
   return {
-    type: "RESET TOTAL VALUE",
+    type: "RECALCULATE TOTAL VALUE",
   };
 };
 
-const addToTotalValue = (value: number) => {
+const addToTotalValue = (asset: { name: string; value: number }) => {
   return {
     type: "ADD TO TOTAL VALUE",
+    payload: asset,
+  };
+};
+
+const removeFromTotalValue = (value: { name: string }) => {
+  return {
+    type: "REMOVE FROM TOTAL VALUE",
     payload: value,
   };
 };
 
-export { resetTotalValue, addToTotalValue };
+export { recalculateTotalValue, addToTotalValue, removeFromTotalValue };

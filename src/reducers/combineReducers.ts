@@ -13,7 +13,8 @@ import refreshAssetListReducer, {
 import editAssetAmountReducer, {
   editAssetAmountState,
 } from "./editAssetAmountReducer";
-import deleteAssetReducer, { deleteAssetState } from "./deleteAssetReducer";
+import deleteAssetReducer, { IDeleteAssetState } from "./deleteAssetReducer";
+import totalValueReducer, { ITotalValueState } from "./totalValueReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -25,6 +26,7 @@ const combinedReducers = combineReducers({
   refreshAssetList: refreshAssetListReducer,
   editAssetAmount: editAssetAmountReducer,
   deleteAsset: deleteAssetReducer,
+  totalValue: totalValueReducer,
 });
 
 export default combinedReducers;
@@ -38,5 +40,6 @@ export type RootState = {
   showAlert: ShowAlertState;
   refreshAssetList: RefreshAssetListState;
   editAssetAmount: editAssetAmountState;
-  deleteAsset: deleteAssetState;
+  deleteAsset: IDeleteAssetState;
+  totalValue: ITotalValueState;
 };

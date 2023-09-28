@@ -11,7 +11,7 @@ import { RootState } from "../../../reducers/combineReducers";
 
 function AssetList() {
   const [assetList, setAssetList] = useState<IAsset[]>([]);
-  const formChange = useSelector(
+  const refreshList = useSelector(
     (state: RootState) => state.refreshAssetList.refresh
   );
 
@@ -25,7 +25,7 @@ function AssetList() {
       }
     };
     getAssets();
-  }, [formChange]);
+  }, [refreshList]);
 
   return (
     <Container
@@ -65,3 +65,10 @@ function AssetList() {
 }
 
 export default AssetList;
+
+// recalculate total value
+// create reducer that contains all assets in assetlist
+// when you change something about asset, run recalculate
+// state {
+//   assets: [btc ,rsd...]
+// } state.reduce( total, asset => total + asset.value)
