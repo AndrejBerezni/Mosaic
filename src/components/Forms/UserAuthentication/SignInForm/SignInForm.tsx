@@ -1,10 +1,6 @@
 import { useRef } from "react";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import { Form, FloatingLabel, Button, Container, Image } from "react-bootstrap";
 import google from "../../../../assets/google.png";
-import Image from "react-bootstrap/Image";
 import { signInWithGoogle, signInWithEmail } from "../../../../firebase-config";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../../../../actions/signInActions";

@@ -1,10 +1,7 @@
-import Modal from "react-bootstrap/Modal";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import { Modal, Tab, Tabs, CloseButton } from "react-bootstrap";
 import SignInForm from "./SignInForm/SignInForm";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import "./UserAuthentication.css";
-import CloseButton from "react-bootstrap/CloseButton";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import { hideForm } from "../../../actions/showFormActions";

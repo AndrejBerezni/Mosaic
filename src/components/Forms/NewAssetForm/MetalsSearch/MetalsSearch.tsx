@@ -1,12 +1,8 @@
 import { useRef } from "react";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Form, FloatingLabel, Button, Modal } from "react-bootstrap";
 import { addNewAsset } from "../../../../firebase-config";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
-import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 import { IAsset } from "../../../../firebase-config";
 import { showAlert, hideAlert } from "../../../../actions/showAlertActions";

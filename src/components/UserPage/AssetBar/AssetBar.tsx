@@ -1,9 +1,5 @@
 import "./AssetBar.css";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Card, Button, ButtonGroup, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";

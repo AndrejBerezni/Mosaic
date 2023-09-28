@@ -1,7 +1,5 @@
 import "./Total.css";
-import Badge from "react-bootstrap/Badge";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import { Badge, Container, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 

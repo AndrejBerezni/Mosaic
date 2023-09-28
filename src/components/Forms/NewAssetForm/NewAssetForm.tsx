@@ -1,7 +1,5 @@
 import "./NewAssetForm.css";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { Modal, Form, FloatingLabel } from "react-bootstrap";
 import { hideForm } from "../../../actions/showFormActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";

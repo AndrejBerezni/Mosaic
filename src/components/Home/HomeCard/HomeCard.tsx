@@ -1,5 +1,5 @@
 import "./HomeCard.css";
-import Card from "react-bootstrap/Card";
+import { Card } from "react-bootstrap";
 
 interface IHomeCardProps {
   src: string;

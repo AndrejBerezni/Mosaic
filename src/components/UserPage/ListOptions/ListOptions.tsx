@@ -1,6 +1,5 @@
 import "./ListOptions.css";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { Nav, NavDropdown } from "react-bootstrap";
 
 function ListOptions() {
   return (

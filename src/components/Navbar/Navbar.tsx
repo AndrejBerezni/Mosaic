@@ -1,10 +1,6 @@
 import "./Navbar.css";
 import { useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Image from "react-bootstrap/Image";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { Container, Nav, Navbar, Image, NavDropdown } from "react-bootstrap";
 import logo from "../../assets/mosaic.png";
 import logodark from "../../assets/mosaicdark.png";
 import { Moon } from "react-bootstrap-icons";

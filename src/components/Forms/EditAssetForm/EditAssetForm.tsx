@@ -1,8 +1,5 @@
 import "./EditAssetForm.css";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { Form, Modal, Button, FloatingLabel } from "react-bootstrap";
 import { FormEvent, useRef } from "react";
 import { editAssetAmount } from "../../../firebase-config";
 import { useSelector, useDispatch } from "react-redux";

@@ -1,7 +1,5 @@
 import { useRef } from "react";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Button from "react-bootstrap/Button";
+import { Form, FloatingLabel, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../../../../actions/signInActions";
 import { useNavigate } from "react-router-dom";

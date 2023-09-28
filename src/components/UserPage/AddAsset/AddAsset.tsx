@@ -1,5 +1,5 @@
 import "./AddAsset.css";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { showForm } from "../../../actions/showFormActions";
 import { RootState } from "../../../reducers/combineReducers";

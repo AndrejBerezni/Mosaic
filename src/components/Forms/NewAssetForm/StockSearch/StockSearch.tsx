@@ -1,13 +1,9 @@
 import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 import { useState, ChangeEvent, useRef } from "react";
 import "./StockSearch.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../reducers/combineReducers";
-import { useDispatch } from "react-redux";
 import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
 import { IAsset } from "../../../../firebase-config";
 import { addNewAsset } from "../../../../firebase-config";

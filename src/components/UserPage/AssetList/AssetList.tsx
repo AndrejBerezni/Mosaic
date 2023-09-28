@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AssetList.css";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Container, Col, Row } from "react-bootstrap";
 import { getAssetsForUser } from "../../../firebase-config";
 import { IAsset } from "../../../firebase-config";
 import AssetBar from "../AssetBar/AssetBar";
