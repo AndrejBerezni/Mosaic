@@ -8,8 +8,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import calculateValue from "../../../utilities/API calls/calculateValue";
-import ConfirmAssetDeletion from "../ConfirmAssetDeletion/ConfirmAssetDeletion";
-import { showForm } from "../../../actions/showFormActions";
+import { showDeleteAsset } from "../../../actions/deleteAssetActions";
 import { showEditAssetAmount } from "../../../actions/editAssetAmountActions";
 
 interface IAssetBarProps {
@@ -41,7 +40,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   }, [assetType, units, assetCode, displayCurrency]);
 
   const showDeletionConfirmation = () => {
-    dispatch(showForm("deleteAsset"));
+    dispatch(showDeleteAsset({ name: assetName }));
   };
 
   const showEditAsset = () => {
@@ -83,7 +82,6 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
           </Button>
         </ButtonGroup>
       </Card>
-      <ConfirmAssetDeletion asset={assetName} />
     </>
   );
 }

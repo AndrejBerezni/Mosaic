@@ -4,6 +4,8 @@ import AddAsset from "./AddAsset/AddAsset";
 import Total from "./Total/Total";
 import NewAssetForm from "../Forms/NewAssetForm/NewAssetForm";
 import EditAssetForm from "../Forms/EditAssetForm/EditAssetForm";
+import ConfirmAssetDeletion from "./ConfirmAssetDeletion/ConfirmAssetDeletion";
+
 function UserPage() {
   return (
     <>
@@ -13,6 +15,7 @@ function UserPage() {
       <Total />
       <NewAssetForm />
       <EditAssetForm />
+      <ConfirmAssetDeletion />
     </>
   );
 }

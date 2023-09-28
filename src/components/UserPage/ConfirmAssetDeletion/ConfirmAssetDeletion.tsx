@@ -2,20 +2,17 @@ import Modal from "react-bootstrap/Modal";
 import "./ConfirmAssetDeletion.css";
 import { Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { hideForm } from "../../../actions/showFormActions";
+import { hideDeleteAsset } from "../../../actions/deleteAssetActions";
 import { deleteAsset } from "../../../firebase-config";
 import { RootState } from "../../../reducers/combineReducers";
 import { refreshAssetList } from "../../../actions/refreshAssetListActions";
 
-interface IConfirmAssetDeletionProps {
-  asset: string;
-}
-
-function ConfirmAssetDeletion({ asset }: IConfirmAssetDeletionProps) {
+function ConfirmAssetDeletion() {
   const dispatch = useDispatch();
-  const show = useSelector((state: RootState) => state.showForm.deleteAsset);
+  const show = useSelector((state: RootState) => state.deleteAsset.show);
+  const asset = useSelector((state: RootState) => state.deleteAsset.asset.name);
   const handleClose = () => {
-    dispatch(hideForm("deleteAsset"));
+    dispatch(hideDeleteAsset());
   };
   const handleConfirmation = async () => {
     await deleteAsset(asset);
@@ -30,7 +27,7 @@ function ConfirmAssetDeletion({ asset }: IConfirmAssetDeletionProps) {
       id="delete-asset-confirmation"
     >
       <Modal.Body>
-        Are you sure you want to delete this asset?
+        Are you sure you want to delete {asset}?
         <div>
           <Button
             onClick={handleConfirmation}
