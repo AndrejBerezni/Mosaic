@@ -16,6 +16,7 @@ import editAssetAmountReducer, {
 import deleteAssetReducer, { IDeleteAssetState } from "./deleteAssetReducer";
 import totalValueReducer, { ITotalValueState } from "./totalValueReducer";
 import filterReducer from "./filterReducer";
+import sortReducer from "./sortReducer";
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,
@@ -29,6 +30,7 @@ const combinedReducers = combineReducers({
   deleteAsset: deleteAssetReducer,
   totalValue: totalValueReducer,
   filter: filterReducer,
+  sort: sortReducer,
 });
 
 export default combinedReducers;
@@ -45,4 +47,5 @@ export type RootState = {
   deleteAsset: IDeleteAssetState;
   totalValue: ITotalValueState;
   filter: string;
+  sort: string;
 };

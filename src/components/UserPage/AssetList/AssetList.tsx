@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { removeFromTotalValue } from "../../../actions/totalValueActions";
+import sortAssetList from "../../../utilities/helpers/sortAssetList";
 
 function AssetList() {
   const dispatch = useDispatch();
@@ -16,11 +17,13 @@ function AssetList() {
     (state: RootState) => state.refreshAssetList.refresh
   );
   const filter = useSelector((state: RootState) => state.filter);
+  const sort = useSelector((state: RootState) => state.sort);
 
   useEffect(() => {
     const getAssets = async () => {
       try {
         const newAssetList = await getAssetsForUser();
+        sortAssetList(newAssetList, sort);
         filter === "All"
           ? setAssetList(newAssetList)
           : setAssetList(
@@ -61,6 +64,12 @@ function AssetList() {
       </Row>
       <Row className="justify-content-center">
         <Col lg={8}>
+          {assetList.length === 0 && (
+            <p className="mt-5 no-assets-message">
+              No assets yet. Click on the button below to start adding your
+              assets.
+            </p>
+          )}
           {assetList.map((asset) => (
             <AssetBar
               key={asset.symbol}

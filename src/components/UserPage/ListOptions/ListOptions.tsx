@@ -2,6 +2,7 @@ import "./ListOptions.css";
 import { Nav, NavDropdown, Badge } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { filterAssets } from "../../../actions/filterActions";
+import { sortAssets } from "../../../actions/sortActions";
 import { refreshAssetList } from "../../../actions/refreshAssetListActions";
 import { recalculateTotalValue } from "../../../actions/totalValueActions";
 import { RootState } from "../../../reducers/combineReducers";
@@ -9,8 +10,14 @@ import { RootState } from "../../../reducers/combineReducers";
 function ListOptions() {
   const dispatch = useDispatch();
   const filterValue = useSelector((state: RootState) => state.filter);
+  const sortValue = useSelector((state: RootState) => state.sort);
   const handleFilterClick = (filter: string) => {
     dispatch(filterAssets(filter));
+    dispatch(recalculateTotalValue());
+    dispatch(refreshAssetList());
+  };
+  const handleSortClick = (sort: string) => {
+    dispatch(sortAssets(sort));
     dispatch(recalculateTotalValue());
     dispatch(refreshAssetList());
   };
@@ -34,14 +41,22 @@ function ListOptions() {
           Currencies
         </NavDropdown.Item>
       </NavDropdown>
-      <Badge className="me-5 filter-badge">{filterValue}</Badge>
+      <Badge className="me-sm-5 filter-badge">{filterValue}</Badge>
       <NavDropdown title="Sort" className="nav-dropdown filter-sort-dropdown">
-        <NavDropdown.Item>A-Z</NavDropdown.Item>
-        <NavDropdown.Item>Z-A</NavDropdown.Item>
-        <NavDropdown.Item>Value ascending</NavDropdown.Item>
-        <NavDropdown.Item>Value descending</NavDropdown.Item>
+        <NavDropdown.Item onClick={() => handleSortClick("A-Z")}>
+          A-Z
+        </NavDropdown.Item>
+        <NavDropdown.Item onClick={() => handleSortClick("Z-A")}>
+          Z-A
+        </NavDropdown.Item>
+        <NavDropdown.Item onClick={() => handleSortClick("Amount Asc.")}>
+          Amount ascending
+        </NavDropdown.Item>
+        <NavDropdown.Item onClick={() => handleSortClick("Amount Desc.")}>
+          Amount descending
+        </NavDropdown.Item>
       </NavDropdown>
-      <Badge className="filter-badge">A-Z</Badge>
+      <Badge className="filter-badge">{sortValue}</Badge>
     </Nav>
   );
 }
