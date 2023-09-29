@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  setPersistence,
+  browserSessionPersistence,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -31,6 +33,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    // Persistence successfully enabled
+  })
+  .catch((error) => {
+    console.error("Error enabling persistence:", error);
+  });
 const db = getFirestore(app);
 
 //firebase login, init deploy
@@ -142,6 +151,7 @@ async function editAssetAmount(name: string, amount: number) {
 }
 //Exports
 export {
+  auth,
   signInWithGoogle,
   signInWithEmail,
   signUpWithEmail,
