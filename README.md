@@ -30,16 +30,15 @@
 9. Edit Asset Units: Modify the quantity of units for your assets.
 10. Total Wealth Calculation: Calculate your total wealth based on asset values.
 11. Filter Assets: Apply filters to efficiently manage your asset list.
+12. Sort Assets: Organize your assets for better clarity.
 
 ### Upcoming Features
 
-2. Sort Assets: Organize your assets for better clarity.
-
-3. Improved Asset Tabs: Enhance the user interface for better asset management.
-4. Portfolio History: View the history of your portfolio changes.
-5. Financial News: Stay updated with financial news on the home page.
-6. Popular Assets Charts: Access charts for popular assets on the home page.
-7. UI Enhancements: Continuously improve the user interface for a seamless experience.
+1. Improved Asset Tabs: Enhance the user interface for better asset management.
+2. Portfolio History: View the history of your portfolio changes.
+3. Financial News: Stay updated with financial news on the home page.
+4. Popular Assets Charts: Access charts for popular assets on the home page.
+5. UI Enhancements: Continuously improve the user interface for a seamless experience.
 
 ## Techologies Used
 

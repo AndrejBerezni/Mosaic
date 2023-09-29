@@ -21,7 +21,7 @@ function AssetList() {
     const getAssets = async () => {
       try {
         const newAssetList = await getAssetsForUser();
-        filter === "all"
+        filter === "All"
           ? setAssetList(newAssetList)
           : setAssetList(
               newAssetList.filter((asset) => {

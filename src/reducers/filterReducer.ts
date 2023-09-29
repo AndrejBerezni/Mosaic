@@ -3,7 +3,7 @@ interface filterAction {
   payload: string;
 }
 
-const initialState = "all";
+const initialState = "All";
 
 const filterReducer = (state: string = initialState, action: filterAction) => {
   switch (action.type) {

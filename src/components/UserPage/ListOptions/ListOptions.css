@@ -2,7 +2,6 @@
 
 .filter-sort {
   background-color: var(--secondary);
-  justify-content: center;
   position: sticky !important;
   z-index: 10;
   top: 62px;
@@ -16,4 +15,14 @@
 .filter-sort-dropdown > a:focus,
 .filter-sort-dropdown > a:hover {
   color: var(--highlight);
+}
+
+.filter-sort-dropdown {
+  padding-right: 0 !important;
+}
+.filter-badge {
+  align-self: center;
+  background-color: var(--headline) !important;
+  color: var(--background);
+  font-size: 0.8rem;
 }
