@@ -12,12 +12,15 @@ function AssetList() {
   const refreshList = useSelector(
     (state: RootState) => state.refreshAssetList.refresh
   );
+  const filter = useSelector((state: RootState) => state.filter);
 
   useEffect(() => {
     const getAssets = async () => {
       try {
         const newAssetList = await getAssetsForUser();
-        setAssetList(newAssetList);
+        filter === "all"
+          ? setAssetList(newAssetList)
+          : setAssetList(newAssetList.filter((asset) => asset.type === filter));
       } catch (error) {
         console.error(error);
       }
