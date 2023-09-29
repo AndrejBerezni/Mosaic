@@ -28,17 +28,18 @@
 7. Display Currency: You can choose between euro, dollar, or British pound as your display currency.
 8. Remove Assets: Easily remove assets from your portfolio.
 9. Edit Asset Units: Modify the quantity of units for your assets.
+10. Total Wealth Calculation: Calculate your total wealth based on asset values.
+11. Filter Assets: Apply filters to efficiently manage your asset list.
 
 ### Upcoming Features
 
-1. Filter Assets: Apply filters to efficiently manage your asset list.
 2. Sort Assets: Organize your assets for better clarity.
-3. Total Wealth Calculation: Calculate your total wealth based on asset values.
-4. Improved Asset Tabs: Enhance the user interface for better asset management.
-5. Portfolio History: View the history of your portfolio changes.
-6. Financial News: Stay updated with financial news on the home page.
-7. Popular Assets Charts: Access charts for popular assets on the home page.
-8. UI Enhancements: Continuously improve the user interface for a seamless experience.
+
+3. Improved Asset Tabs: Enhance the user interface for better asset management.
+4. Portfolio History: View the history of your portfolio changes.
+5. Financial News: Stay updated with financial news on the home page.
+6. Popular Assets Charts: Access charts for popular assets on the home page.
+7. UI Enhancements: Continuously improve the user interface for a seamless experience.
 
 ## Techologies Used
 

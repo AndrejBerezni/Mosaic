@@ -1,8 +1,8 @@
-const fitlerAssets = (filter: string) => {
+const filterAssets = (filter: string) => {
   return {
     type: "SET FILTER",
     payload: filter,
   };
 };
 
-export { fitlerAssets };
+export { filterAssets };
