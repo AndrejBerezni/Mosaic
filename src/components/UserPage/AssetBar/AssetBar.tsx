@@ -38,7 +38,6 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
       dispatch(addToTotalValue({ name: assetName, value: parsedValue }));
       dispatch(recalculateTotalValue());
     };
-    console.log("re-render", assetName);
     fetchData();
   }, [assetType, units, assetCode, displayCurrency]);
 

@@ -56,7 +56,7 @@ const calculateValue = async (
         })
         .catch((error) => {
           console.error("Error searching for asset price:", error);
-          return 0;
+          return "0";
         });
     case "Noble Metal":
       const metalsApiKey = import.meta.env.VITE_GOLD_API_KEY;
@@ -79,7 +79,7 @@ const calculateValue = async (
         })
         .catch((error) => {
           console.error("Error searching for asset price:", error);
-          return 0;
+          return "0";
         });
     case "Currency":
       return axios
@@ -93,10 +93,10 @@ const calculateValue = async (
         })
         .catch((error) => {
           console.error("Error searching for asset price:", error);
-          return 0;
+          return "0";
         });
     default:
-      return 0;
+      return "0";
   }
 };
 

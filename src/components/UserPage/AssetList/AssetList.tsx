@@ -6,8 +6,11 @@ import { IAsset } from "../../../firebase-config";
 import AssetBar from "../AssetBar/AssetBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
+import { useDispatch } from "react-redux";
+import { removeFromTotalValue } from "../../../actions/totalValueActions";
 
 function AssetList() {
+  const dispatch = useDispatch();
   const [assetList, setAssetList] = useState<IAsset[]>([]);
   const refreshList = useSelector(
     (state: RootState) => state.refreshAssetList.refresh
@@ -20,7 +23,15 @@ function AssetList() {
         const newAssetList = await getAssetsForUser();
         filter === "all"
           ? setAssetList(newAssetList)
-          : setAssetList(newAssetList.filter((asset) => asset.type === filter));
+          : setAssetList(
+              newAssetList.filter((asset) => {
+                if (asset.type === filter) {
+                  return asset;
+                } else {
+                  dispatch(removeFromTotalValue({ name: asset.name }));
+                }
+              })
+            );
       } catch (error) {
         console.error(error);
       }

@@ -21,13 +21,16 @@ const totalValueReducer = (
     case "RECALCULATE TOTAL VALUE":
       return {
         ...state,
-        total: Object.values(state.assets).reduce((a: any, b: any) => a + b, 0),
+        total: Object.values(state.assets).reduce(
+          (a: number, b: number) => a + b,
+          0
+        ),
       };
     case "ADD TO TOTAL VALUE":
       const increasedAssets: { [key: string]: number } = { ...state.assets };
       increasedAssets[action.payload!.name] = action.payload!.value!;
       const increasedTotal = Object.values(state.assets).reduce(
-        (a: any, b: any) => a + b,
+        (a: number, b: number) => a + b,
         0
       );
       return {
@@ -38,7 +41,7 @@ const totalValueReducer = (
       const newAssets: { [key: string]: number } = { ...state.assets };
       delete newAssets[action!.payload!.name];
       const newTotal = Object.values(state.assets).reduce(
-        (a: any, b: any) => a + b,
+        (a: number, b: number) => a + b,
         0
       );
       return {
