@@ -40,7 +40,7 @@ function EditAssetForm() {
       onHide={handleClose}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Edit Asset Amount</Modal.Title>
+        <Modal.Title>Edit {asset} Amount</Modal.Title>
       </Modal.Header>
       <Form className="pb-4 px-3" onSubmit={handleSubmit}>
         <FloatingLabel label="Number of Units" className="my-3">
@@ -60,7 +60,7 @@ function EditAssetForm() {
           className="submit-form-btn"
           size="lg"
         >
-          <b>Update {asset}</b>
+          <b>Update</b>
         </Button>
       </Form>
     </Modal>
