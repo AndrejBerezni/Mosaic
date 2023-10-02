@@ -62,7 +62,7 @@ function AssetList() {
           <p className="asset-legend-text">Value</p>
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center assets-container">
         <Col lg={8}>
           {assetList.length === 0 && (
             <p className="mt-5 no-assets-message">
