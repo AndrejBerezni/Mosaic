@@ -40,7 +40,7 @@ const totalValueReducer = (
     case "REMOVE FROM TOTAL VALUE":
       const newAssets: { [key: string]: number } = { ...state.assets };
       delete newAssets[action!.payload!.name];
-      const newTotal = Object.values(state.assets).reduce(
+      const newTotal = Object.values(newAssets).reduce(
         (a: number, b: number) => a + b,
         0
       );

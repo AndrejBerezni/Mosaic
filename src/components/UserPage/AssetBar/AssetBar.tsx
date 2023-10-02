@@ -39,7 +39,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
       dispatch(recalculateTotalValue());
     };
     fetchData();
-  }, [assetType, units, assetCode, displayCurrency]);
+  }, [units, displayCurrency]);
 
   const showDeletionConfirmation = () => {
     dispatch(showDeleteAsset({ name: assetName }));

@@ -26,6 +26,7 @@ function App() {
 
     return () => unsubscribe();
   }, [dispatch]);
+
   return (
     <>
       <Navbar />

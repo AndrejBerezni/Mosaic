@@ -25,6 +25,7 @@ const calculateValue = async (
   code: string,
   displayCurrency: { symbol: string; code: string }
 ) => {
+  console.log("API called");
   switch (type) {
     case "Stock":
       const stockApiKey = "YOUR_API_KEY"; //using demo
