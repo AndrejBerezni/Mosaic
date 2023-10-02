@@ -51,10 +51,20 @@ function SignInForm() {
       <p className="my-3">or</p>
       <Form className="my-3 mx-5">
         <FloatingLabel label="Email" className="my-3">
-          <Form.Control as="input" type="email" ref={emailRef} />
+          <Form.Control
+            as="input"
+            type="email"
+            ref={emailRef}
+            placeholder="Email"
+          />
         </FloatingLabel>
         <FloatingLabel label="Password" className="my-3">
-          <Form.Control as="input" type="password" ref={passwordRef} />
+          <Form.Control
+            as="input"
+            type="password"
+            ref={passwordRef}
+            placeholder="Password"
+          />
         </FloatingLabel>
         <Button className="auth-btn" onClick={handleEmailSignIn}>
           Sign in

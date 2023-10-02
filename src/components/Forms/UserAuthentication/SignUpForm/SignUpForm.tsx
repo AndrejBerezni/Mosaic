@@ -38,13 +38,28 @@ function SignUpForm() {
   return (
     <Form className="m-5">
       <FloatingLabel label="Enter your Email" className="my-3">
-        <Form.Control as="input" type="email" ref={emailRef} />
+        <Form.Control
+          as="input"
+          type="email"
+          ref={emailRef}
+          placeholder="Email"
+        />
       </FloatingLabel>
       <FloatingLabel label="Create Password" className="my-3">
-        <Form.Control as="input" type="password" ref={passwordRef} />
+        <Form.Control
+          as="input"
+          type="password"
+          ref={passwordRef}
+          placeholder="Password"
+        />
       </FloatingLabel>
       <FloatingLabel label="Confirm Password" className="my-3">
-        <Form.Control as="input" type="password" ref={confirmPasswordRef} />
+        <Form.Control
+          as="input"
+          type="password"
+          ref={confirmPasswordRef}
+          placeholder="Confirm Password"
+        />
       </FloatingLabel>
       <Button className="auth-btn" onClick={handleEmailSignUp}>
         Sign Up

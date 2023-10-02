@@ -89,6 +89,7 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
           onChange={handleInputChange}
           type="text"
           value={userInput}
+          placeholder="Search"
         />
       </FloatingLabel>
       <FloatingLabel label="Select Currency">

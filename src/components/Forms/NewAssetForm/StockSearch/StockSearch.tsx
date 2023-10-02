@@ -81,7 +81,11 @@ function StockSearch({ handleClose }: IStockSearchProps) {
   return (
     <Form className="px-3">
       <FloatingLabel label="Search for Stocks & ETFs" className="my-3">
-        <Form.Control onChange={handleInputChange} type="text" />
+        <Form.Control
+          onChange={handleInputChange}
+          type="text"
+          placeholder="Search"
+        />
         <Button
           onClick={handleSearch}
           className="my-2 stock-search-btn"
