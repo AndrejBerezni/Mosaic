@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { signUpWithEmail } from "../../../../firebase-config";
 import { hideForm } from "../../../../actions/showFormActions";
 import { showAlert } from "../../../../actions/showAlertActions";
+import formatFirebaseError from "../../../../utilities/helpers/formatFirebaseError";
 
 function SignUpForm() {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function SignUpForm() {
       dispatch(hideForm("signIn"));
       navigate("/portfolio");
     } catch (error: any) {
-      dispatch(showAlert({ message: error!.message, type: "signin" }));
+      const formattedErrorMessage = formatFirebaseError(error!.message);
+      dispatch(showAlert({ message: formattedErrorMessage, type: "signin" }));
     }
   };
   return (
