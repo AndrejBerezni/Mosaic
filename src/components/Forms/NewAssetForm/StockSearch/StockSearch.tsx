@@ -47,6 +47,12 @@ function StockSearch({ handleClose }: IStockSearchProps) {
 
   const handleSubmit = async () => {
     if (!assetRef.current!.value || !amountRef.current!.value) {
+      dispatch(
+        showAlert({
+          message: "Please select an asset to add.",
+          type: "newAsset",
+        })
+      );
       return;
     }
     const selectedOption = assetRef.current!.value;
