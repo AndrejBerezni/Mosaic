@@ -10,6 +10,7 @@ import {
   addToTotalValue,
   recalculateTotalValue,
 } from "../../../actions/totalValueActions";
+import abbreviateValue from "../../../utilities/helpers/abbreviateValue";
 
 interface IAssetBarProps {
   assetName: string;
@@ -60,11 +61,13 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
             <p className="asset-bar-text secondary-text">{assetType}</p>
           </Col>
           <Col className="asset-bar-col">
-            <p className="asset-bar-text secondary-text">{units}</p>
+            <p className="asset-bar-text secondary-text">
+              {abbreviateValue(units!)}
+            </p>
           </Col>
           <Col className="asset-bar-col">
             <p className="asset-bar-text">
-              {assetValue}
+              {abbreviateValue(assetValue!)}
               {displayCurrency.symbol}
             </p>
           </Col>
