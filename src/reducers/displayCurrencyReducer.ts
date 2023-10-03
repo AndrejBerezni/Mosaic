@@ -11,8 +11,8 @@ interface DisplayCurrencyAction {
 
 const initialState = {
   currency: {
-    symbol: "$",
-    code: "USD",
+    symbol: "€",
+    code: "EUR",
   },
 };
 

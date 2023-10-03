@@ -32,7 +32,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
   };
 
   const searchAsset = (keywords: string) => {
-    const apiKey = "YOUR_API_KEY";
+    const apiKey = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY;
     const searchUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`;
     axios
       .get(searchUrl)
