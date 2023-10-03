@@ -25,24 +25,29 @@ function StockSearch({ handleClose }: IStockSearchProps) {
     setKeywords(e.target.value);
   };
 
-  const handleSearch = () => {
-    if (keywords) {
-      searchAsset(keywords);
+  const searchAsset = async (keywords: string) => {
+    const apiKey = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY;
+
+    try {
+      const response = await axios.get(
+        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`
+      );
+      return response.data.bestMatches || [];
+    } catch (error) {
+      console.error("Error searching for assets:", error);
+      throw error; //throw error again to appear in handleSearch
     }
   };
 
-  const searchAsset = (keywords: string) => {
-    const apiKey = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY;
-    const searchUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`;
-    axios
-      .get(searchUrl)
-      .then((response) => {
-        const results = response.data.bestMatches || [];
+  const handleSearch = async () => {
+    if (keywords) {
+      try {
+        const results = await searchAsset(keywords);
         setSearchResults(results);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error searching for assets:", error);
-      });
+      }
+    }
   };
 
   const handleSubmit = async () => {
@@ -59,6 +64,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
     const selectedOptionText =
       assetRef.current!.options[assetRef.current!.selectedIndex].text;
     const selectedAmount = parseFloat(amountRef.current!.value);
+
     const newAsset: IAsset = {
       uid: user,
       type: "Stock",
@@ -66,6 +72,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
       name: selectedOptionText,
       symbol: selectedOption,
     };
+
     try {
       await addNewAsset(newAsset).then((response) =>
         response.success

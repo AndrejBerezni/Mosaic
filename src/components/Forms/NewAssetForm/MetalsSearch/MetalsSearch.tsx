@@ -50,6 +50,7 @@ function MetalsSearch({ handleClose }: IMetalsSearchProps) {
       dispatch(showAlert({ message: error.message, type: "newAsset" }));
     }
   };
+
   return (
     <Form className="px-3">
       <FloatingLabel label="Select Noble Metal">

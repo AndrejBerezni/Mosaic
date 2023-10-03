@@ -22,17 +22,20 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
   const user = useSelector((state: RootState) => state.signedIn.user);
   const assetRef = useRef<HTMLSelectElement | null>(null);
   const amountRef = useRef<HTMLInputElement | null>(null);
-  const searchUrl =
-    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json";
 
   // Get all available currencies on component render
   useEffect(() => {
-    axios
-      .get<CurrencyList>(searchUrl)
-      .then((response: AxiosResponse<CurrencyList>) => {
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse = await axios.get<CurrencyList>(
+          "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
+        );
         setCurrencyList(response.data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   // Handle user input
@@ -82,6 +85,7 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
       dispatch(showAlert({ message: error.message, type: "newAsset" }));
     }
   };
+
   return (
     <Form className="px-3">
       <FloatingLabel label="Search for Currency" className="my-3">
