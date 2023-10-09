@@ -9,8 +9,6 @@ interface IAppAlertProps {
 
 function AppAlert({ show }: IAppAlertProps) {
   const dispatch = useDispatch();
-  // const show = useSelector((state: RootState) => state.showAlert.showAlert);
-  // const type = useSelector((state: RootState) => state.showAlert.alertType);
   const message = useSelector(
     (state: RootState) => state.showAlert.alertMessage
   );

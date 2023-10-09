@@ -10,6 +10,12 @@ import { newAssetType } from "../../../actions/newAssetTypeActions";
 import AppAlert from "../../AppAlert/AppAlert";
 import { hideAlert } from "../../../actions/showAlertActions";
 
+const components = {
+  Stock: StockSearch,
+  "Noble Metal": MetalsSearch,
+  Currency: CurrencySearch,
+};
+
 function NewAssetForm() {
   const dispatch = useDispatch();
 
@@ -33,6 +39,13 @@ function NewAssetForm() {
     dispatch(newAssetType(asset));
   };
 
+  const formComponents = {
+    Stock: StockSearch,
+    "Noble Metal": MetalsSearch,
+    Currency: CurrencySearch,
+  };
+  const AssetTypeForm = formComponents[assetType as keyof typeof components];
+
   return (
     <Modal
       show={show}
@@ -54,35 +67,19 @@ function NewAssetForm() {
               dispatch(hideAlert());
             }}
           >
-            <option
-              value="Stock"
-              defaultChecked
-              selected={assetType === "Stock" ? true : false} //adding this to prevent wrong component loading below when form is closed and reopened
-            >
-              Stocks
-            </option>
-            <option
-              value="Noble Metal"
-              selected={assetType === "Noble Metal" ? true : false}
-            >
-              Noble Metals
-            </option>
-            <option
-              value="Currency"
-              selected={assetType === "Currency" ? true : false}
-            >
-              Currency
-            </option>
+            {Object.keys(formComponents).map((assetTypeOption) => (
+              <option
+                key={assetTypeOption}
+                value={assetTypeOption}
+                selected={assetType === assetTypeOption}
+              >
+                {assetTypeOption}
+              </option>
+            ))}
           </Form.Select>
         </FloatingLabel>
       </Form>
-      {assetType === "Stock" ? (
-        <StockSearch handleClose={handleClose} />
-      ) : assetType === "Noble Metal" ? (
-        <MetalsSearch handleClose={handleClose} />
-      ) : (
-        <CurrencySearch handleClose={handleClose} />
-      )}
+      <AssetTypeForm handleClose={handleClose} />
       <AppAlert show={showAlert && alertType === "newAsset" ? true : false} />
     </Modal>
   );
