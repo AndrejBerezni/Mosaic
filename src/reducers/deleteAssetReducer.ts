@@ -1,4 +1,4 @@
-import { IDeleteAsset } from "../actions/deleteAssetActions";
+import { IDeleteAsset } from '../actions/deleteAssetActions';
 
 interface IDeleteAssetState {
   show: boolean;
@@ -13,26 +13,26 @@ interface IDeleteAssetAction {
 const initialState: IDeleteAssetState = {
   show: false,
   asset: {
-    name: "",
+    name: '',
   },
 };
 
 const deleteAssetReducer = (
   state: IDeleteAssetState = initialState,
-  action: IDeleteAssetAction
+  action: IDeleteAssetAction,
 ) => {
   switch (action.type) {
-    case "SHOW DELETE FORM":
+    case 'SHOW DELETE FORM':
       return {
         show: true,
         asset: action.payload,
       };
-    case "HIDE DELETE FORM":
+    case 'HIDE DELETE FORM':
       return {
         ...state,
         show: false,
         asset: {
-          name: "",
+          name: '',
         },
       };
     default:

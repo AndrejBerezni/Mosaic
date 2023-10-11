@@ -1,11 +1,12 @@
-import { useRef } from "react";
-import { Form, FloatingLabel, Button, Modal } from "react-bootstrap";
-import { addNewAsset } from "../../../../firebase-config";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../../reducers/combineReducers";
-import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { IAsset } from "../../../../firebase-config";
-import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
+import { useRef } from 'react';
+import { Form, FloatingLabel, Button, Modal } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { addNewAsset } from '../../../../firebase-config';
+import { RootState } from '../../../../reducers/combineReducers';
+import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
+import { IAsset } from '../../../../firebase-config';
+import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 interface IMetalsSearchProps {
   handleClose: () => void;
@@ -21,9 +22,9 @@ function MetalsSearch({ handleClose }: IMetalsSearchProps) {
     if (!assetRef.current!.value || !amountRef.current!.value) {
       dispatch(
         showAlert({
-          message: "Please select an asset to add.",
-          type: "newAsset",
-        })
+          message: 'Please select an asset to add.',
+          type: 'newAsset',
+        }),
       );
       return;
     }
@@ -34,7 +35,7 @@ function MetalsSearch({ handleClose }: IMetalsSearchProps) {
 
     const newAsset: IAsset = {
       uid: user,
-      type: "Noble Metal",
+      type: 'Noble Metal',
       amount: selectedAmount,
       name: selectedOptionText,
       symbol: selectedOption,
@@ -43,11 +44,13 @@ function MetalsSearch({ handleClose }: IMetalsSearchProps) {
       await addNewAsset(newAsset).then((response) =>
         response.success
           ? handleClose()
-          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+          : dispatch(
+              showAlert({ message: response.message, type: 'newAsset' }),
+            ),
       );
       dispatch(refreshAssetList());
     } catch (error: any) {
-      dispatch(showAlert({ message: error.message, type: "newAsset" }));
+      dispatch(showAlert({ message: error.message, type: 'newAsset' }));
     }
   };
 
@@ -72,7 +75,7 @@ function MetalsSearch({ handleClose }: IMetalsSearchProps) {
           required
           defaultValue={1}
           min={0.00001}
-          step={"any"}
+          step={'any'}
           ref={amountRef}
         />
       </FloatingLabel>

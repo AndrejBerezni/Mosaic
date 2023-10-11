@@ -15,16 +15,16 @@ const initialState: SignedInState = {
 
 const signInReducer = (
   state: SignedInState = initialState,
-  action: SignInAction
+  action: SignInAction,
 ) => {
   switch (action.type) {
-    case "SIGN IN":
+    case 'SIGN IN':
       return {
         ...state,
         signedIn: true,
         user: action.payload,
       };
-    case "SIGN OUT":
+    case 'SIGN OUT':
       return {
         ...state,
         signedIn: false,

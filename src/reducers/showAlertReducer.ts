@@ -1,4 +1,4 @@
-import { Alert } from "../actions/showAlertActions";
+import { Alert } from '../actions/showAlertActions';
 
 interface ShowAlertState {
   showAlert: boolean;
@@ -13,26 +13,26 @@ interface ShowAlertAction {
 
 const initialState: ShowAlertState = {
   showAlert: false,
-  alertMessage: "",
-  alertType: "",
+  alertMessage: '',
+  alertType: '',
 };
 
 const showAlertReducer = (
   state: ShowAlertState = initialState,
-  action: ShowAlertAction
+  action: ShowAlertAction,
 ) => {
   switch (action.type) {
-    case "SHOW ALERT":
+    case 'SHOW ALERT':
       return {
         showAlert: true,
         alertMessage: action.payload.message,
         alertType: action.payload.type,
       };
-    case "HIDE ALERT":
+    case 'HIDE ALERT':
       return {
         showAlert: false,
-        alertMessage: "",
-        alertType: "",
+        alertMessage: '',
+        alertType: '',
       };
     default:
       return state;

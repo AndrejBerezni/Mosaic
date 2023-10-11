@@ -3,11 +3,11 @@ interface sortAction {
   payload: string;
 }
 
-const initialState = "A-Z";
+const initialState = 'A-Z';
 
 const sortReducer = (state: string = initialState, action: sortAction) => {
   switch (action.type) {
-    case "SET SORT":
+    case 'SET SORT':
       return action.payload;
     default:
       return state;

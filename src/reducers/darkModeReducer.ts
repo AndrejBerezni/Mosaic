@@ -12,14 +12,14 @@ const initialState: DarkModeState = {
 
 const darkModeReducer = (
   state: DarkModeState = initialState,
-  action: DarkModeAction
+  action: DarkModeAction,
 ) => {
   switch (action.type) {
-    case "DARK MODE ON":
+    case 'DARK MODE ON':
       return {
         darkMode: true,
       };
-    case "DARK MODE OFF":
+    case 'DARK MODE OFF':
       return {
         darkMode: false,
       };

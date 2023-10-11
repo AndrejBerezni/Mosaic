@@ -1,32 +1,34 @@
-import "./NewAssetForm.css";
-import { Modal, Form, FloatingLabel } from "react-bootstrap";
-import { hideForm } from "../../../actions/showFormActions";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
-import StockSearch from "./StockSearch/StockSearch";
-import MetalsSearch from "./MetalsSearch/MetalsSearch";
-import CurrencySearch from "./CurrencySearch/CurrencySearch";
-import { newAssetType } from "../../../actions/newAssetTypeActions";
-import AppAlert from "../../AppAlert/AppAlert";
-import { hideAlert } from "../../../actions/showAlertActions";
+import './NewAssetForm.css';
+import { Modal, Form, FloatingLabel } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { hideForm } from '../../../actions/showFormActions';
+import { RootState } from '../../../reducers/combineReducers';
+import { newAssetType } from '../../../actions/newAssetTypeActions';
+import AppAlert from '../../AppAlert/AppAlert';
+import { hideAlert } from '../../../actions/showAlertActions';
+
+import StockSearch from './StockSearch/StockSearch';
+import MetalsSearch from './MetalsSearch/MetalsSearch';
+import CurrencySearch from './CurrencySearch/CurrencySearch';
 
 function NewAssetForm() {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(hideForm("newAsset"));
+    dispatch(hideForm('newAsset'));
     dispatch(hideAlert());
   };
 
   const show = useSelector((state: RootState) => state.showForm.newAsset);
   const showAlert = useSelector(
-    (state: RootState) => state.showAlert.showAlert
+    (state: RootState) => state.showAlert.showAlert,
   );
   const alertType = useSelector(
-    (state: RootState) => state.showAlert.alertType
+    (state: RootState) => state.showAlert.alertType,
   );
   const assetType = useSelector(
-    (state: RootState) => state.newAssetType.newAssetType
+    (state: RootState) => state.newAssetType.newAssetType,
   );
 
   const changeAssetType = (asset: string) => {
@@ -35,7 +37,7 @@ function NewAssetForm() {
 
   const formComponents = {
     Stock: StockSearch,
-    "Noble Metal": MetalsSearch,
+    'Noble Metal': MetalsSearch,
     Currency: CurrencySearch,
   };
   const AssetTypeForm =
@@ -75,7 +77,7 @@ function NewAssetForm() {
         </FloatingLabel>
       </Form>
       <AssetTypeForm handleClose={handleClose} />
-      <AppAlert show={showAlert && alertType === "newAsset" ? true : false} />
+      <AppAlert show={showAlert && alertType === 'newAsset' ? true : false} />
     </Modal>
   );
 }

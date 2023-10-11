@@ -15,34 +15,34 @@ const initialState = {
 
 const totalValueReducer = (
   state: ITotalValueState = initialState,
-  action: ITotalValueAction
+  action: ITotalValueAction,
 ) => {
   switch (action.type) {
-    case "RECALCULATE TOTAL VALUE":
+    case 'RECALCULATE TOTAL VALUE':
       return {
         ...state,
         total: Object.values(state.assets).reduce(
           (a: number, b: number) => a + b,
-          0
+          0,
         ),
       };
-    case "ADD TO TOTAL VALUE":
+    case 'ADD TO TOTAL VALUE':
       const increasedAssets: { [key: string]: number } = { ...state.assets };
       increasedAssets[action.payload!.name] = action.payload!.value!;
       const increasedTotal = Object.values(state.assets).reduce(
         (a: number, b: number) => a + b,
-        0
+        0,
       );
       return {
         total: increasedTotal,
         assets: { ...increasedAssets },
       };
-    case "REMOVE FROM TOTAL VALUE":
+    case 'REMOVE FROM TOTAL VALUE':
       const newAssets: { [key: string]: number } = { ...state.assets };
       delete newAssets[action!.payload!.name];
       const newTotal = Object.values(newAssets).reduce(
         (a: number, b: number) => a + b,
-        0
+        0,
       );
       return {
         total: newTotal,

@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
   signOut,
   setPersistence,
   browserSessionPersistence,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   getFirestore,
   getDocs,
@@ -19,15 +19,15 @@ import {
   collection,
   query,
   where,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
-  authDomain: "wealth-mosaic.firebaseapp.com",
-  projectId: "wealth-mosaic",
-  storageBucket: "wealth-mosaic.appspot.com",
-  messagingSenderId: "418366767756",
-  appId: "1:418366767756:web:0aca5edec03fc32921b1a9",
+  authDomain: 'wealth-mosaic.firebaseapp.com',
+  projectId: 'wealth-mosaic',
+  storageBucket: 'wealth-mosaic.appspot.com',
+  messagingSenderId: '418366767756',
+  appId: '1:418366767756:web:0aca5edec03fc32921b1a9',
 };
 
 // Initialize Firebase
@@ -38,7 +38,7 @@ setPersistence(auth, browserSessionPersistence)
     // Persistence successfully enabled
   })
   .catch((error) => {
-    console.error("Error enabling persistence:", error);
+    console.error('Error enabling persistence:', error);
   });
 const db = getFirestore(app);
 
@@ -92,9 +92,9 @@ interface IAsset {
 }
 
 async function getAssetsForUser() {
-  let assets: IAsset[] = [];
+  const assets: IAsset[] = [];
   const user: string = getAuth().currentUser!.uid;
-  const assetsQuery = query(collection(db, "assets"), where("uid", "==", user));
+  const assetsQuery = query(collection(db, 'assets'), where('uid', '==', user));
   const querySnapshot = await getDocs(assetsQuery);
   querySnapshot.forEach((doc) => {
     const assetData = doc.data() as IAsset; //assert type
@@ -109,10 +109,10 @@ async function addNewAsset(asset: IAsset) {
     const existingAssets: IAsset[] = await getAssetsForUser();
     if (existingAssets.some((exAsset) => exAsset.name === asset.name)) {
       throw new Error(
-        "Asset already exists. To add more units, please edit the existing asset."
+        'Asset already exists. To add more units, please edit the existing asset.',
       );
     }
-    const newAssetRef = doc(collection(db, "assets"));
+    const newAssetRef = doc(collection(db, 'assets'));
     await setDoc(newAssetRef, asset);
     return { success: true };
   } catch (error: any) {
@@ -125,13 +125,13 @@ async function addNewAsset(asset: IAsset) {
 async function deleteAsset(name: string) {
   const user: string = getAuth().currentUser!.uid;
   const assetQuery = query(
-    collection(db, "assets"),
-    where("uid", "==", user),
-    where("name", "==", name)
+    collection(db, 'assets'),
+    where('uid', '==', user),
+    where('name', '==', name),
   );
   const querySnapshot = await getDocs(assetQuery);
   querySnapshot.forEach((d) => {
-    deleteDoc(doc(db, "assets", d.ref.id));
+    deleteDoc(doc(db, 'assets', d.ref.id));
   });
 }
 
@@ -140,13 +140,13 @@ async function deleteAsset(name: string) {
 async function editAssetAmount(name: string, amount: number) {
   const user: string = getAuth().currentUser!.uid;
   const assetQuery = query(
-    collection(db, "assets"),
-    where("uid", "==", user),
-    where("name", "==", name)
+    collection(db, 'assets'),
+    where('uid', '==', user),
+    where('name', '==', name),
   );
   const querySnapshot = await getDocs(assetQuery);
   querySnapshot.forEach((d) => {
-    updateDoc(doc(db, "assets", d.ref.id), { amount: amount });
+    updateDoc(doc(db, 'assets', d.ref.id), { amount: amount });
   });
 }
 //Exports

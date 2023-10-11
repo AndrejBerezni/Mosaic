@@ -1,4 +1,4 @@
-import { IEditAmount } from "../actions/editAssetAmountActions";
+import { IEditAmount } from '../actions/editAssetAmountActions';
 
 interface editAssetAmountState {
   show: boolean;
@@ -13,27 +13,27 @@ interface editAssetAmountAction {
 const initialState: editAssetAmountState = {
   show: false,
   asset: {
-    name: "",
+    name: '',
     amount: 0,
   },
 };
 
 const editAssetAmountReducer = (
   state: editAssetAmountState = initialState,
-  action: editAssetAmountAction
+  action: editAssetAmountAction,
 ) => {
   switch (action.type) {
-    case "SHOW EDIT FORM":
+    case 'SHOW EDIT FORM':
       return {
         show: true,
         asset: action.payload,
       };
-    case "HIDE EDIT FORM":
+    case 'HIDE EDIT FORM':
       return {
         ...state,
         show: false,
         asset: {
-          name: "",
+          name: '',
           amount: 0,
         },
       };

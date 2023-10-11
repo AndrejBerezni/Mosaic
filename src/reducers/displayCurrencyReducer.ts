@@ -1,4 +1,4 @@
-import { displayCurrency } from "../actions/displayCurrencyActions";
+import { displayCurrency } from '../actions/displayCurrencyActions';
 
 interface DisplayCurrencyState {
   currency: displayCurrency;
@@ -11,17 +11,17 @@ interface DisplayCurrencyAction {
 
 const initialState = {
   currency: {
-    symbol: "€",
-    code: "EUR",
+    symbol: '€',
+    code: 'EUR',
   },
 };
 
 const displayCurrencyReducer = (
   state: DisplayCurrencyState = initialState,
-  action: DisplayCurrencyAction
+  action: DisplayCurrencyAction,
 ) => {
   switch (action.type) {
-    case "SET DISPLAY CURRENCY":
+    case 'SET DISPLAY CURRENCY':
       return {
         ...state,
         currency: action.payload,

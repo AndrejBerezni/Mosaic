@@ -1,20 +1,21 @@
-import axios from "axios";
-import { Form, Button, Modal, FloatingLabel } from "react-bootstrap";
-import { useState, ChangeEvent, useRef } from "react";
-import "./StockSearch.css";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../../reducers/combineReducers";
-import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { IAsset } from "../../../../firebase-config";
-import { addNewAsset } from "../../../../firebase-config";
-import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
+import axios from 'axios';
+import { Form, Button, Modal, FloatingLabel } from 'react-bootstrap';
+import { useState, ChangeEvent, useRef } from 'react';
+import './StockSearch.css';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { RootState } from '../../../../reducers/combineReducers';
+import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
+import { IAsset } from '../../../../firebase-config';
+import { addNewAsset } from '../../../../firebase-config';
+import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 interface IStockSearchProps {
   handleClose: () => void;
 }
 
 function StockSearch({ handleClose }: IStockSearchProps) {
-  const [keywords, setKeywords] = useState<string>("");
+  const [keywords, setKeywords] = useState<string>('');
   const [searchResults, setSearchResults] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.signedIn.user);
@@ -30,11 +31,11 @@ function StockSearch({ handleClose }: IStockSearchProps) {
 
     try {
       const response = await axios.get(
-        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`
+        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${apiKey}`,
       );
       return response.data.bestMatches || [];
     } catch (error) {
-      console.error("Error searching for assets:", error);
+      console.error('Error searching for assets:', error);
       throw error; //throw error again to appear in handleSearch
     }
   };
@@ -45,7 +46,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
         const results = await searchAsset(keywords);
         setSearchResults(results);
       } catch (error) {
-        console.error("Error searching for assets:", error);
+        console.error('Error searching for assets:', error);
       }
     }
   };
@@ -54,9 +55,9 @@ function StockSearch({ handleClose }: IStockSearchProps) {
     if (!assetRef.current!.value || !amountRef.current!.value) {
       dispatch(
         showAlert({
-          message: "Please select an asset to add.",
-          type: "newAsset",
-        })
+          message: 'Please select an asset to add.',
+          type: 'newAsset',
+        }),
       );
       return;
     }
@@ -67,7 +68,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
 
     const newAsset: IAsset = {
       uid: user,
-      type: "Stock",
+      type: 'Stock',
       amount: selectedAmount,
       name: selectedOptionText,
       symbol: selectedOption,
@@ -77,11 +78,13 @@ function StockSearch({ handleClose }: IStockSearchProps) {
       await addNewAsset(newAsset).then((response) =>
         response.success
           ? handleClose()
-          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+          : dispatch(
+              showAlert({ message: response.message, type: 'newAsset' }),
+            ),
       );
       dispatch(refreshAssetList());
     } catch (error: any) {
-      dispatch(showAlert({ message: error.message, type: "newAsset" }));
+      dispatch(showAlert({ message: error.message, type: 'newAsset' }));
     }
   };
 
@@ -96,7 +99,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
         <Button
           onClick={handleSearch}
           className="my-2 stock-search-btn"
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         >
           Search
         </Button>
@@ -109,8 +112,8 @@ function StockSearch({ handleClose }: IStockSearchProps) {
         >
           {searchResults.map((result) => {
             return (
-              <option value={result["1. symbol"]} key={result["1. symbol"]}>
-                {result["2. name"]}
+              <option value={result['1. symbol']} key={result['1. symbol']}>
+                {result['2. name']}
               </option>
             );
           })}
@@ -123,7 +126,7 @@ function StockSearch({ handleClose }: IStockSearchProps) {
           required
           defaultValue={1}
           min={0.00001}
-          step={"any"}
+          step={'any'}
           ref={amountRef}
         />
       </FloatingLabel>

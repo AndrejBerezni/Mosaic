@@ -1,6 +1,6 @@
 const filterAssets = (filter: string) => {
   return {
-    type: "SET FILTER",
+    type: 'SET FILTER',
     payload: filter,
   };
 };

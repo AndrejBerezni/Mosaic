@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
-import "./AssetList.css";
-import { Container, Col, Row } from "react-bootstrap";
-import { getAssetsForUser } from "../../../firebase-config";
-import { IAsset } from "../../../firebase-config";
-import AssetBar from "../AssetBar/AssetBar";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
-import { useDispatch } from "react-redux";
-import { removeFromTotalValue } from "../../../actions/totalValueActions";
-import sortAssetList from "../../../utilities/sortAssetList";
+import { useEffect, useState } from 'react';
+import './AssetList.css';
+import { Container, Col, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { getAssetsForUser } from '../../../firebase-config';
+import { IAsset } from '../../../firebase-config';
+import AssetBar from '../AssetBar/AssetBar';
+import { RootState } from '../../../reducers/combineReducers';
+import { removeFromTotalValue } from '../../../actions/totalValueActions';
+import sortAssetList from '../../../utilities/sortAssetList';
 
 function AssetList() {
   const dispatch = useDispatch();
   const [assetList, setAssetList] = useState<IAsset[]>([]);
   const refreshList = useSelector(
-    (state: RootState) => state.refreshAssetList.refresh
+    (state: RootState) => state.refreshAssetList.refresh,
   );
   const filter = useSelector((state: RootState) => state.filter);
   const sort = useSelector((state: RootState) => state.sort);
@@ -24,7 +25,7 @@ function AssetList() {
       try {
         const newAssetList = await getAssetsForUser();
         sortAssetList(newAssetList, sort);
-        filter === "All"
+        filter === 'All'
           ? setAssetList(newAssetList)
           : setAssetList(
               newAssetList.filter((asset) => {
@@ -33,7 +34,7 @@ function AssetList() {
                 } else {
                   dispatch(removeFromTotalValue({ name: asset.name }));
                 }
-              })
+              }),
             );
       } catch (error) {
         console.error(error);
@@ -46,7 +47,7 @@ function AssetList() {
     <Container
       fluid
       className="justify-content-center"
-      style={{ marginBottom: "132px" }}
+      style={{ marginBottom: '132px' }}
     >
       <Row className="justify-content-center mt-0 p-2 asset-legend">
         <Col xs={3} lg={2}>

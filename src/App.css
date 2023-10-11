@@ -8,9 +8,9 @@
   --secondary: #1d3557;
   --tertiary: #ef4565;
   --toggler: #f1f1f1;
-  --font-p: "Lato", sans-serif;
-  --font-h: "Montserrat", sans-serif;
-  --bg-image: url("./assets/home-bg.svg");
+  --font-p: 'Lato', sans-serif;
+  --font-h: 'Montserrat', sans-serif;
+  --bg-image: url('./assets/home-bg.svg');
 }
 
 :root.dark {
@@ -23,7 +23,7 @@
   --secondary: #833925;
   --tertiary: #ef4565;
   --toggler: #abe7b8;
-  --bg-image: url("./assets/home-bg-dark.svg");
+  --bg-image: url('./assets/home-bg-dark.svg');
 }
 
 /*#29def0

@@ -17,15 +17,15 @@ const initialState: ShowFormState = {
 
 const showFormReducer = (
   state: ShowFormState = initialState,
-  action: ShowFormAction
+  action: ShowFormAction,
 ) => {
   switch (action.type) {
-    case "SHOW FORM":
+    case 'SHOW FORM':
       return {
         ...state,
         [action.payload]: true,
       };
-    case "HIDE FORM":
+    case 'HIDE FORM':
       return {
         ...state,
         [action.payload]: false,

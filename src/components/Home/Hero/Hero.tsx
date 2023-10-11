@@ -1,5 +1,5 @@
-import "./Hero.css";
-import { Container, Col, Row } from "react-bootstrap";
+import './Hero.css';
+import { Container, Col, Row } from 'react-bootstrap';
 
 interface IHeroProps {
   src: string;

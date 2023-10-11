@@ -5,14 +5,14 @@ interface Alert {
 
 const showAlert = (alert: Alert) => {
   return {
-    type: "SHOW ALERT",
+    type: 'SHOW ALERT',
     payload: alert,
   };
 };
 
 const hideAlert = () => {
   return {
-    type: "HIDE ALERT",
+    type: 'HIDE ALERT',
   };
 };
 

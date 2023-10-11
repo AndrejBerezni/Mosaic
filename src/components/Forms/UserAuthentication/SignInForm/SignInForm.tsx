@@ -1,13 +1,14 @@
-import { useRef } from "react";
-import { Form, FloatingLabel, Button, Container, Image } from "react-bootstrap";
-import google from "../../../../assets/google.png";
-import { signInWithGoogle, signInWithEmail } from "../../../../firebase-config";
-import { useDispatch } from "react-redux";
-import { signInAction } from "../../../../actions/signInActions";
-import { useNavigate } from "react-router-dom";
-import { hideForm } from "../../../../actions/showFormActions";
-import { showAlert } from "../../../../actions/showAlertActions";
-import formatFirebaseError from "../../../../utilities/formatFirebaseError";
+import { useRef } from 'react';
+import { Form, FloatingLabel, Button, Container, Image } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import google from '../../../../assets/google.png';
+import { signInWithGoogle, signInWithEmail } from '../../../../firebase-config';
+import { signInAction } from '../../../../actions/signInActions';
+import { hideForm } from '../../../../actions/showFormActions';
+import { showAlert } from '../../../../actions/showAlertActions';
+import formatFirebaseError from '../../../../utilities/formatFirebaseError';
 
 function SignInForm() {
   const dispatch = useDispatch();
@@ -20,11 +21,11 @@ function SignInForm() {
       const user = await signInWithGoogle();
       if (user) {
         dispatch(signInAction(user));
-        dispatch(hideForm("signIn"));
-        navigate("/portfolio");
+        dispatch(hideForm('signIn'));
+        navigate('/portfolio');
       }
     } catch (error) {
-      console.error("Sign in failed");
+      console.error('Sign in failed');
     }
   };
 
@@ -32,14 +33,14 @@ function SignInForm() {
     try {
       const user = await signInWithEmail(
         emailRef.current!.value.trim().toLowerCase(), //assert that is not null
-        passwordRef.current!.value //assert that is not null
+        passwordRef.current!.value, //assert that is not null
       );
       dispatch(signInAction(user));
-      dispatch(hideForm("signIn"));
-      navigate("/portfolio");
+      dispatch(hideForm('signIn'));
+      navigate('/portfolio');
     } catch (error: any) {
       const formattedErrorMessage = formatFirebaseError(error!.message);
-      dispatch(showAlert({ message: formattedErrorMessage, type: "signin" }));
+      dispatch(showAlert({ message: formattedErrorMessage, type: 'signin' }));
     }
   };
 

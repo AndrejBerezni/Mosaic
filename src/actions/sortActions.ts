@@ -1,6 +1,6 @@
 const sortAssets = (sort: string) => {
   return {
-    type: "SET SORT",
+    type: 'SET SORT',
     payload: sort,
   };
 };

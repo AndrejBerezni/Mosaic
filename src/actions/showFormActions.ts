@@ -1,13 +1,13 @@
 const showForm = (form: string) => {
   return {
-    type: "SHOW FORM",
+    type: 'SHOW FORM',
     payload: form,
   };
 };
 
 const hideForm = (form: string) => {
   return {
-    type: "HIDE FORM",
+    type: 'HIDE FORM',
     payload: form,
   };
 };

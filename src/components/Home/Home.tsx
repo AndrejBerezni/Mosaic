@@ -1,27 +1,29 @@
-import "./Home.css";
-import homeImage from "../../assets/Manage money.gif";
-import homeImageDark from "../../assets/Investment data.gif";
-import cardImageOne from "../../assets/E-Wallet-amico.svg";
-import cardImageOneDark from "../../assets/E-Wallet-amico dark.svg";
-import cardImageTwo from "../../assets/scrum method-amico.svg";
-import cardImageTwoDark from "../../assets/scrum method-amico dark.svg";
-import cardImageThree from "../../assets/Calculator-cuate.svg";
-import cardImageThreeDark from "../../assets/Calculator-cuate dark.svg";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../reducers/combineReducers";
-import { Button, Container, Row, Col } from "react-bootstrap";
-import HomeCard from "./HomeCard/HomeCard";
-import Hero from "./Hero/Hero";
-import UserAuthentication from "../Forms/UserAuthentication/UserAuthentication";
-import { NavLink } from "react-router-dom";
-import { showForm } from "../../actions/showFormActions";
+import './Home.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+
+import homeImage from '../../assets/Manage money.gif';
+import homeImageDark from '../../assets/Investment data.gif';
+import cardImageOne from '../../assets/E-Wallet-amico.svg';
+import cardImageOneDark from '../../assets/E-Wallet-amico dark.svg';
+import cardImageTwo from '../../assets/scrum method-amico.svg';
+import cardImageTwoDark from '../../assets/scrum method-amico dark.svg';
+import cardImageThree from '../../assets/Calculator-cuate.svg';
+import cardImageThreeDark from '../../assets/Calculator-cuate dark.svg';
+import { RootState } from '../../reducers/combineReducers';
+import UserAuthentication from '../Forms/UserAuthentication/UserAuthentication';
+import { showForm } from '../../actions/showFormActions';
+
+import HomeCard from './HomeCard/HomeCard';
+import Hero from './Hero/Hero';
 
 function Home() {
   const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
   const showSignIn = () => {
-    dispatch(showForm("signIn"));
+    dispatch(showForm('signIn'));
   };
 
   return (
@@ -32,7 +34,7 @@ function Home() {
       <Row className="justify-content-center p-5">
         {isSignedIn ? (
           <Button className="home-signin-btn" size="lg">
-            <NavLink to={"/portfolio"}>Go to portfolio</NavLink>
+            <NavLink to={'/portfolio'}>Go to portfolio</NavLink>
           </Button>
         ) : (
           <Button className="home-signin-btn" size="lg" onClick={showSignIn}>

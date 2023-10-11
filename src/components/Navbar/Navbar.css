@@ -1,4 +1,4 @@
-@import url("../../App.css");
+@import url('../../App.css');
 #navbar {
   background-color: var(--headline);
   font-family: var(--font-h);

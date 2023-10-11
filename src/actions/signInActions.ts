@@ -1,13 +1,13 @@
 const signInAction = (user: string) => {
   return {
-    type: "SIGN IN",
+    type: 'SIGN IN',
     payload: user,
   };
 };
 
 const signOutAction = () => {
   return {
-    type: "SIGN OUT",
+    type: 'SIGN OUT',
   };
 };
 

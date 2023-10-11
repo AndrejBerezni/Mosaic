@@ -1,20 +1,21 @@
-import "./EditAssetForm.css";
-import { Form, Modal, Button, FloatingLabel } from "react-bootstrap";
-import { FormEvent, useRef } from "react";
-import { editAssetAmount } from "../../../firebase-config";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
-import { refreshAssetList } from "../../../actions/refreshAssetListActions";
-import { hideEditAssetAmount } from "../../../actions/editAssetAmountActions";
+import './EditAssetForm.css';
+import { Form, Modal, Button, FloatingLabel } from 'react-bootstrap';
+import { FormEvent, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { editAssetAmount } from '../../../firebase-config';
+import { RootState } from '../../../reducers/combineReducers';
+import { refreshAssetList } from '../../../actions/refreshAssetListActions';
+import { hideEditAssetAmount } from '../../../actions/editAssetAmountActions';
 
 function EditAssetForm() {
   const dispatch = useDispatch();
   const show = useSelector((state: RootState) => state.editAssetAmount.show);
   const asset = useSelector(
-    (state: RootState) => state.editAssetAmount.asset.name
+    (state: RootState) => state.editAssetAmount.asset.name,
   );
   const amount = useSelector(
-    (state: RootState) => state.editAssetAmount.asset.amount
+    (state: RootState) => state.editAssetAmount.asset.amount,
   );
   const newAmount = useRef<HTMLInputElement | null>(null);
 
@@ -31,7 +32,7 @@ function EditAssetForm() {
 
   return (
     <Modal
-      size={"lg"}
+      size={'lg'}
       centered={true}
       show={show}
       id="edit-asset-amount"
@@ -49,7 +50,7 @@ function EditAssetForm() {
             as="input"
             required
             min={0.00001}
-            step={"any"}
+            step={'any'}
             defaultValue={amount}
             ref={newAmount}
           />

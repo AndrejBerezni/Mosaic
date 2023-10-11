@@ -8,15 +8,15 @@ interface NewAssetTypeAction {
 }
 
 const initialState = {
-  newAssetType: "Stock",
+  newAssetType: 'Stock',
 };
 
 const newAssetTypeReducer = (
   state: NewAssetTypeState = initialState,
-  action: NewAssetTypeAction
+  action: NewAssetTypeAction,
 ) => {
   switch (action.type) {
-    case "SET ASSET TYPE":
+    case 'SET ASSET TYPE':
       return {
         newAssetType: action.payload,
       };

@@ -5,14 +5,14 @@ interface IEditAmount {
 
 const showEditAssetAmount = (asset: IEditAmount) => {
   return {
-    type: "SHOW EDIT FORM",
+    type: 'SHOW EDIT FORM',
     payload: asset,
   };
 };
 
 const hideEditAssetAmount = () => {
   return {
-    type: "HIDE EDIT FORM",
+    type: 'HIDE EDIT FORM',
   };
 };
 

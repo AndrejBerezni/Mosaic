@@ -1,6 +1,6 @@
 const newAssetType = (asset: string) => {
   return {
-    type: "SET ASSET TYPE",
+    type: 'SET ASSET TYPE',
     payload: asset,
   };
 };

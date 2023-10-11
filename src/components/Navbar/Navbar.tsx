@@ -1,28 +1,29 @@
-import "./Navbar.css";
-import { useEffect } from "react";
-import { Container, Nav, Navbar, Image, NavDropdown } from "react-bootstrap";
-import logo from "../../assets/mosaic.png";
-import logodark from "../../assets/mosaicdark.png";
-import { Moon } from "react-bootstrap-icons";
-import { Sun } from "react-bootstrap-icons";
-import { CurrencyEuro } from "react-bootstrap-icons";
-import { CurrencyDollar } from "react-bootstrap-icons";
-import { CurrencyPound } from "react-bootstrap-icons";
-import { useSelector, useDispatch } from "react-redux";
-import { darkModeOn, darkModeOff } from "../../actions/darkModeActions";
-import { RootState } from "../../reducers/combineReducers";
-import { setDisplayCurrency } from "../../actions/displayCurrencyActions";
-import { displayCurrency } from "../../actions/displayCurrencyActions";
-import { showForm } from "../../actions/showFormActions";
-import { signOutAction } from "../../actions/signInActions";
-import { signOutUser } from "../../firebase-config";
+import './Navbar.css';
+import { useEffect } from 'react';
+import { Container, Nav, Navbar, Image, NavDropdown } from 'react-bootstrap';
+import { Moon } from 'react-bootstrap-icons';
+import { Sun } from 'react-bootstrap-icons';
+import { CurrencyEuro } from 'react-bootstrap-icons';
+import { CurrencyDollar } from 'react-bootstrap-icons';
+import { CurrencyPound } from 'react-bootstrap-icons';
+import { useSelector, useDispatch } from 'react-redux';
+
+import logodark from '../../assets/mosaicdark.png';
+import logo from '../../assets/mosaic.png';
+import { darkModeOn, darkModeOff } from '../../actions/darkModeActions';
+import { RootState } from '../../reducers/combineReducers';
+import { setDisplayCurrency } from '../../actions/displayCurrencyActions';
+import { displayCurrency } from '../../actions/displayCurrencyActions';
+import { showForm } from '../../actions/showFormActions';
+import { signOutAction } from '../../actions/signInActions';
+import { signOutUser } from '../../firebase-config';
 
 function Nabvar() {
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const isSignedIn = useSelector((state: RootState) => state.signedIn.signedIn);
   const showSignIn = () => {
-    dispatch(showForm("signIn"));
+    dispatch(showForm('signIn'));
   };
 
   const handleSignOut = () => {
@@ -32,8 +33,8 @@ function Nabvar() {
 
   useEffect(() => {
     isDarkMode
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
+      ? document.documentElement.classList.add('dark')
+      : document.documentElement.classList.remove('dark');
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
@@ -70,8 +71,8 @@ function Nabvar() {
                 className="currency-selector"
                 onClick={() =>
                   setCurrency({
-                    symbol: "€",
-                    code: "EUR",
+                    symbol: '€',
+                    code: 'EUR',
                   })
                 }
               >
@@ -81,8 +82,8 @@ function Nabvar() {
                 className="currency-selector"
                 onClick={() =>
                   setCurrency({
-                    symbol: "$",
-                    code: "USD",
+                    symbol: '$',
+                    code: 'USD',
                   })
                 }
               >
@@ -92,8 +93,8 @@ function Nabvar() {
                 className="currency-selector"
                 onClick={() =>
                   setCurrency({
-                    symbol: "£",
-                    code: "GBP",
+                    symbol: '£',
+                    code: 'GBP',
                   })
                 }
               >
@@ -104,7 +105,7 @@ function Nabvar() {
               className="navbar-item"
               onClick={isSignedIn ? handleSignOut : showSignIn}
             >
-              {isSignedIn ? "Sign Out" : "Sign In"}
+              {isSignedIn ? 'Sign Out' : 'Sign In'}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

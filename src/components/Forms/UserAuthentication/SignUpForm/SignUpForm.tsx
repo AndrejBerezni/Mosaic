@@ -1,12 +1,13 @@
-import { useRef } from "react";
-import { Form, FloatingLabel, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { signInAction } from "../../../../actions/signInActions";
-import { useNavigate } from "react-router-dom";
-import { signUpWithEmail } from "../../../../firebase-config";
-import { hideForm } from "../../../../actions/showFormActions";
-import { showAlert } from "../../../../actions/showAlertActions";
-import formatFirebaseError from "../../../../utilities/formatFirebaseError";
+import { useRef } from 'react';
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { signInAction } from '../../../../actions/signInActions';
+import { signUpWithEmail } from '../../../../firebase-config';
+import { hideForm } from '../../../../actions/showFormActions';
+import { showAlert } from '../../../../actions/showAlertActions';
+import formatFirebaseError from '../../../../utilities/formatFirebaseError';
 
 function SignUpForm() {
   const dispatch = useDispatch();
@@ -18,21 +19,21 @@ function SignUpForm() {
   const handleEmailSignUp = async () => {
     if (passwordRef.current!.value !== confirmPasswordRef.current!.value) {
       dispatch(
-        showAlert({ message: "Passwords do not match", type: "signin" })
+        showAlert({ message: 'Passwords do not match', type: 'signin' }),
       );
       return;
     }
     try {
       const user = await signUpWithEmail(
         emailRef.current!.value.trim().toLowerCase(), //assert that is not null
-        passwordRef.current!.value //assert that is not null
+        passwordRef.current!.value, //assert that is not null
       );
       dispatch(signInAction(user));
-      dispatch(hideForm("signIn"));
-      navigate("/portfolio");
+      dispatch(hideForm('signIn'));
+      navigate('/portfolio');
     } catch (error: any) {
       const formattedErrorMessage = formatFirebaseError(error!.message);
-      dispatch(showAlert({ message: formattedErrorMessage, type: "signin" }));
+      dispatch(showAlert({ message: formattedErrorMessage, type: 'signin' }));
     }
   };
   return (

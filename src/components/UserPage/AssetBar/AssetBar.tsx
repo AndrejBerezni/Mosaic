@@ -1,16 +1,17 @@
-import "./AssetBar.css";
-import { Card, Button, ButtonGroup, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
-import calculateValue from "../../../api/calculateValue";
-import { showDeleteAsset } from "../../../actions/deleteAssetActions";
-import { showEditAssetAmount } from "../../../actions/editAssetAmountActions";
+import './AssetBar.css';
+import { Card, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { RootState } from '../../../reducers/combineReducers';
+import calculateValue from '../../../api/calculateValue';
+import { showDeleteAsset } from '../../../actions/deleteAssetActions';
+import { showEditAssetAmount } from '../../../actions/editAssetAmountActions';
 import {
   addToTotalValue,
   recalculateTotalValue,
-} from "../../../actions/totalValueActions";
-import abbreviateValue from "../../../utilities/abbreviateValue";
+} from '../../../actions/totalValueActions';
+import abbreviateValue from '../../../utilities/abbreviateValue';
 
 interface IAssetBarProps {
   assetName: string;
@@ -22,7 +23,7 @@ interface IAssetBarProps {
 function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   const dispatch = useDispatch();
   const displayCurrency = useSelector(
-    (state: RootState) => state.displayCurrency.currency
+    (state: RootState) => state.displayCurrency.currency,
   );
   const [assetValue, setAssetValue] = useState<number>();
 
@@ -32,7 +33,7 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
         assetType,
         units,
         assetCode,
-        displayCurrency
+        displayCurrency,
       );
       const parsedValue = parseFloat(calculatedValue);
       setAssetValue(parsedValue);

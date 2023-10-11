@@ -1,22 +1,23 @@
-import { combineReducers } from "redux";
-import signInReducer, { SignedInState } from "./signInReducer";
-import showFormReducer, { ShowFormState } from "./showFormReducer";
-import darkModeReducer, { DarkModeState } from "./darkModeReducer";
-import newAssetTypeReducer, { NewAssetTypeState } from "./newAssetTypeReducer";
+import { combineReducers } from 'redux';
+
+import signInReducer, { SignedInState } from './signInReducer';
+import showFormReducer, { ShowFormState } from './showFormReducer';
+import darkModeReducer, { DarkModeState } from './darkModeReducer';
+import newAssetTypeReducer, { NewAssetTypeState } from './newAssetTypeReducer';
 import displayCurrencyReducer, {
   DisplayCurrencyState,
-} from "./displayCurrencyReducer";
-import showAlertReducer, { ShowAlertState } from "./showAlertReducer";
+} from './displayCurrencyReducer';
+import showAlertReducer, { ShowAlertState } from './showAlertReducer';
 import refreshAssetListReducer, {
   RefreshAssetListState,
-} from "./refreshAssetListReducer";
+} from './refreshAssetListReducer';
 import editAssetAmountReducer, {
   editAssetAmountState,
-} from "./editAssetAmountReducer";
-import deleteAssetReducer, { IDeleteAssetState } from "./deleteAssetReducer";
-import totalValueReducer, { ITotalValueState } from "./totalValueReducer";
-import filterReducer from "./filterReducer";
-import sortReducer from "./sortReducer";
+} from './editAssetAmountReducer';
+import deleteAssetReducer, { IDeleteAssetState } from './deleteAssetReducer';
+import totalValueReducer, { ITotalValueState } from './totalValueReducer';
+import filterReducer from './filterReducer';
+import sortReducer from './sortReducer';
 
 const combinedReducers = combineReducers({
   signedIn: signInReducer,

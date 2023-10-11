@@ -1,7 +1,8 @@
-import Alert from "react-bootstrap/Alert";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../reducers/combineReducers";
-import { hideAlert } from "../../actions/showAlertActions";
+import Alert from 'react-bootstrap/Alert';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { RootState } from '../../reducers/combineReducers';
+import { hideAlert } from '../../actions/showAlertActions';
 
 interface IAppAlertProps {
   show: boolean;
@@ -10,7 +11,7 @@ interface IAppAlertProps {
 function AppAlert({ show }: IAppAlertProps) {
   const dispatch = useDispatch();
   const message = useSelector(
-    (state: RootState) => state.showAlert.alertMessage
+    (state: RootState) => state.showAlert.alertMessage,
   );
 
   const handleCloseAlert = () => {

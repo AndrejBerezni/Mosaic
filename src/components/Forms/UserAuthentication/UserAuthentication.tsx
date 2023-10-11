@@ -1,24 +1,27 @@
-import { Modal, Tab, Tabs, CloseButton } from "react-bootstrap";
-import SignInForm from "./SignInForm/SignInForm";
-import SignUpForm from "./SignUpForm/SignUpForm";
-import "./UserAuthentication.css";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
-import { hideForm } from "../../../actions/showFormActions";
-import { hideAlert } from "../../../actions/showAlertActions";
-import AppAlert from "../../AppAlert/AppAlert";
+import { Modal, Tab, Tabs, CloseButton } from 'react-bootstrap';
+
+import SignInForm from './SignInForm/SignInForm';
+import SignUpForm from './SignUpForm/SignUpForm';
+
+import './UserAuthentication.css';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { RootState } from '../../../reducers/combineReducers';
+import { hideForm } from '../../../actions/showFormActions';
+import { hideAlert } from '../../../actions/showAlertActions';
+import AppAlert from '../../AppAlert/AppAlert';
 
 function UserAuthentication() {
   const dispatch = useDispatch();
   const show = useSelector((state: RootState) => state.showForm.signIn);
   const showAlert = useSelector(
-    (state: RootState) => state.showAlert.showAlert
+    (state: RootState) => state.showAlert.showAlert,
   );
   const alertType = useSelector(
-    (state: RootState) => state.showAlert.alertType
+    (state: RootState) => state.showAlert.alertType,
   );
   const handleClose = () => {
-    dispatch(hideForm("signIn"));
+    dispatch(hideForm('signIn'));
     dispatch(hideAlert());
   };
   return (
@@ -44,7 +47,7 @@ function UserAuthentication() {
           <SignUpForm />
         </Tab>
       </Tabs>
-      <AppAlert show={showAlert && alertType === "signin" ? true : false} />
+      <AppAlert show={showAlert && alertType === 'signin' ? true : false} />
     </Modal>
   );
 }

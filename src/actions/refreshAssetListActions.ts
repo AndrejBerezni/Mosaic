@@ -1,6 +1,6 @@
 const refreshAssetList = () => {
   return {
-    type: "REFRESH ASSET LIST",
+    type: 'REFRESH ASSET LIST',
   };
 };
 

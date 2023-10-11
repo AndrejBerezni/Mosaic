@@ -1,11 +1,12 @@
-import "./Total.css";
-import { Badge, Container, Navbar } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers/combineReducers";
+import './Total.css';
+import { Badge, Container, Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../../reducers/combineReducers';
 
 function Total() {
   const displayCurrencySymbol = useSelector(
-    (state: RootState) => state.displayCurrency.currency.symbol
+    (state: RootState) => state.displayCurrency.currency.symbol,
   );
   const total = useSelector((state: RootState) => state.totalValue.total);
   return (
@@ -16,7 +17,7 @@ function Total() {
     >
       <Container className="justify-content-center">
         <Navbar.Brand id="total-wealth-text">
-          Total Worth:{" "}
+          Total Worth:{' '}
           <Badge id="total-wealth-number">
             {total.toFixed(2)}
             {displayCurrencySymbol}

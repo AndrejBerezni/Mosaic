@@ -5,7 +5,7 @@ interface displayCurrency {
 
 const setDisplayCurrency = (currency: displayCurrency) => {
   return {
-    type: "SET DISPLAY CURRENCY",
+    type: 'SET DISPLAY CURRENCY',
     payload: currency,
   };
 };

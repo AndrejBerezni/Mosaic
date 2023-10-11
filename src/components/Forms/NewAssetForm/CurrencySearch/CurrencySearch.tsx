@@ -1,12 +1,13 @@
-import { useState, useEffect, ChangeEvent, useRef } from "react";
-import { Form, FloatingLabel, Button, Modal } from "react-bootstrap";
-import axios, { AxiosResponse } from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../../reducers/combineReducers";
-import { refreshAssetList } from "../../../../actions/refreshAssetListActions";
-import { IAsset } from "../../../../firebase-config";
-import { addNewAsset } from "../../../../firebase-config";
-import { showAlert, hideAlert } from "../../../../actions/showAlertActions";
+import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { Form, FloatingLabel, Button, Modal } from 'react-bootstrap';
+import axios, { AxiosResponse } from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { RootState } from '../../../../reducers/combineReducers';
+import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
+import { IAsset } from '../../../../firebase-config';
+import { addNewAsset } from '../../../../firebase-config';
+import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 type CurrencyList = Record<string, string>;
 
@@ -16,7 +17,7 @@ interface ICurrencySearchProps {
 
 function CurrencySearch({ handleClose }: ICurrencySearchProps) {
   const [currencyList, setCurrencyList] = useState<CurrencyList>({});
-  const [userInput, setUserInput] = useState<string>("");
+  const [userInput, setUserInput] = useState<string>('');
   const [matches, setMatches] = useState<[string, string][]>([]);
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.signedIn.user);
@@ -28,11 +29,11 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
     const fetchData = async () => {
       try {
         const response: AxiosResponse = await axios.get<CurrencyList>(
-          "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
+          'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json',
         );
         setCurrencyList(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
     fetchData();
@@ -57,9 +58,9 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
     if (!assetRef.current!.value || !amountRef.current!.value) {
       dispatch(
         showAlert({
-          message: "Please select an asset to add.",
-          type: "newAsset",
-        })
+          message: 'Please select an asset to add.',
+          type: 'newAsset',
+        }),
       );
       return;
     }
@@ -69,7 +70,7 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
     const selectedAmount = parseFloat(amountRef.current!.value);
     const newAsset: IAsset = {
       uid: user,
-      type: "Currency",
+      type: 'Currency',
       amount: selectedAmount,
       name: selectedOptionText,
       symbol: selectedOption,
@@ -78,11 +79,13 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
       await addNewAsset(newAsset).then((response) =>
         response.success
           ? handleClose()
-          : dispatch(showAlert({ message: response.message, type: "newAsset" }))
+          : dispatch(
+              showAlert({ message: response.message, type: 'newAsset' }),
+            ),
       );
       dispatch(refreshAssetList());
     } catch (error: any) {
-      dispatch(showAlert({ message: error.message, type: "newAsset" }));
+      dispatch(showAlert({ message: error.message, type: 'newAsset' }));
     }
   };
 
@@ -118,7 +121,7 @@ function CurrencySearch({ handleClose }: ICurrencySearchProps) {
           required
           defaultValue={1}
           min={0.00001}
-          step={"any"}
+          step={'any'}
           ref={amountRef}
         />
       </FloatingLabel>

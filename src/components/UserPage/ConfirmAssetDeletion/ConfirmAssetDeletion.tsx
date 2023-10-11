@@ -1,15 +1,16 @@
-import Modal from "react-bootstrap/Modal";
-import "./ConfirmAssetDeletion.css";
-import { Button } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { hideDeleteAsset } from "../../../actions/deleteAssetActions";
-import { deleteAsset } from "../../../firebase-config";
-import { RootState } from "../../../reducers/combineReducers";
-import { refreshAssetList } from "../../../actions/refreshAssetListActions";
+import Modal from 'react-bootstrap/Modal';
+import './ConfirmAssetDeletion.css';
+import { Button } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { hideDeleteAsset } from '../../../actions/deleteAssetActions';
+import { deleteAsset } from '../../../firebase-config';
+import { RootState } from '../../../reducers/combineReducers';
+import { refreshAssetList } from '../../../actions/refreshAssetListActions';
 import {
   removeFromTotalValue,
   recalculateTotalValue,
-} from "../../../actions/totalValueActions";
+} from '../../../actions/totalValueActions';
 
 function ConfirmAssetDeletion() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function ConfirmAssetDeletion() {
   };
   return (
     <Modal
-      size={"lg"}
+      size={'lg'}
       centered={true}
       show={show}
       id="delete-asset-confirmation"

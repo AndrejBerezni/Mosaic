@@ -12,10 +12,10 @@ const initialState = {
 
 const refreshAssetListReducer = (
   state: RefreshAssetListState = initialState,
-  action: RefreshAssetListAction
+  action: RefreshAssetListAction,
 ) => {
   switch (action.type) {
-    case "REFRESH ASSET LIST":
+    case 'REFRESH ASSET LIST':
       return {
         ...state,
         refresh: !state.refresh,
