@@ -10,12 +10,6 @@ import { newAssetType } from "../../../actions/newAssetTypeActions";
 import AppAlert from "../../AppAlert/AppAlert";
 import { hideAlert } from "../../../actions/showAlertActions";
 
-const components = {
-  Stock: StockSearch,
-  "Noble Metal": MetalsSearch,
-  Currency: CurrencySearch,
-};
-
 function NewAssetForm() {
   const dispatch = useDispatch();
 
@@ -44,7 +38,8 @@ function NewAssetForm() {
     "Noble Metal": MetalsSearch,
     Currency: CurrencySearch,
   };
-  const AssetTypeForm = formComponents[assetType as keyof typeof components];
+  const AssetTypeForm =
+    formComponents[assetType as keyof typeof formComponents];
 
   return (
     <Modal

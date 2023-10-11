@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { signUpWithEmail } from "../../../../firebase-config";
 import { hideForm } from "../../../../actions/showFormActions";
 import { showAlert } from "../../../../actions/showAlertActions";
-import formatFirebaseError from "../../../../utilities/helpers/formatFirebaseError";
+import formatFirebaseError from "../../../../utilities/formatFirebaseError";
 
 function SignUpForm() {
   const dispatch = useDispatch();

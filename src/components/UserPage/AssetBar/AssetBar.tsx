@@ -3,14 +3,14 @@ import { Card, Button, ButtonGroup, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
-import calculateValue from "../../../utilities/API calls/calculateValue";
+import calculateValue from "../../../api/calculateValue";
 import { showDeleteAsset } from "../../../actions/deleteAssetActions";
 import { showEditAssetAmount } from "../../../actions/editAssetAmountActions";
 import {
   addToTotalValue,
   recalculateTotalValue,
 } from "../../../actions/totalValueActions";
-import abbreviateValue from "../../../utilities/helpers/abbreviateValue";
+import abbreviateValue from "../../../utilities/abbreviateValue";
 
 interface IAssetBarProps {
   assetName: string;

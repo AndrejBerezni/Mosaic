@@ -1,4 +1,4 @@
-import { IAsset } from "../../firebase-config";
+import { IAsset } from "../firebase-config";
 
 const sortAssetList = (assetList: IAsset[], sortValue: string) => {
   switch (sortValue) {

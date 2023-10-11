@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers/combineReducers";
 import { useDispatch } from "react-redux";
 import { removeFromTotalValue } from "../../../actions/totalValueActions";
-import sortAssetList from "../../../utilities/helpers/sortAssetList";
+import sortAssetList from "../../../utilities/sortAssetList";
 
 function AssetList() {
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import { signInAction } from "../../../../actions/signInActions";
 import { useNavigate } from "react-router-dom";
 import { hideForm } from "../../../../actions/showFormActions";
 import { showAlert } from "../../../../actions/showAlertActions";
-import formatFirebaseError from "../../../../utilities/helpers/formatFirebaseError";
+import formatFirebaseError from "../../../../utilities/formatFirebaseError";
 
 function SignInForm() {
   const dispatch = useDispatch();
