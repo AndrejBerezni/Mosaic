@@ -8,7 +8,7 @@ interface IAppAlertProps {
   show: boolean;
 }
 
-function AppAlert({ show }: IAppAlertProps) {
+function AppAlert({ show }: Readonly<IAppAlertProps>) {
   const dispatch = useDispatch();
   const message = useSelector(
     (state: RootState) => state.showAlert.alertMessage,

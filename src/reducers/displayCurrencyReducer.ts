@@ -1,12 +1,12 @@
-import { displayCurrency } from '../actions/displayCurrencyActions';
+import { IDisplayCurrency } from '../actions/displayCurrencyActions';
 
 interface DisplayCurrencyState {
-  currency: displayCurrency;
+  currency: IDisplayCurrency;
 }
 
 interface DisplayCurrencyAction {
   type: string;
-  payload: displayCurrency;
+  payload: IDisplayCurrency;
 }
 
 const initialState = {

@@ -7,7 +7,7 @@ interface IHomeCardProps {
   cardText: string;
 }
 
-function HomeCard({ src, cardTitle, cardText }: IHomeCardProps) {
+function HomeCard({ src, cardTitle, cardText }: Readonly<IHomeCardProps>) {
   return (
     <Card className="home-card my-3">
       <Card.Img variant="top" src={src} className="home-card-img" />

@@ -1,19 +1,23 @@
 import './Navbar.css';
 import { useEffect } from 'react';
 import { Container, Nav, Navbar, Image, NavDropdown } from 'react-bootstrap';
-import { Moon } from 'react-bootstrap-icons';
-import { Sun } from 'react-bootstrap-icons';
-import { CurrencyEuro } from 'react-bootstrap-icons';
-import { CurrencyDollar } from 'react-bootstrap-icons';
-import { CurrencyPound } from 'react-bootstrap-icons';
+import {
+  Moon,
+  Sun,
+  CurrencyEuro,
+  CurrencyDollar,
+  CurrencyPound,
+} from 'react-bootstrap-icons';
 import { useSelector, useDispatch } from 'react-redux';
 
 import logodark from '../../assets/mosaicdark.png';
 import logo from '../../assets/mosaic.png';
 import { darkModeOn, darkModeOff } from '../../actions/darkModeActions';
 import { RootState } from '../../reducers/combineReducers';
-import { setDisplayCurrency } from '../../actions/displayCurrencyActions';
-import { displayCurrency } from '../../actions/displayCurrencyActions';
+import {
+  setDisplayCurrency,
+  IDisplayCurrency,
+} from '../../actions/displayCurrencyActions';
 import { showForm } from '../../actions/showFormActions';
 import { signOutAction } from '../../actions/signInActions';
 import { signOutUser } from '../../firebase-config';
@@ -41,7 +45,7 @@ function Nabvar() {
     isDarkMode ? dispatch(darkModeOff()) : dispatch(darkModeOn());
   };
 
-  const setCurrency = (currency: displayCurrency) => {
+  const setCurrency = (currency: IDisplayCurrency) => {
     dispatch(setDisplayCurrency(currency));
   };
 

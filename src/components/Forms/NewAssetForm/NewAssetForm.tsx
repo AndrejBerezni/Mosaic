@@ -77,7 +77,7 @@ function NewAssetForm() {
         </FloatingLabel>
       </Form>
       <AssetTypeForm handleClose={handleClose} />
-      <AppAlert show={showAlert && alertType === 'newAsset' ? true : false} />
+      <AppAlert show={showAlert && alertType === 'newAsset'} />
     </Modal>
   );
 }

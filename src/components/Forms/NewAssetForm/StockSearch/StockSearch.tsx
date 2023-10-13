@@ -6,15 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { RootState } from '../../../../reducers/combineReducers';
 import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
-import { IAsset } from '../../../../firebase-config';
-import { addNewAsset } from '../../../../firebase-config';
+import { addNewAsset, IAsset } from '../../../../firebase-config';
 import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 interface IStockSearchProps {
   handleClose: () => void;
 }
 
-function StockSearch({ handleClose }: IStockSearchProps) {
+function StockSearch({ handleClose }: Readonly<IStockSearchProps>) {
   const [keywords, setKeywords] = useState<string>('');
   const [searchResults, setSearchResults] = useState([]);
   const dispatch = useDispatch();

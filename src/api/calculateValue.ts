@@ -89,6 +89,7 @@ const calculateValue = async (
   code: string,
   displayCurrency: { symbol: string; code: string },
 ) => {
+  console.log('Calling API...');
   switch (type) {
     case 'Stock':
       return fetchStockPrice(amount, code, displayCurrency);

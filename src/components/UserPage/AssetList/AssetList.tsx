@@ -4,8 +4,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import { getAssetsForUser } from '../../../firebase-config';
-import { IAsset } from '../../../firebase-config';
+import { getAssetsForUser, IAsset } from '../../../firebase-config';
 import AssetBar from '../AssetBar/AssetBar';
 import { RootState } from '../../../reducers/combineReducers';
 import { removeFromTotalValue } from '../../../actions/totalValueActions';

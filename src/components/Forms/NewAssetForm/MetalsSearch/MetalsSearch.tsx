@@ -2,17 +2,16 @@ import { useRef } from 'react';
 import { Form, FloatingLabel, Button, Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addNewAsset } from '../../../../firebase-config';
+import { addNewAsset, IAsset } from '../../../../firebase-config';
 import { RootState } from '../../../../reducers/combineReducers';
 import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
-import { IAsset } from '../../../../firebase-config';
 import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 interface IMetalsSearchProps {
   handleClose: () => void;
 }
 
-function MetalsSearch({ handleClose }: IMetalsSearchProps) {
+function MetalsSearch({ handleClose }: Readonly<IMetalsSearchProps>) {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.signedIn.user);
   const assetRef = useRef<HTMLSelectElement | null>(null);

@@ -47,7 +47,7 @@ function UserAuthentication() {
           <SignUpForm />
         </Tab>
       </Tabs>
-      <AppAlert show={showAlert && alertType === 'signin' ? true : false} />
+      <AppAlert show={showAlert && alertType === 'signin'} />
     </Modal>
   );
 }

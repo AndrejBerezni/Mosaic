@@ -20,7 +20,12 @@ interface IAssetBarProps {
   assetCode: string;
 }
 
-function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
+function AssetBar({
+  assetName,
+  assetType,
+  units,
+  assetCode,
+}: Readonly<IAssetBarProps>) {
   const dispatch = useDispatch();
   const displayCurrency = useSelector(
     (state: RootState) => state.displayCurrency.currency,
@@ -52,43 +57,41 @@ function AssetBar({ assetName, assetType, units, assetCode }: IAssetBarProps) {
   };
 
   return (
-    <>
-      <Card className="asset-bar my-3">
-        <Row className="py-2">
-          <Col className="asset-bar-col">
-            <p className="asset-bar-text">{assetName}</p>
-          </Col>
-          <Col className="asset-bar-col">
-            <p className="asset-bar-text secondary-text">{assetType}</p>
-          </Col>
-          <Col className="asset-bar-col">
-            <p className="asset-bar-text secondary-text">
-              {abbreviateValue(units!)}
-            </p>
-          </Col>
-          <Col className="asset-bar-col">
-            <p className="asset-bar-text">
-              {abbreviateValue(assetValue!)}
-              {displayCurrency.symbol}
-            </p>
-          </Col>
-        </Row>
-        <ButtonGroup aria-label="Basic example">
-          <Button
-            className="edit-units-button asset-bar-btn"
-            onClick={showEditAsset}
-          >
-            Edit Amount
-          </Button>
-          <Button
-            className="delete-asset-button asset-bar-btn"
-            onClick={showDeletionConfirmation}
-          >
-            Delete Asset
-          </Button>
-        </ButtonGroup>
-      </Card>
-    </>
+    <Card className="asset-bar my-3">
+      <Row className="py-2">
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text">{assetName}</p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text secondary-text">{assetType}</p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text secondary-text">
+            {abbreviateValue(units)}
+          </p>
+        </Col>
+        <Col className="asset-bar-col">
+          <p className="asset-bar-text">
+            {abbreviateValue(assetValue!)}
+            {displayCurrency.symbol}
+          </p>
+        </Col>
+      </Row>
+      <ButtonGroup aria-label="Basic example">
+        <Button
+          className="edit-units-button asset-bar-btn"
+          onClick={showEditAsset}
+        >
+          Edit Amount
+        </Button>
+        <Button
+          className="delete-asset-button asset-bar-btn"
+          onClick={showDeletionConfirmation}
+        >
+          Delete Asset
+        </Button>
+      </ButtonGroup>
+    </Card>
   );
 }
 

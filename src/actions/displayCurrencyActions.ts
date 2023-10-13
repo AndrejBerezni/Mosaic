@@ -1,9 +1,9 @@
-interface displayCurrency {
+interface IDisplayCurrency {
   symbol: string;
   code: string;
 }
 
-const setDisplayCurrency = (currency: displayCurrency) => {
+const setDisplayCurrency = (currency: IDisplayCurrency) => {
   return {
     type: 'SET DISPLAY CURRENCY',
     payload: currency,
@@ -11,4 +11,4 @@ const setDisplayCurrency = (currency: displayCurrency) => {
 };
 
 export { setDisplayCurrency };
-export type { displayCurrency };
+export type { IDisplayCurrency };

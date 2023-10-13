@@ -5,8 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { RootState } from '../../../../reducers/combineReducers';
 import { refreshAssetList } from '../../../../actions/refreshAssetListActions';
-import { IAsset } from '../../../../firebase-config';
-import { addNewAsset } from '../../../../firebase-config';
+import { addNewAsset, IAsset } from '../../../../firebase-config';
 import { showAlert, hideAlert } from '../../../../actions/showAlertActions';
 
 type CurrencyList = Record<string, string>;
@@ -15,7 +14,7 @@ interface ICurrencySearchProps {
   handleClose: () => void;
 }
 
-function CurrencySearch({ handleClose }: ICurrencySearchProps) {
+function CurrencySearch({ handleClose }: Readonly<ICurrencySearchProps>) {
   const [currencyList, setCurrencyList] = useState<CurrencyList>({});
   const [userInput, setUserInput] = useState<string>('');
   const [matches, setMatches] = useState<[string, string][]>([]);

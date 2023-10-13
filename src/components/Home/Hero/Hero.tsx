@@ -5,7 +5,7 @@ interface IHeroProps {
   src: string;
 }
 
-function Hero({ src }: IHeroProps) {
+function Hero({ src }: Readonly<IHeroProps>) {
   return (
     <Container fluid>
       <Row>
